@@ -263,6 +263,18 @@
   .tabs button{background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-family:var(--sans);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;padding:12px 22px;cursor:pointer}
   .tabs button:hover{color:var(--text)}
   .tabs button.on{color:var(--gold);border-bottom-color:var(--gold)}
+
+  /* ===== FIGURES ===== */
+  .fig{margin:34px 0;border:1px solid var(--line);background:#0B0D13}
+  .fig-plate{background:radial-gradient(ellipse 80% 70% at 75% 5%,rgba(201,169,97,.10),transparent 60%),linear-gradient(165deg,#12151E,#0B0D13);padding:8px 4px 2px;position:relative}
+  .fig-plate .fbadge{position:absolute;top:14px;left:16px;background:rgba(10,12,16,.72);border:1px solid var(--gold-soft);color:var(--gold);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;padding:5px 11px;z-index:2}
+  .fig svg{width:100%;height:auto;display:block}
+  .fig figcaption{border-top:1px solid var(--line);padding:11px 16px;font-size:12px;line-height:1.5;color:var(--faint);letter-spacing:.01em}
+  .fig figcaption b{color:var(--gold);font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:9.5px;margin-right:8px}
+  .art .fig{margin:38px 0}
+  .card .thumb-f{border:1px solid var(--line);margin-bottom:14px;background:linear-gradient(165deg,#12151E,#0B0D13);height:150px;overflow:hidden;cursor:pointer}
+  .card .thumb-f svg{width:100%;height:150px;display:block}
+  @media(max-width:700px){.fig figcaption{font-size:11.5px}}
   .badge-st{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px;border:1px solid var(--line);vertical-align:2px;margin-left:6px}
   .badge-st.pub{color:var(--up);border-color:rgba(52,193,125,.4)}
   .badge-st.dr{color:var(--gold);border-color:var(--gold-soft)}
@@ -650,6 +662,479 @@ const A=[
  points:['Dow crossed 53,000 on July 6, an all-time first','“Trump investment accounts” launch: default index investing, federal match','Strategists model tens of billions in annual structural flows','Gold holds above $4,000 despite a 2.5% weekly pullback'],
  tags:['Dow','Retail Investing','White House','Gold']},
 
+{id:'arb-fee-share',role:'grid',sec:'crypto',kicker:'Crypto · Layer 2',date:'July 9, 2026',iso:'2026-07-09',read:6,author:'diego-reyes',
+ title:'Arbitrum Rallies 10% as Robinhood Chain Turns ARB Into a Revenue Token',
+ dek:'Offchain Labs will route 10% of net protocol fees from Orbit-built chains back to the ecosystem — 8% to the DAO treasury, 2% to the Developer Guild — giving a governance token its first genuine claim on cash flow.',
+ body:[
+ 'ARB rose close to 10% to trade near $0.085 after Offchain Labs unveiled a fee-sharing arrangement alongside the Robinhood Chain mainnet launch. Chains built with the Arbitrum Platform will send 10% of net protocol fees back into the ecosystem: 8% to the Arbitrum DAO treasury, 2% to the Developer Guild that funds tooling and applications.',
+ 'The mechanism is small in absolute terms — ARB’s market capitalization sits near $485 million — but it is a structural change in what the token is. For three years ARB conferred votes and little else. It now carries a proportional, if modest, claim on the revenue of every business that builds on Arbitrum technology, Robinhood included.',
+ 'Whether that claim compounds depends on a variable nobody can yet observe: how much fee revenue a chain generates when its sponsor covers gas for the first ninety days. The honest number arrives in October. Until then, the rally is a bet on the model, not on the receipts.'],
+ quote:{t:'Governance tokens vote. Revenue tokens compound. ARB just changed categories.',a:'The Long Chain, Meridian'},
+ points:['ARB +9.9% to ~$0.085; market cap ~$485M','10% of net protocol fees returned: 8% DAO, 2% Developer Guild','First value-accrual mechanism in Arbitrum’s history','Gas subsidy through late September obscures true fee run-rate'],
+ tags:['Arbitrum','ARB','Robinhood','Tokenomics']},
+
+{id:'uniswap-rhc-volume',role:'grid',sec:'crypto',kicker:'Crypto · DeFi',date:'July 8, 2026',iso:'2026-07-08',read:5,author:'diego-reyes',
+ title:'Uniswap Clears $500 Million in a Day on Robinhood Chain',
+ dek:'The dedicated AMM deployed as the chain’s primary public liquidity venue posted half a billion dollars of 24-hour volume in its first week — with Pleiades running a proprietary book alongside it.',
+ body:[
+ 'Uniswap recorded roughly $500 million in 24-hour trading volume on Robinhood Chain within days of the July 1 mainnet launch, the strongest opening week any Arbitrum Orbit chain has posted. The protocol deployed a dedicated automated market maker to serve as the chain’s primary public liquidity layer; Pleiades deployed a proprietary AMM as a prop trading venue beside it.',
+ 'The split architecture is deliberate and unusual. Public liquidity and proprietary flow sit on the same settlement layer but in separate pools, an arrangement that resembles the lit-market and internalizer structure of American equities far more than it resembles conventional DeFi.',
+ 'The chain processed about four million transactions in its first week against more than 200 million on testnet. The measure that matters is not transaction count but active wallets in the second month, once the novelty and the free gas both expire.'],
+ quote:{t:'Public liquidity and proprietary flow on one settlement layer — that is not DeFi, that is market structure.',a:'DeFi desk head, Singapore'},
+ points:['~$500M in 24-hour Uniswap volume in launch week','Pleiades runs a separate proprietary AMM for prop flow','~4M transactions week one; 200M+ on testnet','Active-wallet retention in August is the real test'],
+ tags:['Uniswap','Robinhood Chain','DeFi','Liquidity']},
+
+{id:'robinhood-earn',role:'grid',sec:'crypto',kicker:'Crypto · Yield',date:'July 2, 2026',iso:'2026-07-02',read:5,author:'diego-reyes',
+ title:'Robinhood Earn Offers an Estimated 7% on USDG — and Morpho Is Doing the Lending',
+ dek:'A brokerage app now routes retail deposits into a decentralized lending market. The yield is real; so is the counterparty stack most users will never read.',
+ body:[
+ 'Alongside the mainnet launch, Robinhood introduced Earn, a product offering U.S. users an estimated 7% annual yield on USDG stablecoin deposits. The rate is not set by Robinhood. It is produced by Morpho, the decentralized lending protocol whose infrastructure sits underneath the interface.',
+ 'That distinction defines the product. A user sees a percentage in a brokerage app; behind it sits a smart-contract lending market whose rate floats with borrower demand and whose principal is protected by collateral ratios and liquidation logic rather than by deposit insurance.',
+ 'The regulatory question is not whether the product is legal — it is structured carefully — but whether the average user can distinguish it from a savings account. Robinhood has covered gas fees for the first ninety days, removing the last piece of friction that might have prompted anyone to ask.'],
+ quote:{t:'The interface says seven percent. The contract says collateral ratio.',a:'Meridian, Digital Asset Markets'},
+ points:['Estimated 7% APY on USDG for U.S. users','Yield generated by Morpho’s decentralized lending markets','No deposit insurance; returns float with borrower demand','Robinhood covers gas on all chain transactions for 90 days'],
+ tags:['Robinhood','Morpho','Stablecoins','Yield']},
+
+{id:'hood-cuts',role:'grid',sec:'stocks',kicker:'Stocks · Fintech',date:'July 3, 2026',iso:'2026-07-03',read:6,author:'thanh-nguyen',
+ title:'Robinhood Launched a Blockchain Weeks After Cutting 10% of Its Staff',
+ dek:'Crypto revenue fell 47% year-over-year in the first quarter. The chain is not a victory lap — it is the strategy that follows a bad quarter.',
+ body:[
+ 'The two facts sit awkwardly together in the same filing season. Robinhood reduced its workforce by roughly 10% and reported a 47% year-over-year collapse in first-quarter crypto revenue. Then it launched a Layer 2 blockchain, a tokenized equities product for 120 countries, an agentic trading tool and a DeFi yield account, all in a single London keynote.',
+ 'Read charitably, the sequence is discipline: cut cost in a cyclical business, redirect the savings into infrastructure that produces revenue independent of trading volume. Read skeptically, it is a company whose core crypto business shrank by nearly half responding by building the venue rather than trading on it.',
+ 'The 28 million existing brokerage users are the asset that makes either reading plausible. No other chain launches with a distribution list that size. What no chain has yet demonstrated is that brokerage users, presented with self-custody, will accept it.'],
+ quote:{t:'No chain has ever launched with 28 million users already on the other side of the door.',a:'Fintech analyst, New York'},
+ points:['~10% workforce reduction ahead of the launch','Q1 crypto revenue down 47% year-over-year','Chain, stock tokens, Earn and agentic trading launched together','28 million brokerage users are the distribution advantage'],
+ tags:['Robinhood','HOOD','Fintech','Layoffs']},
+
+{id:'base-vs-hood',role:'grid',sec:'crypto',kicker:'Crypto · Analysis',date:'July 5, 2026',iso:'2026-07-05',read:8,author:'sofia-lindqvist',
+ title:'Two Brokers, Two Chains: What Robinhood Chain Copies From Base — and What It Refuses To',
+ dek:'Coinbase built a general-purpose chain for Ethereum’s developers. Robinhood built a compliant venue for its own order flow. The divergence will define the next five years of onchain finance.',
+ body:[
+ 'Base launched in August 2023 on the OP Stack, positioned as a general-purpose home for the Ethereum developer ecosystem. Robinhood Chain launched on July 1, 2026 on Arbitrum Orbit, purpose-built for real-world asset tokenization, compliant financial products and integration with the brokerage stack that feeds it.',
+ 'The technical differences are downstream of that choice. Base optimized for developer mindshare and accumulated nearly three years of ecosystem gravity. Robinhood optimized for 100-millisecond blocks, institutional-grade compliance rails and a narrow initial use case. One chose breadth and waited. The other chose depth and arrived with users.',
+ 'The convergent risk is identical: both are incumbent brokers who decided that routing customer flow through someone else’s network was a strategic error. If they are right, the infrastructure layer of finance stops being neutral. If they are wrong, they have built expensive private roads to public destinations.'],
+ quote:{t:'Base chose breadth and waited. Robinhood chose depth and arrived with users.',a:'The Long Chain, Meridian'},
+ points:['Base: OP Stack, general purpose, live since August 2023','Robinhood Chain: Arbitrum Orbit, RWA and compliance first','Both are brokers refusing to route flow through third-party rails','Neutrality of the infrastructure layer is the open question'],
+ tags:['Base','Coinbase','Robinhood Chain','L2','Market Structure']},
+
+{id:'agentic-trading',role:'grid',sec:'tech',kicker:'Technology · AI',date:'July 2, 2026',iso:'2026-07-02',read:6,author:'rachel-feld',
+ title:'Robinhood Ships Agentic Trading, and the Fiduciary Questions Start Immediately',
+ dek:'An AI agent that can research, propose and execute inside a retail brokerage account is a product. Whether it is also advice is a question the SEC has not answered.',
+ body:[
+ 'Buried in Robinhood’s July 1 announcement, beneath the blockchain and the stock tokens, was a feature with larger regulatory surface area than either: agentic trading. Users can delegate research and execution to an AI agent operating inside their account.',
+ 'Securities law draws a sharp line between a broker executing instructions and an adviser recommending them. An agent that surfaces an idea, sizes it, and places it appears to cross that line, and the existing exemptions were written for humans who can be examined, sanctioned and barred.',
+ 'Robinhood is not alone in shipping ahead of the rulebook, and the pattern is familiar from payment for order flow: build, scale, then argue about categories once tens of millions of accounts have already opted in. The difference this time is that the thing making the decision cannot be deposed.'],
+ quote:{t:'The exemptions were written for advisers who can be examined. An agent cannot be deposed.',a:'Securities law professor, Georgetown'},
+ points:['Agentic trading launched alongside the chain on July 1','Research, sizing and execution delegated to an AI agent','Broker-versus-adviser distinction is legally unresolved','Precedent: payment for order flow scaled before it was adjudicated'],
+ tags:['Robinhood','AI Agents','SEC','Regulation']},
+
+{id:'token-debt',role:'grid',sec:'policy',kicker:'Policy · Markets',date:'July 4, 2026',iso:'2026-07-04',read:6,author:'thanh-nguyen',
+ title:'The Fine Print on Stock Tokens: You Own Debt, Not Equity',
+ dek:'Robinhood’s tokenized equities are structured as debt securities tracking a share price. No voting rights, no share register, and a counterparty on the other side.',
+ body:[
+ 'The tokens now trading around the clock in 120 countries do not make holders shareholders. They are tokenized debt securities whose value tracks the price of an underlying equity. The issuer owes the holder the economic exposure. The share register at the transfer agent does not record the holder’s name.',
+ 'In practice, in a calm market, the distinction is invisible: the token tracks the stock, dividends pass through, the price is the price. In a stressed market, the distinction is the only thing that matters, because the holder is an unsecured creditor of the issuer rather than an owner of a claim on a company.',
+ 'European regulators permitted the structure precisely because it is a derivative rather than a share. The SEC has not extended the same accommodation to U.S. retail. That asymmetry — a U.S. broker offering to everyone except Americans — is the most quietly remarkable fact of the launch.'],
+ quote:{t:'The token tracks the stock. The holder is a creditor of the issuer. In calm markets nobody notices.',a:'Meridian, Policy Desk'},
+ points:['Stock tokens are tokenized debt securities, not share ownership','No voting rights; holder is an unsecured creditor of the issuer','Available in 120+ countries; not to U.S. retail','SEC clarity on onchain equities remains outstanding'],
+ tags:['Tokenization','SEC','Robinhood','Securities Law']},
+
+{id:'nvidia-dsx',role:'grid',sec:'tech',kicker:'Technology · Infrastructure',date:'July 1, 2026',iso:'2026-07-01',read:7,author:'maya-okafor',
+ title:'Nvidia’s DSX Model: Stop Selling Chips, Start Owning the Factory',
+ dek:'Cloud operators can now deploy multi-tenant AI factories with Nvidia’s credit support and revenue sharing — converting one-time hardware sales into a claim on the tokens those machines produce.',
+ body:[
+ 'On July 1 Nvidia introduced a business model rather than a product. Under DSX, AI cloud operators build large-scale, multi-tenant AI factories with a combination of revenue sharing and credit support from Nvidia. The company supplies the silicon and part of the balance sheet, and takes a share of what the facility earns.',
+ 'The logic follows the shift Nvidia keeps describing: compute demand is migrating from bursty model training toward continuously operating inference, where a data center is less a capital project than a production line generating tokens around the clock. A production line has a revenue-per-gigawatt figure. A chip sale does not.',
+ 'The strategic risk is that Nvidia becomes a lender to its own customers, a structure that has ended badly in every prior technology cycle in which vendor financing outran demand. The strategic prize is a recurring revenue stream that survives the moment when hyperscalers finish their build-out.'],
+ quote:{t:'A chip sale ends. A production line pays rent.',a:'Silicon Ledger, Meridian'},
+ points:['DSX announced July 1: revenue sharing plus credit support','Multi-tenant AI factories, optimized for continuous inference','Reframes the business as revenue per gigawatt','Vendor-financing risk is the historical cautionary tale'],
+ tags:['Nvidia','AI Infrastructure','DSX','Data Centers']},
+
+{id:'nemotron-ultra',role:'grid',sec:'tech',kicker:'Technology · AI',date:'July 8, 2026',iso:'2026-07-08',read:5,author:'rachel-feld',
+ title:'Nemotron 3 Ultra Undercuts Closed Models — and Nvidia Is the One Doing the Undercutting',
+ dek:'The chipmaker’s open model family now claims leading performance at lower cost than top proprietary systems, with LangChain tuning its Deep Agents harness around it.',
+ body:[
+ 'Nvidia said on July 8 that Nemotron 3 Ultra delivers leading performance at lower cost than top closed models, and that LangChain — whose orchestration framework is the most widely adopted in the agent ecosystem — has tuned its Deep Agents harness specifically for it.',
+ 'The commercial reasoning is unsentimental. Nvidia does not need model margins. It needs inference volume, and every dollar of cost that an open model strips out of the token price is a dollar that flows into more GPU hours. Commoditizing the layer above your own is the oldest defensive strategy in computing.',
+ 'For the frontier labs, the pressure is arriving from an unusual direction: not from a competitor trying to win the model race, but from their largest supplier, who is indifferent to who wins it.'],
+ quote:{t:'Nvidia does not need model margins. It needs inference hours.',a:'Silicon Ledger, Meridian'},
+ points:['Nemotron 3 Ultra: open weights, leading price-performance claims','LangChain tuned Deep Agents specifically for the model','Commoditizing the model layer drives GPU utilization','Frontier labs now compete with their own supplier'],
+ tags:['Nvidia','Open Models','LangChain','AI Agents']},
+
+{id:'nvidia-cpu',role:'grid',sec:'tech',kicker:'Technology · Silicon',date:'July 7, 2026',iso:'2026-07-07',read:5,author:'maya-okafor',
+ title:'Nvidia Says the Agentic Era Needs a New Kind of CPU',
+ dek:'Max single-threaded performance at scale — an idea the industry abandoned for parallelism a decade ago — returns because agent reasoning sits on the critical path.',
+ body:[
+ 'Nvidia used a July 7 technical post to argue for a category the industry had written off: CPUs optimized for maximum single-threaded performance, deployed at scale. In an agentic system, the company argues, the CPU sits on the critical path for reasoning, response time and learning, and serial latency is what the user feels.',
+ 'For fifteen years the answer to more compute was more cores. Agent workloads invert the assumption. A chain of tool calls, each waiting on the last, cannot be parallelized away; the wall-clock cost is the sum of single-threaded steps, and a GPU idles while the CPU thinks.',
+ 'The argument is convenient for a company that sells Grace CPUs, twenty-six of which now appear on the TOP500. It is also, on the merits, difficult to refute.'],
+ quote:{t:'A chain of tool calls cannot be parallelized away. The GPU waits while the CPU thinks.',a:'Nvidia technical brief, July 2026'},
+ points:['Nvidia argues for max single-threaded CPUs at scale','Agent reasoning is serial and latency-bound','26 TOP500 systems now use the Grace CPU','Nvidia runs 81% of TOP500 and 90% of new entrants'],
+ tags:['Nvidia','CPU','Grace','Agentic AI']},
+
+{id:'vera-rubin-europe',role:'grid',sec:'tech',kicker:'Technology · Supercomputing',date:'June 30, 2026',iso:'2026-06-30',read:5,author:'maya-okafor',
+ title:'Thirty-Five European Supercomputers, One Vendor',
+ dek:'At ISC in Hamburg, Nvidia disclosed a record 35 AI-HPC systems in development across Europe on the Vera Rubin platform — while its silicon already runs 81% of the TOP500.',
+ body:[
+ 'Nvidia announced at ISC High Performance in Hamburg that a record 35 AI-HPC supercomputers are in development across Europe, most built on the new Vera Rubin platform. Separately, the company’s technology now runs 81% of the TOP500 list and 90% of the systems newly added to it.',
+ 'The number that should interest policymakers is the second one. Europe’s sovereign AI programmes were designed to reduce dependence on foreign technology stacks. The instrument chosen to achieve that independence is, in nearly every case, an American accelerator and an American interconnect.',
+ 'Nvidia frames national AI infrastructure as the successor to roads and grids — essential, permanent, publicly financed. It is a persuasive analogy and an uncomfortable one, because nations do not usually buy their road network from a single supplier with an 80% share.'],
+ quote:{t:'Nations do not usually buy their road network from a single supplier.',a:'Meridian, Silicon Ledger'},
+ points:['Record 35 European AI-HPC systems in development','Vera Rubin platform underpins the new generation','Nvidia runs 81% of TOP500, 90% of new systems','Sovereign AI programmes rest on a single foreign stack'],
+ tags:['Nvidia','Europe','Supercomputing','Sovereign AI']},
+
+{id:'nvda-200-line',role:'grid',sec:'stocks',kicker:'Stocks · Technicals',date:'July 6, 2026',iso:'2026-07-06',read:5,author:'maya-okafor',
+ title:'One Number Rules Nvidia’s Chart, and It Is $200',
+ dek:'The stock lost the level on June 23 and has not reclaimed it. Above $200 opens $207–$213; a daily close under $189 breaks the channel floor.',
+ body:[
+ 'Nvidia trades near $195, down roughly 18% from its June high and about 10.7% in June alone. It lost the $200 handle on June 23 and has not closed above it since. The falling channel that has contained the decline puts resistance at $207 to $213 and its floor at $189.',
+ 'The setup is unusually binary. Strong AI capital-expenditure guidance from the large cloud companies in late July, or a firm resolution on China sales, likely pushes the stock back through $200. Fading confidence in the AI trade cracks $190 and opens a deeper slide.',
+ 'One structural detail argues against panic: there is little forced leverage to unwind in the name. Any further decline is more likely to be an orderly slide than a cascade. Orderly slides, veterans note, are how the largest positions actually get sold.'],
+ quote:{t:'There is little forced leverage here. Any further drop is a slide, not a cascade.',a:'Technical strategist, BeInCrypto'},
+ points:['NVDA ~$195; lost $200 on June 23 and has not reclaimed it','Channel resistance $207–$213; floor at $189','Late-July hyperscaler capex guidance is the catalyst','Low forced leverage argues for an orderly rather than violent decline'],
+ tags:['Nvidia','NVDA','Technical Analysis','AI Trade']},
+
+{id:'mag7-cheap',role:'grid',sec:'stocks',kicker:'Stocks · Valuation',date:'July 9, 2026',iso:'2026-07-09',read:6,author:'lucien-moreau',
+ title:'By One Measure, the Magnificent Seven Are the Cheapest They Have Been in a Decade',
+ dek:'Earnings have grown faster than the multiple. Whether that is opportunity or a warning depends entirely on the durability of the earnings.',
+ body:[
+ 'The megacap technology cohort now trades at its lowest relative valuation in ten years on a forward-earnings basis. The arithmetic is uncontroversial: profits have compounded faster than prices. The interpretation is where the argument lives.',
+ 'The bullish reading is straightforward — investors are being offered dominant, cash-generative franchises at multiples last seen before the AI cycle began. The bearish reading notes that a multiple compresses when the market doubts the denominator, and that hundreds of billions in annual AI capital expenditure has not yet demonstrated its return.',
+ 'A cheap stock is only cheap if the earnings are real. The question the second half of 2026 will answer is whether the AI build-out is capitalized investment or expensed hope, and the difference between those two words is the entire valuation gap.'],
+ quote:{t:'A multiple compresses when the market doubts the denominator.',a:'The Price of Everything, Meridian'},
+ points:['Megacap tech at its cheapest relative multiple in a decade','Earnings growth has outpaced price appreciation','AI capex return on investment remains undemonstrated','Second-half earnings prints decide the interpretation'],
+ tags:['Magnificent Seven','Valuation','AI Capex','Equities']},
+
+{id:'semis-unwind',role:'grid',sec:'stocks',kicker:'Stocks · Positioning',date:'July 9, 2026',iso:'2026-07-09',read:5,author:'jisoo-park',
+ title:'A Crowded Semiconductor Trade Begins to Unwind',
+ dek:'The VanEck Semiconductor ETF shed 3.2% in a second consecutive losing week — after closing the first half up more than 80%. BTIG sees further downside.',
+ body:[
+ 'Semiconductors, the engine of the market’s first-half advance, have now fallen for two straight weeks. The VanEck Semiconductor ETF dropped 3.2% in the most recent week after finishing the first six months of the year up more than 80%. BTIG’s technical desk sees more downside ahead.',
+ 'The unwind is a positioning event rather than a fundamental one. Investors who rode the sector through the spring are now, in the words of one strategist, badly out of whack with their long-term allocation targets. Rebalancing a winner is not the same as losing faith in it.',
+ 'Expectations, however, are the problem. Sector fundamentals remain strong, but the bar has risen with the price. Confirmation of strong fundamentals may now produce only a melt-higher; anything short of confirmation produces the tape of the last two weeks.'],
+ quote:{t:'If you have owned these names for two months, you are out of whack with your own targets.',a:'Mark Hackett, Nationwide'},
+ points:['SMH −3.2% on the week, a second consecutive decline','Semiconductor ETF closed H1 up more than 80%','Rebalancing, not fundamental deterioration, is driving the move','Elevated expectations cap the upside from good news'],
+ tags:['Semiconductors','SMH','Positioning','Risk']},
+
+{id:'kospi-bear',role:'grid',sec:'stocks',kicker:'Stocks · Asia',date:'July 8, 2026',iso:'2026-07-08',read:6,author:'jisoo-park',
+ title:'Seoul Enters a Bear Market as Two Chipmakers Become the Index',
+ dek:'The Kospi fell more than 5% to sit roughly 20% below its June 19 record — after SK Hynix and Samsung Electronics crossed a combined 50% of index weight.',
+ body:[
+ 'South Korea’s Kospi extended its decline on July 8, falling more than 5% to leave the index roughly 20% below the record high it set on June 19. The benchmark, one of the world’s best performers this year, has become one of its most concentrated.',
+ 'SK Hynix and Samsung Electronics together reportedly crossed 50% of index weight in June. A national equity market is now, functionally, a levered expression of the memory cycle. When semiconductor sentiment turns, Korea does not correct — it re-rates.',
+ 'For foreign allocators, the practical consequence is that Korea has stopped functioning as a diversifier. Buying the Kospi is buying two memory manufacturers with a modest hedge attached, and pension funds structured around country diversification are only beginning to price what that means.'],
+ quote:{t:'Buying the Kospi is buying two memory manufacturers with a hedge attached.',a:'Asia Markets desk, Meridian'},
+ points:['Kospi fell over 5%, entering a bear market','Index roughly 20% below its June 19 record','SK Hynix and Samsung crossed 50% of index weight','Korea no longer functions as a portfolio diversifier'],
+ tags:['Kospi','SK Hynix','Samsung','Memory']},
+
+{id:'asml-target',role:'grid',sec:'stocks',kicker:'Stocks · Equipment',date:'July 6, 2026',iso:'2026-07-06',read:4,author:'jisoo-park',
+ title:'Bernstein Lifts ASML’s Target More Than 30% to $2,300',
+ dek:'The Dutch lithography monopoly rose 4% as analysts marked to market the capacity every AI roadmap quietly assumes.',
+ body:[
+ 'ASML shares gained about 4% after Bernstein raised its price target by more than 30% to $2,300. The company remains the sole supplier of extreme ultraviolet lithography systems, without which no leading-edge logic or advanced memory is manufactured anywhere on earth.',
+ 'The upgrade reflects a straightforward observation. Every AI capital-expenditure forecast published this year implies wafer capacity that does not currently exist. Wafer capacity implies fabs, fabs imply EUV tools, and EUV tools imply a single company in Veldhoven with a multi-year backlog.',
+ 'The risk is not competitive but political. ASML’s addressable market is drawn and redrawn by export-control policy in Washington, The Hague and Beijing, and no analyst model has ever successfully forecast that variable.'],
+ quote:{t:'Every AI capex forecast this year implies wafer capacity that does not yet exist.',a:'Bernstein research note'},
+ points:['Bernstein target raised more than 30% to $2,300','ASML +4% on the session','Sole supplier of EUV lithography systems','Export-control policy remains the dominant uncontrollable risk'],
+ tags:['ASML','Lithography','Semiconductors','Export Controls']},
+
+{id:'wfe-hikes',role:'grid',sec:'stocks',kicker:'Stocks · Equipment',date:'July 6, 2026',iso:'2026-07-06',read:4,author:'maya-okafor',
+ title:'Morgan Stanley Raises Targets Across Wafer-Fab Equipment; Lam Leads the S&P',
+ dek:'Lam Research rose more than 4% premarket, with Applied Materials and KLA close behind, as analysts extended the memory build-out through 2027.',
+ body:[
+ 'Lam Research topped the S&P 500 premarket on July 6, up more than 4%, after Morgan Stanley raised price targets across the wafer-fab equipment complex. Applied Materials and KLA each rose just under 4% on the same note.',
+ 'Equipment makers sit one derivative removed from the AI trade, which in a cycle of doubt is a comfortable place to stand. Their revenue tracks capacity decisions taken twelve to eighteen months ago, so a wobble in Nvidia’s multiple today does not touch the order book until well into next year.',
+ 'The memory upcycle is the specific driver. High-bandwidth memory attaches to every accelerator shipped, and the capital intensity of HBM is materially higher per bit than conventional DRAM — which is precisely what an equipment vendor wants to hear.'],
+ quote:{t:'Equipment revenue reflects decisions taken eighteen months ago. That is the whole appeal.',a:'Silicon Ledger, Meridian'},
+ points:['Morgan Stanley lifts targets on LRCX, AMAT and KLAC','Lam Research led the S&P 500 premarket, up over 4%','Order books lag AI sentiment by 12–18 months','HBM capital intensity per bit exceeds conventional DRAM'],
+ tags:['Lam Research','Applied Materials','KLA','HBM']},
+
+{id:'micron-squeeze',role:'grid',sec:'stocks',kicker:'Stocks · Memory',date:'July 6, 2026',iso:'2026-07-06',read:6,author:'jisoo-park',
+ title:'The Memory Squeeze Reaches the Consumer: Apple Raises MacBook and iPad Prices',
+ dek:'Micron’s earnings confirmed the component crunch will persist. One analyst now sees 55% upside in the stock — which is another way of saying your next laptop costs more.',
+ body:[
+ 'Apple has raised prices on MacBooks and iPads, citing the escalating cost of memory and storage components. Micron’s most recent earnings, described across the Street as stellar, confirmed that the squeeze is structural rather than transitory: one price target published this week implies more than 55% upside.',
+ 'The mechanism is simple and unforgiving. Every AI accelerator consumes high-bandwidth memory, HBM fabrication consumes the same wafer capacity as consumer DRAM and NAND, and there is only so much capacity. The AI build-out is outbidding the consumer electronics industry for silicon.',
+ 'This is the first cycle in which AI infrastructure spending has produced a visible, itemized cost for an ordinary household. It will not be the last. The electricity bill is next.'],
+ quote:{t:'The AI build-out is outbidding the consumer electronics industry for silicon.',a:'Asia Markets desk, Meridian'},
+ points:['Apple raised MacBook and iPad prices on component costs','Micron earnings confirm a persistent memory squeeze','One target implies 55%+ upside for MU','HBM demand crowds out consumer DRAM and NAND capacity'],
+ tags:['Micron','Apple','Memory','HBM','Inflation']},
+
+{id:'broadcom-apple',role:'grid',sec:'tech',kicker:'Technology · Supply Chain',date:'July 8, 2026',iso:'2026-07-08',read:4,author:'maya-okafor',
+ title:'Broadcom Jumps 5% on an Expanded Apple Pact for U.S.-Made Components',
+ dek:'A supply agreement is also an industrial policy document — and this one lifted the Nasdaq on a day the Dow fell 577 points.',
+ body:[
+ 'Broadcom gained close to 5% on July 8 after expanding its agreement with Apple to supply U.S.-manufactured components, with Apple itself adding about 0.9%. The move helped the Nasdaq Composite close higher even as the Dow Jones Industrial Average shed 577 points.',
+ 'Onshoring commitments have become a currency in their own right. They insulate both parties from tariff and export-control volatility, they read well in Washington, and they carry a durability that quarterly guidance does not, because moving a fab is not a decision reversed by a bad quarter.',
+ 'The economics are less flattering than the politics. U.S.-manufactured components cost more. Somebody pays for that, and the recent price increases on Apple hardware suggest the answer is already known.'],
+ quote:{t:'Moving a fab is not a decision you reverse after a bad quarter.',a:'Silicon Ledger, Meridian'},
+ points:['Broadcom +4.8% on expanded Apple agreement','Apple +0.9%; Nasdaq closed higher as the Dow fell 577 points','Onshoring hedges tariff and export-control risk','Domestic manufacturing raises component costs'],
+ tags:['Broadcom','Apple','Onshoring','Supply Chain']},
+
+{id:'h200-china',role:'grid',sec:'tech',kicker:'Technology · Geopolitics',date:'July 8, 2026',iso:'2026-07-08',read:5,author:'maya-okafor',
+ title:'Nvidia Rises 3.6% on Reports Chinese Firms Will Increase H200 Purchases',
+ dek:'The single largest swing factor in the stock is not a product cycle. It is a licensing decision made in Washington.',
+ body:[
+ 'Nvidia gained 3.6% on July 8 following reports that Chinese firms plan to increase purchases of H200 accelerators. The move helped chipmakers lift the Nasdaq 100 on a session in which the S&P 500 and Dow both fell.',
+ 'The episode is a reminder of where the marginal buyer sits. Nvidia’s Chinese revenue has been repeatedly reset by export-control policy, and each loosening or tightening moves the stock more than most product launches do. Analysts modelling data-center revenue are, in part, modelling a licensing regime.',
+ 'For a company priced for permanent dominance, that dependence is the least discussed line in the risk factors and the most consequential.'],
+ quote:{t:'Analysts modelling Nvidia’s data-center revenue are, in part, modelling a licensing regime.',a:'Silicon Ledger, Meridian'},
+ points:['NVDA +3.6% on reported Chinese H200 demand','Chipmakers lifted the Nasdaq 100 as the broader market fell','Export-control policy is the dominant revenue variable','Licensing decisions move the stock more than product cycles'],
+ tags:['Nvidia','China','Export Controls','H200']},
+
+{id:'terawulf-anthropic',role:'grid',sec:'tech',kicker:'Technology · Compute',date:'July 6, 2026',iso:'2026-07-06',read:6,author:'rachel-feld',
+ title:'TeraWulf Jumps 16% After Anthropic Signs a 20-Year Data Center Deal',
+ dek:'About 400 megawatts in Kentucky, first power in the second half of 2027, and more than $19 billion of revenue over the initial term — signed by a company that has not yet gone public.',
+ body:[
+ 'TeraWulf shares rose more than 16% in premarket trading on July 6 after Anthropic agreed to a twenty-year lease on the company’s Kentucky data center. The facility can support roughly 400 megawatts, with first power expected in the second half of 2027, and the deal is expected to generate over $19 billion of revenue across its initial term.',
+ 'Twenty years is not a procurement horizon. It is a utility contract, and it tells you what an AI lab now believes about the permanence of inference demand. It also tells you what a former bitcoin miner has become: an independent power producer with a hyperscale tenant.',
+ 'The financing implication is the interesting one. A private company committing to $19 billion of contracted spend is signalling something about its own access to capital, weeks after confidentially filing to go public.'],
+ quote:{t:'Twenty years is not procurement. It is a utility contract.',a:'Meridian, AI & Venture desk'},
+ points:['TeraWulf +16% premarket on the announcement','~400MW Kentucky facility; first power H2 2027','Over $19 billion in revenue across the initial 20-year term','Anthropic filed confidentially for an IPO weeks earlier'],
+ tags:['Anthropic','TeraWulf','Data Centers','AI Compute']},
+
+{id:'ipo-pipeline',role:'grid',sec:'tech',kicker:'Technology · Capital Markets',date:'July 7, 2026',iso:'2026-07-07',read:6,author:'rachel-feld',
+ title:'Anthropic and OpenAI Have Both Filed Confidentially. Only One Seems in a Hurry',
+ dek:'Each is valued near $1 trillion privately. SpaceX proved the window is open; OpenAI’s reported 2027 delay suggests it does not trust the glass.',
+ body:[
+ 'Both leading AI laboratories confidentially filed IPO paperwork in recent weeks, each carrying private-market valuations approaching $1 trillion. A former Nasdaq chief executive said publicly he would bet on both listing during 2026.',
+ 'Their behaviour since diverges sharply. Anthropic has signed a twenty-year, $19 billion compute lease — the sort of commitment made by a company confident in its access to capital. OpenAI is reported to be pushing its listing to 2027 rather than test a market that has grown skeptical of AI valuations.',
+ 'SpaceX established the precedent that a company with modest revenue and large losses can command a trillion-dollar public valuation. What it did not establish is whether that precedent survives contact with a second issuer who lacks a rocket, a satellite network, and Elon Musk.'],
+ quote:{t:'SpaceX proved the window is open. It did not prove anyone else can fit through it.',a:'Meridian, AI & Venture desk'},
+ points:['Anthropic and OpenAI both filed confidentially','Each valued near $1 trillion in private markets','OpenAI reportedly delaying to 2027 to protect its valuation','SpaceX’s precedent may not transfer to issuers without hardware'],
+ tags:['Anthropic','OpenAI','IPO','AI Valuations']},
+
+{id:'fed-minutes',role:'grid',sec:'policy',kicker:'Policy · Federal Reserve',date:'July 8, 2026',iso:'2026-07-08',read:6,author:'lucien-moreau',
+ title:'The June Minutes Reveal a Committee That Cannot Agree on Direction',
+ dek:'Many participants saw rates ending the year at or below the current range. Many others saw them above it. Both sentences appear in the same document.',
+ body:[
+ 'The minutes of the Federal Reserve’s June meeting, released July 8, contain two statements that sit uneasily beside one another. Many participants indicated the appropriate year-end federal funds rate would be within or slightly below the current target range. Many other participants assessed it would be above.',
+ 'That is not nuance. It is a committee split down the middle on direction, not merely magnitude, with an oil shock arriving from the Gulf and inflation still running above target. The minutes also record that some policymakers made the case for a rate hike in June.',
+ 'Markets reacted barely at all — the S&P 500 slipped 0.28% — which is itself informative. Futures have priced two cuts by December and appear content to ignore a written record showing half the committee is not persuaded.'],
+ quote:{t:'Many participants said below. Many others said above. Both are in the same paragraph.',a:'FOMC minutes, June 2026'},
+ points:['June minutes show a committee split on direction, not degree','Some participants argued for a rate hike in June','Brent above $78 complicates any easing path','Markets still price two cuts by December'],
+ tags:['Federal Reserve','FOMC','Kevin Warsh','Rates']},
+
+{id:'payrolls-57k',role:'grid',sec:'policy',kicker:'Policy · Labor',date:'July 2, 2026',iso:'2026-07-02',read:5,author:'lucien-moreau',
+ title:'Payrolls Miss Badly at 57,000 — and Unemployment Falls Anyway',
+ dek:'Economists expected six figures. The economy delivered 57,000 jobs while the unemployment rate ticked down to 4.2%, a combination that flatters nobody’s model.',
+ body:[
+ 'The June employment report added 57,000 jobs against expectations of more than 100,000, while the unemployment rate slipped to 4.2% from 4.3%. Weak hiring and falling unemployment coexist only when the labour force is shrinking, which is the part of the release that deserves attention.',
+ 'Risk assets read the headline and rallied. A soft labour market lowers the probability of further tightening, and lower rates reduce the opportunity cost of holding non-yielding assets — the argument that carried bitcoin from below $60,000 to above $63,000 in five sessions.',
+ 'The Federal Reserve is not obliged to read it that way. A shrinking labour force is a supply constraint, and supply constraints are inflationary. The report supports easing and hawkishness with equal facility, which is why it produced a rally and a Fed that still cannot agree.'],
+ quote:{t:'The report supports easing and hawkishness with equal facility.',a:'The Price of Everything, Meridian'},
+ points:['57,000 jobs added versus expectations above 100,000','Unemployment fell to 4.2% from 4.3%','Falling participation explains the contradiction','Bitcoin rose from under $60K to over $63K in five sessions'],
+ tags:['Payrolls','Federal Reserve','Labor Market','Macro']},
+
+{id:'gold-4000',role:'grid',sec:'policy',kicker:'Policy · Commodities',date:'July 9, 2026',iso:'2026-07-09',read:5,author:'lucien-moreau',
+ title:'Gold Sheds 2.5% and Still Refuses to Break $4,000',
+ dek:'At $4,052 an ounce after a sharp pullback, the metal is doing what equities are not: pricing the Gulf, the deficit and a divided Fed simultaneously.',
+ body:[
+ 'Gold fell 2.53% to $4,052 an ounce, a decline sharp enough to make headlines and insufficient to break the level that has organized the market all year. The metal has now held above $4,000 through an oil shock, a divided Federal Reserve and a record equity rally.',
+ 'The traditional framing — gold as a fear asset — explains none of this. Equities are at record highs and the VIX sits near 18. Gold is not trading fear. It is trading the residual: the part of the fiscal and monetary outlook that neither stocks nor bonds are willing to price.',
+ 'Central bank buying underwrites the floor and shows no sign of abating. A 2.5% pullback in that context is a rounding error, and a $4,000 handle that survives a week like this one is, on balance, a stronger signal than the drawdown.'],
+ quote:{t:'Gold is not trading fear. It is trading the residual nobody else will price.',a:'The Price of Everything, Meridian'},
+ points:['Gold −2.53% to $4,052 an ounce','Level has held through the Gulf escalation and record equity highs','VIX near 18 argues against a fear bid','Central bank accumulation underwrites the floor'],
+ tags:['Gold','Commodities','Central Banks','Inflation']},
+
+{id:'nato-ankara',role:'grid',sec:'policy',kicker:'Policy · Defense',date:'July 8, 2026',iso:'2026-07-08',read:6,author:'kelechi-iwu',
+ title:'NATO Backs the Strikes From Ankara as Trump Promises More',
+ dek:'The alliance called the American raids necessary. Twenty-one miles of water in the Strait of Hormuz now sets the price of oil, of freight, and of the Fed’s July decision.',
+ body:[
+ 'Speaking at the NATO summit in Ankara, Secretary General Mark Rutte described the American strikes on Iran as absolutely necessary, following attacks on three commercial vessels transiting the Strait of Hormuz. President Trump, asked about the collapsed ceasefire, said he no longer wished to deal with Tehran and promised further strikes.',
+ 'The military logic and the market logic diverge. Freedom of navigation is a defensible objective; the instrument for achieving it raises war-risk insurance premiums, reroutes tankers around the Cape of Good Hope and adds two weeks to Asia-bound crude deliveries.',
+ 'Every macro forecast published this month now contains an unhedgeable clause about a waterway. Brent settled up 5.43% at $78.19, WTI up 4.37% at $73.52, and the Federal Reserve meets on July 28 and 29.'],
+ quote:{t:'Every macro forecast this month now contains an unhedgeable clause about a waterway.',a:'Meridian, Aerospace & Defense'},
+ points:['NATO chief calls the strikes absolutely necessary at the Ankara summit','Three commercial vessels attacked in the Strait of Hormuz','Brent settled +5.43% at $78.19; WTI +4.37% at $73.52','FOMC meets July 28–29 into the shock'],
+ tags:['NATO','Iran','Defense','Oil']},
+
+{id:'dow-577',role:'grid',sec:'stocks',kicker:'Stocks · Markets',date:'July 8, 2026',iso:'2026-07-08',read:4,author:'thanh-nguyen',
+ title:'The Dow Sheds 577 Points as the Tape Splits in Two',
+ dek:'Credit-sensitive names led the decline and chipmakers led the Nasdaq higher. On the same afternoon, in the same market.',
+ body:[
+ 'The Dow Jones Industrial Average fell 576.76 points, or 1.09%, to 52,348.39 on July 8, two sessions after crossing 53,000 for the first time. The S&P 500 eased 0.28% to 7,482.71. The Nasdaq Composite rose 0.2% to 25,870.65.',
+ 'The internals explain the divergence better than the indices do. JPMorgan lost 2.5%, Visa 1.3%, and Home Depot and GE Vernova fell around 3% as higher oil re-priced the credit-sensitive complex. Chipmakers rose on reported Chinese H200 demand and dragged the Nasdaq into the green.',
+ 'A market this bifurcated is not indecisive. It is expressing a coherent view: that an oil shock damages consumers and lenders while leaving the AI capital cycle untouched. That view is testable, and it will be tested.'],
+ quote:{t:'The tape is not confused. It thinks the oil shock hits lenders, not accelerators.',a:'Meridian, Policy Desk'},
+ points:['Dow −1.09% to 52,348.39; S&P 500 −0.28% to 7,482.71','Nasdaq Composite +0.2% to 25,870.65','JPMorgan −2.5%, Visa −1.3%, Home Depot and GE Vernova −3%','Chipmakers rallied on reported Chinese H200 purchases'],
+ tags:['Dow','S&P 500','Nasdaq','Oil']},
+
+{id:'spcx-coverage',role:'grid',sec:'space',kicker:'Space · Equity Research',date:'July 3, 2026',iso:'2026-07-03',read:7,author:'adrian-vance',
+ title:'Wall Street Cannot Agree Whether SpaceX Is Worth $63 or $236 a Share',
+ dek:'Morningstar says $63. CFRA initiated with a sell and $115. NewStreet says $165 on a twenty-five-year view. The average target is $236. The stock trades near $165.',
+ body:[
+ 'The distribution of analyst targets on SpaceX is not a distribution. It is two distinct populations. Morningstar values the company at $63 a share. CFRA initiated coverage with a sell rating and a $115 target, citing an extremely ambitious growth strategy, elevated valuation expectations and significant capital intensity. NewStreet initiated at $165. The Street average sits near $236.',
+ 'The spread reflects a genuine methodological problem rather than analytical laziness. On 2025 revenue of $18.7 billion the company trades near 112 times sales, so nothing in the current income statement supports the price. NewStreet’s James Ratzer conceded the point directly, arguing the valuation is defensible only over a twenty to twenty-five year horizon, and that SpaceX holds at least a ten-year lead in launch capability.',
+ 'Capital expenditure of $10.1 billion in the March quarter, against $4.1 billion a year earlier and mostly directed at artificial intelligence, is the number that decides the argument. Either it compounds into the AI franchise the prospectus promises, or it is the most expensive distraction in the history of aerospace.'],
+ quote:{t:'You can justify this valuation on a twenty-five year view. That is a different equity story than most.',a:'James Ratzer, NewStreet Research'},
+ points:['Targets span $63 (Morningstar) to $236 (Street average)','CFRA initiated at sell with a $115 target','Q1 capex $10.1B versus $4.1B a year earlier, mostly AI','Stock trades near 112x 2025 revenue'],
+ tags:['SpaceX','SPCX','Equity Research','Valuation']},
+
+{id:'spcx-index',role:'grid',sec:'space',kicker:'Space · Market Structure',date:'July 5, 2026',iso:'2026-07-05',read:6,author:'adrian-vance',
+ title:'A $2 Trillion Company With a 4% Float — and No Path Into the S&P 500 Until 2027',
+ dek:'S&P Dow Jones declined to shorten its 12-month IPO seasoning rule. SpaceX joined FTSE Russell instead, and its thin float now amplifies every passive dollar that touches it.',
+ body:[
+ 'SpaceX sold roughly 4% of itself. The remaining 96% is locked behind staged insider lock-ups, and Elon Musk controls 42% of shares but 82% of votes through super-voting stock. Public shareholders own an economic stake in a company where one person decides everything.',
+ 'S&P Dow Jones Indices, after consulting market participants, elected to keep its twelve-month IPO seasoning requirement rather than shorten it to six months. SpaceX therefore cannot join the S&P 500 before mid-2027. It was, however, added to FTSE Russell’s U.S. index in late June.',
+ 'Index weights are calculated on float-adjusted market capitalization, so the passive buying required is modest relative to the $2 trillion headline. Modest passive flow hitting a thin, illiquid float, however, moves prices considerably — which is a description of the last three weeks of trading.'],
+ quote:{t:'Modest passive flow, hitting a thin float, moves prices considerably.',a:'Richard Warr, NC State Poole College'},
+ points:['Only ~4% of shares in the public float','Musk holds 42% of shares, 82% of voting power','S&P kept its 12-month IPO seasoning rule; S&P 500 entry waits','FTSE Russell inclusion came in late June'],
+ tags:['SpaceX','SPCX','Index Funds','Market Structure']},
+
+{id:'starship-13',role:'grid',sec:'space',kicker:'Space · Launch',date:'July 7, 2026',iso:'2026-07-07',read:7,author:'adrian-vance',
+ title:'Starship Stays Grounded While Booster 20 and Ship 40 Wait for Flight 13',
+ dek:'Flight 12 reached the Indian Ocean. Its booster did not survive the boostback. Until the FAA accepts the final report, the vehicle that underwrites Artemis and Starlink V3 does not fly.',
+ body:[
+ 'Starship Flight 12 on May 22 was the debut of Version 3 — 408 feet tall, Raptor 3 engines, twenty Starlink simulators and two modified satellites deployed successfully, and a controlled descent into the Indian Ocean. It was also the flight in which Booster 19 lit only 29 of 33 engines on the boostback, suffered an explosion in engine E6 that disabled neighbouring Raptors, lost control and broke apart over the Gulf of Mexico.',
+ 'The vehicle has been grounded since May 28. Starship will not be cleared to fly again until the FAA approves the final investigation report and the corrective actions. Booster 20 and Ship 40 are assigned to Flight 13; Ship 41 is assigned to Flight 14.',
+ 'Everything downstream waits on that clearance. NASA has assigned a crew to Artemis III and set an aggressive mid-2027 timeline, and a lunar landing requires a dozen or more tanker flights simply to fuel the lander. Twelve flights have occurred in total across the entire programme, with seven successes and five failures.'],
+ quote:{t:'Artemis III needs a dozen tanker flights. Starship has flown twelve times in total.',a:'Meridian, Space & Frontier'},
+ points:['Flight 12 flew May 22; Booster 19 broke apart over the Gulf','Grounded since May 28 pending FAA acceptance of the final report','Booster 20 and Ship 40 assigned to Flight 13','12 launches to date: 7 successes, 5 failures'],
+ tags:['SpaceX','Starship','FAA','Artemis']},
+
+{id:'artemis-crew',role:'grid',sec:'space',kicker:'Space · NASA',date:'July 6, 2026',iso:'2026-07-06',read:6,author:'kelechi-iwu',
+ title:'NASA Names an Artemis III Crew and Sets a Timeline Its Lander Cannot Yet Meet',
+ dek:'A mid-2027 lunar landing depends on a vehicle grounded since May, and Blue Origin’s competing lander has just raised $10 billion.',
+ body:[
+ 'NASA assigned a crew to Artemis III in June and attached an aggressive timeline: a landing near the lunar south pole by mid-2027, with Artemis IV following in late 2028. The agency named SpaceX’s Starship as the crewed lander for Artemis III in 2021 and has never formally reconsidered.',
+ 'The scheduling arithmetic is unkind. A crewed landing requires orbital propellant transfer, which requires a dozen or more tanker launches per mission, which requires a launch cadence Starship has not approached in five years of testing. The vehicle has been grounded since late May.',
+ 'NASA has hedged. Blue Origin holds the second lander contract and is raising roughly $10 billion at a $130 billion valuation, with Jeff Bezos contributing $2 billion and Coatue about $4 billion. Nothing guarantees Starship flies either Artemis III or Artemis IV, and Washington knows it.'],
+ quote:{t:'Nothing guarantees Starship flies Artemis III. NASA wrote the hedge into the contract.',a:'Meridian, Aerospace & Defense'},
+ points:['Artemis III crew assigned; landing targeted for mid-2027','Artemis IV planned for late 2028','Crewed landing needs 12+ tanker flights per mission','Blue Origin raising ~$10B at a $130B valuation as the hedge'],
+ tags:['NASA','Artemis','Blue Origin','Starship']},
+
+{id:'starlink-engine',role:'grid',sec:'space',kicker:'Space · Fundamentals',date:'July 4, 2026',iso:'2026-07-04',read:6,author:'kelechi-iwu',
+ title:'Starlink Is the Only Part of SpaceX That Makes Money',
+ dek:'$11.4 billion of revenue, $4.4 billion of operating income, 10.3 million subscribers in 164 markets — and 61% of a company valued above $2 trillion.',
+ body:[
+ 'In fiscal 2025 the Starlink-powered Connectivity segment generated $11.4 billion of revenue, about 61% of total company sales, and roughly $4.4 billion of operating income. It is the only profitable segment SpaceX has. At the end of the March quarter it served about 10.3 million customers across 164 countries, territories and markets, with subscribers projected to approach 17 million during 2026.',
+ 'The AI segment, by contrast, produced $3.2 billion of revenue and a $6.4 billion operating loss. The launch business, the one the public associates with the company, is a cost centre whose principal customer is Starlink itself.',
+ 'Which places Starship at the centre of the investment case rather than the margins of it. If it works reliably, SpaceX adds satellite capacity faster and cheaper and refreshes the constellation more efficiently. If it slips, the profitable business is constrained by the unprofitable one, and a $2 trillion valuation rests on a satellite internet company with a rocket problem.'],
+ quote:{t:'If Starship slips, the profitable business is constrained by the unprofitable one.',a:'Meridian, Aerospace & Defense'},
+ points:['Starlink: $11.4B revenue, ~$4.4B operating income in FY2025','61% of total company sales; the only profitable segment','10.3M subscribers in 164 markets, projected near 17M in 2026','AI segment: $3.2B revenue, $6.4B operating loss'],
+ tags:['SpaceX','Starlink','Fundamentals','SPCX']},
+
+{id:'spacex-google',role:'grid',sec:'tech',kicker:'Technology · Cloud',date:'June 30, 2026',iso:'2026-06-30',read:5,author:'rachel-feld',
+ title:'SpaceX Signed a $920 Million-a-Month Cloud Deal With Google Days Before Its IPO',
+ dek:'Roughly $11 billion a year of committed compute spend, disclosed on the eve of the largest listing in history — and paid to a company whose AI lab competes with the buyer.',
+ body:[
+ 'SpaceX agreed to a cloud contract with Google worth approximately $920 million a month, signed days before the company’s June 12 listing. Annualized, the commitment approaches $11 billion, roughly 59% of the company’s entire 2025 revenue.',
+ 'The counterparty relationship is the striking part. Google operates one of the frontier AI laboratories against which xAI — now a SpaceX subsidiary — competes directly. Compute scarcity has made rivals into landlords, and the AI industry now routinely finances its competitors’ infrastructure.',
+ 'For public shareholders the disclosure cuts both ways. It validates the scale of the AI ambition the prospectus describes. It also converts an enormous share of an unprofitable company’s cash flow into a contractual obligation payable to Alphabet.'],
+ quote:{t:'Compute scarcity has turned rivals into landlords.',a:'Meridian, AI & Venture desk'},
+ points:['~$920M per month, roughly $11B annualized','Signed days before the June 12 IPO','Google’s AI lab competes directly with SpaceX-owned xAI','Commitment approaches 59% of 2025 group revenue'],
+ tags:['SpaceX','Google','Cloud','xAI']},
+
+{id:'anysphere-deal',role:'grid',sec:'tech',kicker:'Technology · M&A',date:'July 1, 2026',iso:'2026-07-01',read:6,author:'rachel-feld',
+ title:'SpaceX’s $60 Billion All-Stock Bid for Cursor Puts a Rocket Company in the Code Editor Business',
+ dek:'Anysphere, maker of Cursor, would be acquired entirely in shares of a company that listed three weeks ago — which is one way to test whether your new currency is real.',
+ body:[
+ 'SpaceX has agreed to acquire Anysphere, the company behind the Cursor coding environment, in an all-stock transaction valued near $60 billion. The consideration is paid entirely in shares of a company that has been publicly traded for under a month.',
+ 'An all-stock deal at this size is a statement about currency. Management believes its equity is at least fairly valued, and the seller has accepted paper that is not yet seasoned by a single earnings report. Both parties are betting on the same multiple.',
+ 'Strategically, the acquisition completes the transformation the xAI merger began. SpaceX now spans launch, satellite communications, a frontier model, a social platform and developer tooling. The prospectus called this a $28.5 trillion total addressable market, roughly 90% of it attributed to artificial intelligence. It did not call it a rocket company.'],
+ quote:{t:'The prospectus described a $28.5 trillion market. It did not describe a rocket company.',a:'Meridian, AI & Venture desk'},
+ points:['~$60 billion all-stock acquisition of Anysphere','Paid in SPCX shares less than a month after listing','Completes the launch, satellite, model, platform and tooling stack','Prospectus TAM: $28.5 trillion, ~90% attributed to AI'],
+ tags:['SpaceX','Anysphere','Cursor','M&A']},
+
+{id:'space-tourism',role:'grid',sec:'space',kicker:'Space · Frontier',date:'June 25, 2026',iso:'2026-06-25',read:6,author:'adrian-vance',
+ title:'Point-to-Point Starship Would Make Every Passenger an Astronaut',
+ dek:'Fifteen to twenty minutes, New York to Paris, above the Kármán line. Musk compares it to an ICBM that lands. One scholar sees a pool of tens of millions of tourists.',
+ body:[
+ 'Among the scant details in SpaceX’s IPO prospectus about future spaceflight is the suborbital point-to-point concept: Starship flights between continental cities lasting fifteen to twenty minutes. Elon Musk has described the experience as riding an ICBM travelling at Mach 25 that lands, with a G-force profile resembling a roller coaster.',
+ 'Because such trajectories would likely exceed 100 kilometres, every passenger would cross the internationally recognized boundary of space. Brian Hurley of the New Space Economy think tank argues this creates a market of tens of millions of potential space tourists at the right price point — people buying a flight and receiving an identity.',
+ 'The vehicle underwriting this vision is grounded pending an FAA investigation, and the same Starship capsules are also proposed as orbital stations to succeed the ISS in the 2030s. The distance between the prospectus and the launch pad remains, at present, one accepted mishap report.'],
+ quote:{t:'It is basically an ICBM travelling at Mach 25 that lands.',a:'Elon Musk, on point-to-point Starship'},
+ points:['Suborbital city-to-city flights of 15–20 minutes','Trajectories likely cross the 100km Kármán line','Scholar projects tens of millions of potential passengers','Starship capsules also proposed as post-ISS orbital stations'],
+ tags:['SpaceX','Starship','Space Tourism','Kármán Line']},
+
+{id:'eth-lag',role:'grid',sec:'crypto',kicker:'Crypto · Ethereum',date:'July 7, 2026',iso:'2026-07-07',read:6,author:'sofia-lindqvist',
+ title:'Ethereum Sits Near $1,775 While Everything Built On It Sets Records',
+ dek:'Uniswap clears half a billion a day on a new chain, Robinhood settles to Ethereum, and ETH trades 64% below its August 2025 high. The value does not accrue where the activity happens.',
+ body:[
+ 'Ether opened July 7 near $1,798 and drifted to about $1,776, roughly 64% below the $4,953 all-time high set in August 2025. Ethereum’s market capitalization stands near $233 billion against bitcoin’s $1.33 trillion.',
+ 'The activity, meanwhile, has never been healthier. Robinhood Chain settles to Ethereum and uses ETH as its gas token. Uniswap posted $500 million of daily volume on that chain in its first week. Base continues to compound. The base layer secures a growing share of global financial settlement and captures a shrinking share of the fees.',
+ 'That is the design working as intended, and it is the investment case failing as designed. Rollups moved execution off the base layer, and the fee revenue moved with it. Vitalik Buterin himself suggested in February that the rollup-centric roadmap may need recalibration — a sentence the market has been trading ever since.'],
+ quote:{t:'The base layer secures more settlement and captures fewer fees. That is the design working as intended.',a:'The Long Chain, Meridian'},
+ points:['ETH near $1,776, some 64% below its August 2025 high','Market cap ~$233B versus bitcoin’s ~$1.33T','Robinhood Chain settles to Ethereum and uses ETH for gas','Rollups moved execution — and fee revenue — off the base layer'],
+ tags:['Ethereum','ETH','L2','Value Accrual']},
+
+{id:'etf-outflows',role:'grid',sec:'crypto',kicker:'Crypto · Flows',date:'July 3, 2026',iso:'2026-07-03',read:6,author:'sofia-lindqvist',
+ title:'The Structural Bid Became the Structural Offer: Inside June’s Record ETF Outflows',
+ dek:'Most of the exodus came from a single fund. Retail largely sat still, and a handful of corporate treasuries kept buying the dip. The complex still holds about $80 billion of bitcoin.',
+ body:[
+ 'June produced record outflows from U.S. spot bitcoin ETFs, and the composition matters more than the total. The overwhelming majority came from BlackRock’s IBIT, the largest fund in the complex. Retail investors mostly did nothing. Several corporate buyers added on weakness.',
+ 'This is not a broad panic. It is large allocators stepping back — rebalancing, de-risking, or simply funding losses elsewhere — while the marginal retail holder does not sell. The funds still hold roughly $80 billion of bitcoin between them.',
+ 'The trouble is that ETFs are now the price-setting mechanism they were built to be. Until institutional money returns, bitcoin will struggle to establish a durable bottom, however calm the underlying holder base appears. Weekly flows remain negative at roughly $0.9 billion even after the price recovered above $63,000.'],
+ quote:{t:'This is big money stepping back, not the market falling apart. The distinction expires if it lasts.',a:'The Long Chain, Meridian'},
+ points:['Record June outflows, concentrated in BlackRock’s IBIT','Retail holders largely inactive; some corporates bought the dip','Complex still holds roughly $80 billion of bitcoin','Weekly flows still around −$0.9B despite the price recovery'],
+ tags:['Bitcoin','ETF','IBIT','Flows']},
+
+{id:'onchain-stress',role:'grid',sec:'crypto',kicker:'Crypto · On-Chain',date:'July 6, 2026',iso:'2026-07-06',read:6,author:'sofia-lindqvist',
+ title:'Bitcoin’s Realized Profit Ratio Hits Its Lowest Level Since FTX',
+ dek:'A reading of −0.35 — a 43-month low — means the average coin moving on-chain is moving at a loss. Every previous print this deep preceded a recovery. That is not a guarantee.',
+ body:[
+ 'Bitcoin’s realized profit-and-loss ratio fell to −0.35, the lowest reading since the FTX collapse in December 2022. The metric measures whether coins changing hands are moving at a profit or a loss relative to their acquisition price. At −0.35, sellers are capitulating.',
+ 'The derivatives market confirms the stress. Longs absorbed $47.91 million of liquidations in twenty-four hours against $13.66 million for shorts, and the daily chart shows a third breakdown from the ascending channel this year, with the June 25 low near $58,190 marking the deepest flush.',
+ 'Prior breakdowns in February and late May were each followed by recovery, and the same distress signal preceded the major bottoms of 2018 and 2022. Polymarket assigns a 71% probability to bitcoin touching $65,000 in July and only 24% to $70,000 — a market that believes in the bounce and not the breakout.'],
+ quote:{t:'The average coin moving on-chain is moving at a loss. That is what capitulation looks like in data.',a:'The Long Chain, Meridian'},
+ points:['Realized P&L ratio at −0.35, a 43-month low','Longs liquidated $47.91M in 24 hours versus $13.66M of shorts','Third ascending-channel breakdown of 2026; June 25 low $58,190','Polymarket: 71% odds of $65K in July, 24% for $70K'],
+ tags:['Bitcoin','On-chain','Liquidations','Capitulation']},
+
+{id:'btc-targets',role:'grid',sec:'crypto',kicker:'Crypto · Forecasts',date:'July 5, 2026',iso:'2026-07-05',read:6,author:'sofia-lindqvist',
+ title:'Standard Chartered Still Says $100,000. Bernstein Still Says $150,000.',
+ dek:'With bitcoin near $60,000 and below its 200-week average, the banks that were bullish at the top remain bullish at the bottom. Read that however you like.',
+ body:[
+ 'Bitcoin entered July around $60,000 after ETF outflows and higher rates drove the worst first half in years. The institutional forecasts have not moved. Standard Chartered’s Geoff Kendrick continues to see $100,000 by year end and describes the sell-off as a buying opportunity rather than a cycle top. Bernstein maintains $150,000.',
+ 'Bernstein’s reasoning is structural: institutional ownership is changing the physics of the cycle, replacing the four-year boom-and-bust with a longer, shallower advance. It is a coherent thesis. It also implies that the current 50%+ drawdown from the October 2025 high is the shallow version.',
+ 'Not everyone is convinced, and the sceptics have the recent tape. The honest position is that no one has observed a full institutional cycle, because there has only ever been one, and it is not finished.'],
+ quote:{t:'No one has observed a full institutional cycle. There has only been one, and it is not over.',a:'The Long Chain, Meridian'},
+ points:['Standard Chartered: $100,000 by year end 2026','Bernstein: $150,000, citing structural institutional ownership','BTC entered July near $60,000 after record ETF outflows','A longer, shallower cycle implies the current drawdown is the mild case'],
+ tags:['Bitcoin','Standard Chartered','Bernstein','Forecasts']},
+
+{id:'whitehat-70b',role:'grid',sec:'crypto',kicker:'Crypto · Security',date:'July 9, 2026',iso:'2026-07-09',read:6,author:'diego-reyes',
+ title:'A $3,000 Server and a Flaw That Put $70 Billion at Risk',
+ dek:'Ethical hackers found it, disclosed it, and were paid. The vulnerability class — not the specific bug — is what should concern anyone tokenizing an equity.',
+ body:[
+ 'A team of ethical hackers using a server costing roughly $3,000 identified a flaw that could have placed as much as $70 billion of crypto assets at risk. The vulnerability was disclosed responsibly and patched. No funds were lost.',
+ 'The disclosure lands at an awkward moment. Robinhood Chain settles tokenized equities. Morpho lends against stablecoins inside a brokerage app. Uniswap moved half a billion dollars in a day on a chain that is eight days old. Traditional finance is migrating onto software whose worst-case failure mode is total, instantaneous and final.',
+ 'Banking regulation exists because failures were survivable and therefore worth managing. Smart-contract failures are not survivable in the same sense: there is no clawback, no unwind, no Monday morning. Whoever writes the rules for tokenized equities will have to decide which of those two worlds they are regulating.'],
+ quote:{t:'There is no clawback, no unwind, no Monday morning.',a:'Meridian, Digital Asset Markets'},
+ points:['Researchers used a ~$3,000 server to surface the flaw','Up to $70 billion of assets theoretically exposed','Disclosed responsibly; no funds lost','Arrives as tokenized equities scale on new L2 infrastructure'],
+ tags:['Security','Smart Contracts','DeFi','Regulation']},
+
+{id:'prediction-markets',role:'grid',sec:'policy',kicker:'Policy · Prediction Markets',date:'July 7, 2026',iso:'2026-07-07',read:6,author:'thanh-nguyen',
+ title:'Americans Traded $571 Million on Banned Political Markets. Nobody Stopped Them.',
+ dek:'Polymarket is prohibited for U.S. users. Kalshi is licensed and litigating. The sector’s legal status is a patchwork, and the volume does not care.',
+ body:[
+ 'Americans wagered roughly $571 million on political outcomes through Polymarket despite a U.S. ban on the platform, according to on-chain analysis. Kalshi, the licensed domestic exchange, is simultaneously entangled in a mixed set of legal fights across multiple states.',
+ 'The enforcement gap is the point. A prohibited offshore protocol handled hundreds of millions of dollars of American money while the compliant onshore venue defends itself in court. Prohibition without technical enforceability produces a market that migrates rather than one that disappears.',
+ 'Prediction markets are also becoming market infrastructure rather than novelty. Polymarket odds on bitcoin reaching $65,000 in July — 71% — now appear in institutional research notes beside options-implied probabilities, quoted with the same confidence and considerably less regulatory clarity.'],
+ quote:{t:'Prohibition without technical enforceability relocates a market. It does not close it.',a:'Meridian, Policy Desk'},
+ points:['~$571M in U.S. political volume on Polymarket despite the ban','Kalshi, the licensed venue, faces litigation across several states','Prediction-market odds now cited in institutional research','Enforceability, not legality, is the operative constraint'],
+ tags:['Polymarket','Kalshi','Prediction Markets','Regulation']},
+
+{id:'comcast-itv',role:'grid',sec:'stocks',kicker:'Stocks · Media',date:'July 6, 2026',iso:'2026-07-06',read:4,author:'thanh-nguyen',
+ title:'Sky Buys ITV’s Television Business — Weeks Before Comcast Spins Off Its Media Arm',
+ dek:'Comcast rose 0.5% on the announcement. Buying a broadcaster you are about to divest is either consolidation or dressing the shop window.',
+ body:[
+ 'Comcast-owned Sky agreed to acquire the television business of British rival ITV, sending Comcast shares up about 0.5%. The purchase arrives weeks after Comcast announced plans to spin off its media assets into a separate entity.',
+ 'Bankers describe the sequence as scale-then-separate: consolidate British broadcasting, then float the combined entity with a stronger market position and a clearer story. Sceptics describe it as adding a declining asset to a portfolio explicitly being shed.',
+ 'Both readings can be true. Linear television is a cash-generative business in structural decline, and the optimal owner of such an asset is one who can extract the cash without needing to explain the trajectory to growth investors. That owner is, almost by definition, not Comcast.'],
+ quote:{t:'Linear television is cash-generative and structurally declining. It needs an owner who does not have to explain the chart.',a:'Meridian, Policy Desk'},
+ points:['Sky to acquire ITV’s television business','Comcast +0.5% on the news','Comcast recently announced a media spin-off','Consolidation before separation is the stated rationale'],
+ tags:['Comcast','Sky','ITV','Media']},
+
+{id:'trillionaire-backlash',role:'grid',sec:'policy',kicker:'Policy · Inequality',date:'June 15, 2026',iso:'2026-06-15',read:6,author:'thanh-nguyen',
+ title:'The First Trillionaire Arrives in the Middle of a War-Driven Inflation',
+ dek:'Senators called it a call to action. An inflatable effigy went up in Times Square. Wall Street, which had waited five years for an IPO window, did not much care.',
+ body:[
+ 'SpaceX’s June 12 debut made Elon Musk, on paper, the first individual with a net worth exceeding $1 trillion. The timing was politically combustible: American consumers are absorbing inflation driven substantially by the conflict in Iran, and the trillion-dollar figure landed in a week of rising food and fuel prices.',
+ 'Senator Bernie Sanders called the milestone a call to action on wealth inequality. California Governor Gavin Newsom posted his objection on X — a platform SpaceX now owns. Safe AI Now, a coalition of technology and faith leaders, erected an inflatable effigy of Musk in Times Square to protest the company’s AI safety record.',
+ 'None of it moved the stock. The IPO closed up 19% and restored confidence in a listing pipeline dormant since late 2021, which is the only metric Wall Street was measuring. Whether a single-person trillion-dollar fortune is a policy problem is a question the market is structurally incapable of pricing.'],
+ quote:{t:'Americans are struggling to pay for groceries while Elon Musk becomes a trillionaire.',a:'Gov. Gavin Newsom, posting on X'},
+ points:['June 12 listing made Musk the first paper trillionaire','Inflation driven substantially by the Iran conflict','Protests in Times Square over AI safety; Senate criticism','SpaceX closed its debut up 19%, reopening the IPO pipeline'],
+ tags:['Elon Musk','Inequality','SpaceX','Politics']},
+
 {id:'genesis-block',role:'archive',era:'e1',sec:'crypto',kicker:'Archive · 2009',tDate:'JAN 3, 2009',date:'January 3, 2009',iso:'2009-01-03',read:4,author:'archive-desk',
  title:'Genesis: An Anonymous Coder Mines Block Zero of “Bitcoin”',
  dek:'Embedded in the first block, a newspaper headline about bank bailouts — a mission statement disguised as a timestamp.',
@@ -826,6 +1311,227 @@ const HUES={space:['rgba(201,169,97,.13)','rgba(60,90,160,.14)'],crypto:['rgba(2
 stocks:['rgba(201,169,97,.12)','rgba(120,60,160,.12)'],tech:['rgba(201,169,97,.12)','rgba(60,140,160,.12)'],
 policy:['rgba(201,169,97,.12)','rgba(229,72,77,.10)']};
 
+
+/* ================= FIGURES ================= */
+const FC={gold:'#C9A961',up:'#34C17D',dn:'#E5484B',blue:'#5B8DEF',dim:'#7C8189',txt:'#E8E6E1'};
+let _fid=0;
+const fnum=(n,f,s,d)=>(n<0?'-':'')+(f||'')+Math.abs(Number(n)).toLocaleString('en-US',{minimumFractionDigits:d||0,maximumFractionDigits:d||0})+(s||'');
+
+function fLine(sp,h){
+ const w=800,pl=68,pr=24,pt=26,pb=34,v=sp.v,id=++_fid;
+ const mn=Math.min(...v),mx=Math.max(...v),sp2=(mx-mn)||Math.abs(mx*.1)||1;
+ let lo=mn-sp2*.22,hi=mx+sp2*.22; if(mn>=0&&lo<0)lo=0;
+ const X=i=>pl+i*(w-pl-pr)/((v.length-1)||1), Y=y=>pt+(hi-y)*(h-pt-pb)/((hi-lo)||1);
+ const col=FC[sp.col]||FC.gold;
+ let g='';
+ for(let k=0;k<=3;k++){const val=lo+(hi-lo)*k/3,y=Y(val);
+  g+=`<line x1="${pl}" y1="${y.toFixed(1)}" x2="${w-pr}" y2="${y.toFixed(1)}" stroke="${FC.gold}" stroke-opacity=".12"/>`
+   + `<text x="${pl-12}" y="${(y+4).toFixed(1)}" text-anchor="end" font-size="11" fill="${FC.dim}" font-family="monospace">${fnum(val,sp.f,sp.s,sp.d)}</text>`;}
+ const d=v.map((y,i)=>`${i?'L':'M'}${X(i).toFixed(1)},${Y(y).toFixed(1)}`).join(' ');
+ const area=`${d} L${X(v.length-1).toFixed(1)},${h-pb} L${pl},${h-pb} Z`;
+ let xl='';(sp.x||[]).forEach((t,i)=>{if(!t)return;
+  xl+=`<text x="${X(i).toFixed(1)}" y="${h-11}" text-anchor="middle" font-size="10" fill="${FC.dim}" letter-spacing="1.4" font-family="monospace">${t.toUpperCase()}</text>`;});
+ const L=v.length-1;
+ return `<defs><linearGradient id="lg${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${col}" stop-opacity=".32"/><stop offset="1" stop-color="${col}" stop-opacity="0"/></linearGradient></defs>
+ ${g}<path d="${area}" fill="url(#lg${id})"/><path d="${d}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+ <circle cx="${X(L).toFixed(1)}" cy="${Y(v[L]).toFixed(1)}" r="10" fill="${col}" opacity=".16"/><circle cx="${X(L).toFixed(1)}" cy="${Y(v[L]).toFixed(1)}" r="3.6" fill="${col}"/>
+ <text x="${(X(L)-8).toFixed(1)}" y="${(Y(v[L])-16).toFixed(1)}" text-anchor="end" font-size="13" font-weight="600" fill="${col}" font-family="monospace">${fnum(v[L],sp.f,sp.s,sp.d)}</text>${xl}`;
+}
+
+function fBars(sp,h){
+ const w=800,pl=250,pr=104,it=sp.items,n=it.length;
+ const max=Math.max(...it.map(i=>Math.abs(i[1])))||1;
+ const gap=(h-20)/n, bh=Math.min(34,gap-16);
+ let o='';
+ it.forEach((t,i)=>{const y=14+i*gap+(gap-bh)/2-6, col=FC[t[2]]||FC.gold, bw=Math.max(2,(w-pl-pr)*Math.abs(t[1])/max);
+  o+=`<text x="${pl-18}" y="${(y+bh/2+4.5).toFixed(1)}" text-anchor="end" font-size="12.5" fill="${FC.txt}">${t[0]}</text>`
+   + `<rect x="${pl}" y="${y.toFixed(1)}" width="${w-pl-pr}" height="${bh}" fill="${FC.gold}" opacity=".05"/>`
+   + `<rect x="${pl}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${bh}" fill="${col}" opacity=".82"/>`
+   + `<rect x="${pl}" y="${y.toFixed(1)}" width="2" height="${bh}" fill="${col}"/>`
+   + `<text x="${(pl+bw+14).toFixed(1)}" y="${(y+bh/2+4.5).toFixed(1)}" font-size="12.5" font-weight="600" fill="${col}" font-family="monospace">${fnum(t[1],sp.f,sp.s,sp.d)}</text>`;});
+ return o;
+}
+
+function fStat(sp,h){
+ const w=800,it=sp.items,n=it.length,cw=w/n;let o='';
+ it.forEach((t,i)=>{const x=i*cw;
+  if(i)o+=`<line x1="${x}" y1="24" x2="${x}" y2="${h-24}" stroke="${FC.gold}" stroke-opacity=".16"/>`;
+  o+=`<text x="${x+cw/2}" y="${h/2+2}" text-anchor="middle" font-size="${n>3?28:34}" font-weight="600" fill="${FC.gold}" font-family="monospace">${t[0]}</text>`
+   + `<text x="${x+cw/2}" y="${h/2+30}" text-anchor="middle" font-size="10" fill="${FC.dim}" letter-spacing="2.2">${String(t[1]).toUpperCase()}</text>`;});
+ return o;
+}
+
+function fDonut(sp,h){
+ const cx=190,cy=h/2,r=Math.min(h/2-18,88),ir=r*.58,tot=sp.items.reduce((s,i)=>s+i[1],0);
+ let a0=-Math.PI/2,o='';
+ sp.items.forEach(t=>{const a1=a0+2*Math.PI*t[1]/tot,col=FC[t[2]]||FC.gold,la=(a1-a0)>Math.PI?1:0;
+  const P=(rr,a)=>`${(cx+rr*Math.cos(a)).toFixed(1)},${(cy+rr*Math.sin(a)).toFixed(1)}`;
+  o+=`<path d="M${P(r,a0)} A${r},${r} 0 ${la} 1 ${P(r,a1)} L${P(ir,a1)} A${ir},${ir} 0 ${la} 0 ${P(ir,a0)} Z" fill="${col}" opacity=".85"/>`;
+  a0=a1;});
+ let ly=h/2-(sp.items.length-1)*16+4;
+ sp.items.forEach(t=>{const col=FC[t[2]]||FC.gold;
+  o+=`<rect x="360" y="${ly-10}" width="10" height="10" fill="${col}"/>`
+   + `<text x="382" y="${ly}" font-size="12.5" fill="${FC.txt}">${t[0]}</text>`
+   + `<text x="776" y="${ly}" text-anchor="end" font-size="12.5" font-weight="600" fill="${col}" font-family="monospace">${fnum(t[1],sp.f,sp.s,sp.d)}</text>`;
+  ly+=32;});
+ return o;
+}
+
+function fFlow(sp,h){
+ const n=sp.outs.length;
+ let o=`<rect x="26" y="${h/2-36}" width="236" height="72" fill="${FC.gold}" opacity=".05"/>`
+  + `<rect x="26" y="${h/2-36}" width="236" height="72" fill="none" stroke="${FC.gold}" stroke-opacity=".45"/>`
+  + `<text x="144" y="${h/2+5}" text-anchor="middle" font-size="13" fill="${FC.txt}">${sp.src}</text>`;
+ sp.outs.forEach((t,i)=>{const y=(h/(n+1))*(i+1), col=FC[t[2]]||FC.gold;
+  o+=`<path d="M262,${h/2} C336,${h/2} 348,${y} 424,${y}" fill="none" stroke="${FC.gold}" stroke-opacity=".32" stroke-width="1.4"/>`
+   + `<circle cx="424" cy="${y}" r="2.6" fill="${FC.gold}" opacity=".6"/>`
+   + `<rect x="436" y="${y-27}" width="340" height="54" fill="${col}" opacity=".05"/>`
+   + `<rect x="436" y="${y-27}" width="2.5" height="54" fill="${col}"/>`
+   + `<text x="456" y="${y-4}" font-size="12.5" fill="${FC.txt}">${t[0]}</text>`
+   + `<text x="456" y="${y+16}" font-size="12" font-weight="600" fill="${col}" font-family="monospace">${t[1]}</text>`;});
+ return o;
+}
+
+function figSVG(sp,h){
+ const inner = sp.t==='line'?fLine(sp,h) : sp.t==='bars'?fBars(sp,h) : sp.t==='stat'?fStat(sp,h)
+   : sp.t==='donut'?fDonut(sp,h) : sp.t==='flow'?fFlow(sp,h) : fStat(sp,h);
+ return `<svg viewBox="0 0 800 ${h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${(sp.c||'').replace(/"/g,'')}">${inner}</svg>`;
+}
+const FLBL={line:'Chart',bars:'Comparison',stat:'By the numbers',donut:'Breakdown',flow:'How it works'};
+function figHTML(sp,h,badge){
+ return `<figure class="fig"><div class="fig-plate">${badge?`<span class="fbadge">${badge}</span>`:''}${figSVG(sp,h)}</div>
+ <figcaption><b>${FLBL[sp.t]||'Figure'}</b>${sp.c}</figcaption></figure>`;
+}
+/* number of figures scales with the length of the story */
+function figCount(a){let n=1; if(a.body.length>=4)n++; if(a.read>=8)n++; return Math.min(n,3,(FIGS[a.id]||[1]).length||1);}
+function figsFor(a){const f=FIGS[a.id]; if(!f||!f.length)return []; return f.slice(0,figCount(a));}
+
+/* small deterministic sparkline for cards */
+function miniSVG(a){
+ const sp=(FIGS[a.id]||[])[0];
+ let v = sp&&sp.t==='line'?sp.v.slice() : sp&&sp.items?sp.items.map(i=>Math.abs(Number(i[1]))||1) : null;
+ if(!v||v.length<3){let s=0;for(const c of a.id)s=(s*31+c.charCodeAt(0))%9973;
+  v=[];for(let i=0;i<9;i++){s=(s*1103515245+12345)%2147483648;v.push(40+(s%60));}}
+ if(v.length<3)v=v.concat(v);
+ const w=400,h=150,pd=10,mn=Math.min(...v),mx=Math.max(...v),r=(mx-mn)||1;
+ const X=i=>pd+i*(w-2*pd)/(v.length-1),Y=y=>18+(mx-y)*(h-40)/r;
+ const col=v[v.length-1]>=v[0]?FC.gold:FC.dn,id=++_fid;
+ const d=v.map((y,i)=>`${i?'L':'M'}${X(i).toFixed(1)},${Y(y).toFixed(1)}`).join(' ');
+ return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><defs><linearGradient id="mg${id}" x1="0" y1="0" x2="0" y2="1">
+ <stop offset="0" stop-color="${col}" stop-opacity=".28"/><stop offset="1" stop-color="${col}" stop-opacity="0"/></linearGradient></defs>
+ <path d="${d} L${X(v.length-1).toFixed(1)},${h} L${pd},${h} Z" fill="url(#mg${id})"/>
+ <path d="${d}" fill="none" stroke="${col}" stroke-width="1.6"/>
+ <circle cx="${X(v.length-1).toFixed(1)}" cy="${Y(v[v.length-1]).toFixed(1)}" r="3" fill="${col}"/></svg>`;
+}
+
+const FIGS={
+'spacex-ipo':[
+ {t:'line',c:'SPCX from its fixed $135 offer price to the first weeks of trading. The stock opened at $150, closed its debut session near $161 and has held above the offer ever since.',v:[135,150,161,165,168,165],x:['IPO $135','Open','Day 1','Week 1','Jun 22','Jul 9'],f:'$',col:'gold'},
+ {t:'stat',c:'The largest initial public offering ever recorded, measured four ways.',items:[['$75B','raised'],['$2.1T','day-one market cap'],['112x','2025 sales'],['4%','public float']]},
+ {t:'bars',c:'Analyst price targets on SPCX span a range of nearly four times. The stock trades near $165.',items:[['Morningstar',63,'dn'],['CFRA (sell)',115,'dn'],['NewStreet',165,'gold'],['Street average',236,'up']],f:'$'}],
+'btc-recovery':[
+ {t:'line',c:'Bitcoin from the June 25 low of $58,190 back above $63,000 in five sessions, on soft payrolls and a gentler Fed.',v:[58190,59500,60100,61934,63229,63997,63118],x:['Jun 25','','Jul 1','Jul 6','Jul 7','','Jul 9'],f:'$',col:'up'},
+ {t:'stat',c:'The structural picture behind the bounce remains unresolved.',items:[['$58,190','june 25 low'],['−$0.9B','net weekly etf flow'],['200W','first close below since 2023']]}],
+'robinhood-chain':[
+ {t:'stat',c:'Robinhood Chain at launch: a financial-grade Layer 2 with brokerage distribution attached.',items:[['100ms','block time'],['120+','countries'],['4M','week-one transactions']]},
+ {t:'bars',c:'Weekly moves in the assets most directly exposed to the launch.',items:[['ARB',10.2,'up'],['XRP',9.8,'up'],['HOOD',3.4,'up']],s:'%',d:1}],
+'gulf-oil':[
+ {t:'bars',c:'Crude settled sharply higher after Iran struck 85 U.S. military sites across the Gulf.',items:[['Brent crude',78.19,'up'],['WTI crude',73.52,'up']],f:'$',d:2},
+ {t:'stat',c:'The Strait of Hormuz is technically open. Insurers have repriced it regardless.',items:[['+5.4%','brent, one session'],['4x','war-risk premium'],['$95','bull-case brent']]}],
+'nvidia-slide':[
+ {t:'line',c:'Nvidia has fallen roughly 18% from its June high, losing the $200 level on June 23 and failing to reclaim it.',v:[238,231,222,213,203,195],x:['Jun 1','','Jun 15','Jun 23','Jul 1','Jul 7'],f:'$',col:'dn'},
+ {t:'stat',c:'The bellwether of the AI trade, priced for permanent dominance.',items:[['$4.7T','market cap'],['−18%','from june peak'],['−10.7%','june alone']]},
+ {t:'bars',c:'First-half performance across the chip complex. The leader of the AI trade did not lead it.',items:[['AMD',100,'up'],['Micron',100,'up'],['Semiconductor ETF',80,'up'],['Nvidia',0,'dn']],s:'%'}],
+'chip-rotation':[
+ {t:'bars',c:'Leadership rotated out of the accelerator and into memory and merchant silicon.',items:[['AMD',100,'up'],['Micron',100,'up'],['SK Hynix',80,'up'],['Nvidia',0,'dim']],s:'%'},
+ {t:'stat',c:'Where the first-half money actually went.',items:[['+80%','semiconductor etf, h1'],['$2,300','new asml target'],['2x','amd and micron']]}],
+'btc-capitulation':[
+ {t:'line',c:'The June breakdown: a third exit from the ascending channel this year, bottoming near $58,190 on June 25.',v:[66000,63000,60500,58190,60000,62800],x:['Jun 1','','Jun 18','Jun 25','Jul 1','Jul 6'],f:'$',col:'dn'},
+ {t:'stat',c:'On-chain stress reached levels last seen during the collapse of FTX.',items:[['−0.35','realized p&l ratio'],['43 mo','since a print this low'],['$47.9M','long liquidations, 24h']]},
+ {t:'bars',c:'Polymarket odds on where bitcoin finishes July. The market believes in the bounce, not the breakout.',items:[['BTC touches $65,000',71,'up'],['BTC touches $70,000',24,'dn']],s:'%'}],
+'xrp-arb':[
+ {t:'bars',c:'Weekly moves. The Robinhood Chain halo lifted the tokenization complex; ether went nowhere.',items:[['ARB',10.2,'up'],['XRP',9.8,'up'],['ETH',0.1,'dim']],s:'%',d:1},
+ {t:'stat',c:'Prices at the close of the week.',items:[['$0.085','arb'],['$1,775','eth'],['+3.4%','hood']]}],
+'openai-ipo-delay':[
+ {t:'stat',c:'A delay is a judgement about the market, not about the company.',items:[['~$1T','private valuation'],['2027','reported listing year'],['$75B','spacex raise, for scale']]},
+ {t:'bars',c:'The three largest names in the pipeline. Only one has a public price.',items:[['SpaceX (listed)',1770,'gold'],['OpenAI (private)',1000,'dim'],['Anthropic (private)',1000,'dim']],f:'$',s:'B'}],
+'starship-f12':[
+ {t:'flow',c:'Flight 12, May 22, 2026 — the debut of Starship Version 3. The upper stage succeeded. The booster did not.',src:'Flight 12 · May 22, 2026',outs:[['Ship 39 → Indian Ocean','Payload deployed, controlled descent','up'],['Booster 19 → Gulf of Mexico','Engine E6 explosion, vehicle lost','dn']]},
+ {t:'stat',c:'The programme to date. Every Artemis and Starlink V3 timeline runs through these numbers.',items:[['12','flights'],['7 / 5','success / failure'],['29 of 33','engines relit']]}],
+'blue-origin-raise':[
+ {t:'donut',c:'The composition of Blue Origin’s first outside funding round, at a $130 billion valuation.',items:[['Coatue Management',4,'gold'],['Jeff Bezos',2,'up'],['Other investors',4,'blue']],f:'$',s:'B'},
+ {t:'stat',c:'NASA’s hedge against Starship now has capital to match its contract.',items:[['$10B','raise'],['$130B','valuation'],['2nd','artemis lander contract']]}],
+'warsh-fed':[
+ {t:'donut',c:'The June minutes record two roughly equal camps — on direction, not merely on magnitude.',items:[['See rates at or below the range',50,'up'],['See rates above the range',50,'dn']],s:'%'},
+ {t:'line',c:'The path the futures market has priced: two cuts by December, to roughly 3.25%.',v:[3.75,3.75,3.5,3.5,3.25],x:['Jun','Jul','Sep','Nov','Dec'],s:'%',d:2,col:'gold'},
+ {t:'stat',c:'What the committee projects, and what it cannot agree on.',items:[['2','cuts priced by december'],['3.25%','projected year-end rate'],['3.3%','core pce, 2026']]}],
+'dow-53000':[
+ {t:'line',c:'The Dow crossed 53,000 for the first time on July 6, the same week missiles flew over the Gulf.',v:[52100,52480,52810,53055],x:['Jul 1','Jul 2','Jul 3','Jul 6'],col:'up'},
+ {t:'stat',c:'Records set in a week that had every reason to produce the opposite.',items:[['53,055.91','dow close, july 6'],['+1.8%','s&p, prior week'],['$4,000','gold floor holds']]}],
+
+'arb-fee-share':[{t:'flow',c:'Offchain Labs will route a tenth of net protocol fees from Orbit-built chains back into the Arbitrum ecosystem.',src:'Net protocol fees · Orbit chains',outs:[['Retained by the chain operator','90%','dim'],['Arbitrum DAO treasury','8%','gold'],['Developer Guild','2%','up']]}],
+'uniswap-rhc-volume':[{t:'stat',c:'Robinhood Chain’s opening week, in the three numbers the ecosystem is quoting.',items:[['$500M','24h uniswap volume'],['4M','week-one transactions'],['200M+','testnet transactions']]}],
+'robinhood-earn':[{t:'bars',c:'The advertised yield on Earn against the best conventional dollar rates available this month. The risk profiles are not comparable.',items:[['Robinhood Earn (USDG)',7,'up'],['Top high-yield savings',5,'gold'],['Top 12-month CD',4.4,'dim']],s:'%',d:1}],
+'hood-cuts':[{t:'bars',c:'The two numbers that preceded the launch: a shrinking crypto business and a smaller company.',items:[['Q1 crypto revenue, year over year',-47,'dn'],['Headcount reduction',-10,'dn']],s:'%'}],
+'base-vs-hood':[
+ {t:'flow',c:'Two brokers, two chains, two theories of what an exchange becomes when it owns its settlement layer.',src:'Broker-owned Layer 2s',outs:[['Base · OP Stack · Aug 2023','General purpose, developer-first','blue'],['Robinhood Chain · Orbit · Jul 2026','RWA, compliance, brokerage flow','gold']]},
+ {t:'stat',c:'Coinbase chose breadth and waited. Robinhood chose depth and arrived with users.',items:[['~35 mo','base ecosystem age'],['28M','robinhood brokerage users'],['100ms','rhc block time']]}],
+'agentic-trading':[{t:'flow',c:'Where the agent sits in the trade. Each step it takes is a step a human adviser would need a licence to perform.',src:'User delegates to an AI agent',outs:[['Research and idea generation','Agent','gold'],['Position sizing','Agent','gold'],['Order execution','Agent','dn']]}],
+'token-debt':[{t:'flow',c:'What a Robinhood stock token actually confers. The economics travel; the ownership does not.',src:'Tokenized stock',outs:[['Economic exposure to the share price','Yes','up'],['Voting rights','No','dn'],['Name on the share register','No','dn']]}],
+'nvidia-dsx':[{t:'flow',c:'Under DSX, Nvidia supplies silicon and part of the balance sheet, and takes a share of what the facility earns.',src:'Nvidia DSX programme',outs:[['Silicon and credit support','Nvidia','gold'],['Build and operate the AI factory','Cloud partner','blue'],['Share of ongoing revenue','Nvidia','up']]}],
+'nemotron-ultra':[{t:'bars',c:'Nvidia’s claimed cost position for Nemotron 3 Ultra against leading closed models, indexed to 100.',items:[['Nemotron 3 Ultra',35,'up'],['Leading closed models',100,'dn']]}],
+'nvidia-cpu':[{t:'stat',c:'The serial-latency argument, made by the company that also sells the CPU.',items:[['26','grace cpus on the top500'],['81%','of the top500 runs nvidia'],['90%','of newly listed systems']]}],
+'vera-rubin-europe':[{t:'donut',c:'Share of the TOP500 supercomputer list running Nvidia technology. Europe’s sovereign AI programmes are built on it.',items:[['Runs Nvidia',81,'gold'],['Everything else',19,'dim']],s:'%'}],
+'nvda-200-line':[{t:'bars',c:'The levels that define Nvidia’s July. Above $200 the momentum flips; below $189 the channel breaks.',items:[['Channel resistance',213,'up'],['Reclaim level',200,'gold'],['Current price',195,'dim'],['Channel floor',189,'dn']],f:'$'}],
+'mag7-cheap':[{t:'line',c:'Forward earnings multiple for the megacap technology cohort. Profits have compounded faster than prices.',v:[34,32,31,29,26,24],x:['2021','2022','2023','2024','2025','2026'],s:'x',col:'gold'}],
+'semis-unwind':[{t:'bars',c:'A second consecutive losing week for the semiconductor complex, after a first half that gained more than 80%.',items:[['Semiconductor ETF — first half',80,'up'],['Semiconductor ETF — last week',-3.2,'dn']],s:'%',d:1}],
+'kospi-bear':[{t:'bars',c:'Two memory manufacturers now make up half of Korea’s benchmark index — which is 20% below its June record.',items:[['SK Hynix + Samsung index weight',50,'gold'],['Kospi from its June 19 record',-20,'dn']],s:'%'}],
+'asml-target':[{t:'stat',c:'A monopoly, marked to market.',items:[['$2,300','new bernstein target'],['+30%','target increase'],['1','euv supplier worldwide']]}],
+'wfe-hikes':[{t:'bars',c:'Premarket moves after Morgan Stanley raised targets across the wafer-fab equipment complex.',items:[['Lam Research',4.2,'up'],['Applied Materials',3.9,'up'],['KLA',3.8,'up']],s:'%',d:1}],
+'micron-squeeze':[{t:'stat',c:'The first cycle in which AI infrastructure spending produced an itemized cost for an ordinary household.',items:[['+55%','implied upside, micron'],['HBM','the bottleneck'],['↑','macbook and ipad prices']]}],
+'broadcom-apple':[{t:'bars',c:'A day of two markets: chipmakers rose, the industrial index fell.',items:[['Broadcom',4.8,'up'],['Apple',0.9,'up'],['Dow Jones Industrial Average',-1.09,'dn']],s:'%',d:2}],
+'h200-china':[{t:'bars',c:'Session moves on July 8. Chipmakers lifted the Nasdaq while the broader market fell.',items:[['Nvidia',3.6,'up'],['Nasdaq Composite',0.2,'up'],['S&P 500',-0.28,'dn'],['Dow',-1.09,'dn']],s:'%',d:2}],
+'terawulf-anthropic':[{t:'stat',c:'A twenty-year lease is not a procurement horizon. It is a utility contract.',items:[['20 yr','contract term'],['400 MW','supported capacity'],['$19B+','initial-term revenue']]}],
+'ipo-pipeline':[{t:'bars',c:'Valuations across the pipeline. Only one of these three has been tested by public markets.',items:[['SpaceX (public)',1770,'gold'],['OpenAI (private)',1000,'dim'],['Anthropic (private)',1000,'dim']],f:'$',s:'B'}],
+'fed-minutes':[{t:'donut',c:'The June minutes, split down the middle on the appropriate year-end federal funds rate.',items:[['At or below the current range',50,'up'],['Above the current range',50,'dn']],s:'%'}],
+'payrolls-57k':[{t:'bars',c:'June payrolls came in barely above half of what economists expected — while unemployment fell.',items:[['Expected',100,'dim'],['Actual',57,'dn']],s:'k'}],
+'gold-4000':[{t:'line',c:'Gold’s pullback to $4,052. The level that has organized the market all year remains intact.',v:[4157,4132,4098,4052],x:['Jul 6','Jul 7','Jul 8','Jul 9'],f:'$',col:'gold'}],
+'nato-ankara':[{t:'bars',c:'Crude settled sharply higher after the strikes. The Federal Reserve meets on July 28 and 29.',items:[['Brent crude',78.19,'up'],['WTI crude',73.52,'up']],f:'$',d:2}],
+'dow-577':[{t:'bars',c:'A bifurcated tape: credit-sensitive names led the decline while chipmakers lifted the Nasdaq.',items:[['Nasdaq Composite',0.2,'up'],['S&P 500',-0.28,'dn'],['Dow Jones Industrial Average',-1.09,'dn']],s:'%',d:2}],
+'spcx-coverage':[{t:'bars',c:'The distribution of analyst targets on SPCX is not a distribution. It is two populations.',items:[['Morningstar',63,'dn'],['CFRA (sell)',115,'dn'],['NewStreet',165,'gold'],['Street average',236,'up']],f:'$'}],
+'spcx-index':[{t:'donut',c:'SpaceX sold roughly 4% of itself. Index weights are calculated on the float, not the headline valuation.',items:[['Public float',4,'gold'],['Locked and insider-held',96,'dim']],s:'%'}],
+'starship-13':[{t:'stat',c:'The vehicle does not fly again until the FAA accepts the Flight 12 mishap report.',items:[['12','flights to date'],['7 / 5','success / failure'],['May 28','grounded since']]}],
+'artemis-crew':[{t:'stat',c:'The schedule assumes a launch cadence Starship has not yet approached.',items:[['mid-2027','artemis iii target'],['12+','tanker flights per landing'],['$10B','blue origin’s raise']]}],
+'starlink-engine':[{t:'donut',c:'Starlink produced 61% of 2025 revenue and all of the operating income. Everything else consumed capital.',items:[['Starlink (Connectivity)',11.4,'up'],['Space and AI segments',7.3,'dim']],f:'$',s:'B',d:1}],
+'spacex-google':[{t:'stat',c:'A commitment signed days before the listing, payable to a company whose AI lab competes with the buyer.',items:[['$920M','per month'],['~$11B','annualized'],['59%','of 2025 group revenue']]}],
+'anysphere-deal':[{t:'stat',c:'An all-stock deal is a statement about the currency being spent.',items:[['$60B','all-stock consideration'],['<1 mo','since the listing'],['$28.5T','prospectus tam']]}],
+'space-tourism':[{t:'stat',c:'A point-to-point Starship flight would cross the internationally recognized boundary of space.',items:[['15–20 min','new york to paris'],['100 km','kármán line'],['Mach 25','peak velocity']]}],
+'eth-lag':[{t:'line',c:'Ether from its August 2025 high to July 2026. The base layer secures more settlement and captures fewer fees.',v:[4953,3500,2600,2100,1775],x:['Aug 2025','','','','Jul 2026'],f:'$',col:'dn'}],
+'etf-outflows':[{t:'stat',c:'Large allocators stepped back. The retail holder base did not move.',items:[['$80B','bitcoin held by us etfs'],['−$0.9B','net weekly flow'],['IBIT','source of most outflows']]}],
+'onchain-stress':[{t:'bars',c:'Twenty-four hours of liquidations. Longs absorbed more than three times the damage of shorts.',items:[['Long liquidations',47.91,'dn'],['Short liquidations',13.66,'up']],f:'$',s:'M',d:2}],
+'btc-targets':[{t:'bars',c:'Institutional year-end targets, against a spot price that entered July near $60,000.',items:[['Bernstein',150000,'up'],['Standard Chartered',100000,'up'],['Spot, early July',60000,'dim']],f:'$'}],
+'whitehat-70b':[{t:'stat',c:'Disclosed responsibly and patched. The vulnerability class, not the specific bug, is the concern.',items:[['$3,000','cost of the server'],['$70B','assets theoretically exposed'],['0','funds lost']]}],
+'prediction-markets':[{t:'stat',c:'Prohibition without technical enforceability relocates a market rather than closing it.',items:[['$571M','us volume on a banned venue'],['71%','odds of btc $65k in july'],['24%','odds of $70k']]}],
+'comcast-itv':[{t:'flow',c:'Consolidate British broadcasting, then float the combined entity. Bankers call it scale-then-separate.',src:'Comcast',outs:[['Sky acquires ITV’s TV business','Announced','gold'],['Comcast media assets','Spin-off pending','dim']]}],
+'trillionaire-backlash':[{t:'stat',c:'The milestone landed in a week of rising food and fuel prices.',items:[['$1T','first individual fortune'],['+19%','spacex debut close'],['2021','last comparable ipo window']]}],
+
+'genesis-block':[{t:'stat',c:'Block zero, mined at the exact nadir of the global financial crisis.',items:[['Jan 3, 2009','block 0 mined'],['50 BTC','unspendable by design'],['$0','price at mining']]}],
+'pizza-day':[{t:'stat',c:'The most expensive meal in recorded history, ordered from Papa John’s.',items:[['10,000 BTC','paid'],['$25','two large pizzas'],['$0.0025','implied price per coin']]}],
+'btc-1000':[{t:'line',c:'Bitcoin’s 2013: a fifty-fold advance ending in the first four-figure print, on Mt. Gox.',v:[13,100,200,600,1000],x:['Jan 2013','','','','Nov 28'],f:'$',col:'up'}],
+'mtgox':[{t:'stat',c:'The exchange that handled most of the world’s bitcoin, and then did not.',items:[['850,000','btc missing'],['70%','of global volume at peak'],['−80%','price decline that followed']]}],
+'ethereum-launch':[{t:'stat',c:'Frontier ships, and a currency experiment becomes a platform war.',items:[['Jul 30, 2015','frontier release'],['Turing-complete','the new primitive'],['~72M','presale ether']]}],
+'btc-19783':[{t:'line',c:'The 2017 mania, ending at $19,783 within days of the first regulated futures listing.',v:[1000,2500,5000,11000,19783],x:['Jan 2017','','','','Dec 17'],f:'$',col:'up'}],
+'winter-2018':[{t:'line',c:'The first great crypto winter: an 84% decline from the December 2017 peak.',v:[19783,11000,6400,3800,3200],x:['Dec 2017','','','','Dec 2018'],f:'$',col:'dn'}],
+'black-thursday':[{t:'bars',c:'March 12, 2020. Bitcoin halved in a day; Wall Street tripped its circuit breakers.',items:[['Bitcoin',-50,'dn'],['S&P 500',-9.5,'dn']],s:'%',d:1}],
+'microstrategy':[{t:'stat',c:'A software company invents a category by moving its treasury into a volatile asset.',items:[['$250M','first treasury purchase'],['Aug 2020','the template'],['Corporate HODL','the new category']]}],
+'coinbase-ipo':[{t:'stat',c:'Crypto arrives on the Nasdaq, at a valuation the private markets had not imagined.',items:[['$86B','listing valuation'],['Apr 14, 2021','listing day'],['Nasdaq','venue']]}],
+'ftx-collapse':[{t:'stat',c:'From a $32 billion valuation to Chapter 11 in ten days.',items:[['$8B','customer shortfall'],['Nov 11, 2022','chapter 11 filing'],['$32B','peak valuation']]}],
+'svb':[{t:'stat',c:'A bank run in the age of mobile deposits — and the first time bitcoin traded as the hedge it claimed to be.',items:[['Mar 10, 2023','svb fails'],['$42B','deposits fled in a day'],['BTC','rallied on the news']]}],
+'etf-approval':[{t:'stat',c:'A decade of rejections ends in a single order.',items:[['Jan 10, 2024','approval'],['11','spot etfs listed'],['~10 yrs','of prior rejections']]}],
+'halving-2024':[{t:'stat',c:'The fourth halving cuts new issuance in half, as the protocol has always specified.',items:[['3.125 BTC','new block subsidy'],['Apr 2024','fourth halving'],['−50%','issuance']]}],
+'cycle-peak-2025':[{t:'line',c:'The all-time high of October 2025 — and the drawdown that anchors every chart Meridian prints today.',v:[30000,60000,90000,126198,58190],x:['2023','','','Oct 2025','Jun 2026'],f:'$',col:'gold'}]
+};
+
 /* ================= HELPERS ================= */
 const byId=id=>A.find(a=>a.id===id);
 const authArts=aid=>A.filter(a=>a.author===aid).sort((x,y)=>y.iso.localeCompare(x.iso));
@@ -838,13 +1544,14 @@ function visual(sec,badge,h){
  ${badge?`<span class="badge">${badge}</span>`:''}</div>`;
 }
 const bylineHTML=a=>{const au=AUTHORS[a.author];return `By <a onclick="event.stopPropagation();nav('author','${a.author}')"><b>${au.name}</b></a> · ${a.date}`};
-const cardHTML=a=>`<article class="card" data-c="${a.sec}">${a.img?`<img class="thumb-c" src="${a.img}" alt="" onclick="nav('article','${a.id}')" style="cursor:pointer">`:''}<span class="cat">${a.kicker}</span><h3><a onclick="nav('article','${a.id}')">${a.title}</a></h3><p>${a.dek}</p><div class="byline">${bylineHTML(a)} · ${a.read} min</div></article>`;
+const cardHTML=a=>`<article class="card" data-c="${a.sec}">${a.img?`<img class="thumb-c" src="${a.img}" alt="" onclick="nav('article','${a.id}')" style="cursor:pointer">`:`<div class="thumb-f" onclick="nav('article','${a.id}')">${miniSVG(a)}</div>`}<span class="cat">${a.kicker}</span><h3><a onclick="nav('article','${a.id}')">${a.title}</a></h3><p>${a.dek}</p><div class="byline">${bylineHTML(a)} · ${a.read} min</div></article>`;
 
 /* ================= HOME RENDER ================= */
 function renderHome(){
  const hero=A.find(a=>a.role==='hero');
+ const heroFig=(FIGS[hero.id]||[])[0];
  document.getElementById('hero-slot').innerHTML=
-  visual(hero.sec,'Cover Story · IPO of the Decade',340)+
+  (heroFig?figHTML(heroFig,340,'Cover Story · IPO of the Decade'):visual(hero.sec,'Cover Story · IPO of the Decade',340))+
   `<span class="kicker" style="margin-top:26px">${SECTIONS[hero.sec]}</span>
    <h1><a onclick="nav('article','${hero.id}')">${hero.title}</a></h1>
    <p class="dek">${hero.dek}</p><div class="byline">${bylineHTML(hero)} · ${hero.read} min read</div>`;
@@ -887,8 +1594,13 @@ window.addEventListener('hashchange',route);
 /* ================= ARTICLE ================= */
 function renderArticle(id){
  const a=typeof id==='object'?id:byId(id),au=AUTHORS[a.author];
+ const F=figsFor(a), inl={};
+ if(F.length>=3)inl[0]=F[2];
+ if(F.length>=2)inl[Math.max(1,a.body.length-2)]=F[1];
  let body='';
- a.body.forEach((p,i)=>{body+=`<p>${p}</p>`;if(i===1&&a.quote)body+=`<div class="pull"><div class="q">${a.quote.t}</div><div class="a">— ${a.quote.a}</div></div>`;});
+ a.body.forEach((p,i)=>{body+=`<p>${p}</p>`;
+  if(i===1&&a.quote)body+=`<div class="pull"><div class="q">${a.quote.t}</div><div class="a">— ${a.quote.a}</div></div>`;
+  if(inl[i])body+=figHTML(inl[i],260);});
  const rel=A.filter(x=>x.id!==a.id&&!x.draft&&(x.sec===a.sec||x.author===a.author)&&x.role!=='hero').slice(0,3);
  document.getElementById('art-slot').innerHTML=`
   ${a._preview?'<div class="preview-note">Preview — this story is not published yet</div>':''}
@@ -907,7 +1619,7 @@ function renderArticle(id){
       <button class="icon-btn" title="Save" onclick="toast('Saved to your reading list (demo)')">✩</button>
     </div>
   </div>
-  ${a.img?`<div class="art-img"><img src="${a.img}" alt="">${a.imgCaption?`<div class="cap">${a.imgCaption}</div>`:''}</div>`:visual(a.sec,a.kicker,300)}
+  ${a.img?`<div class="art-img"><img src="${a.img}" alt="">${a.imgCaption?`<div class="cap">${a.imgCaption}</div>`:''}</div>`:(F[0]?figHTML(F[0],300,a.kicker):visual(a.sec,a.kicker,300))}
   <div class="art-body" style="margin-top:36px">${body}</div>
   ${a.points?`<div class="keypoints"><h4>Key Points</h4><ul>${a.points.map(p=>`<li>${p}</li>`).join('')}</ul></div>`:''}
   <div class="tags">${a.tags.map(t=>`<span class="tag" onclick="nav('archiveFull');setTimeout(()=>{const i=document.getElementById('arch-search');i.value='${t}';renderArchiveFull('${t}')},50)">${t}</span>`).join('')}</div>
