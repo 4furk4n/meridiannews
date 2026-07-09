@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MERIDIAN — Markets, Crypto & the Frontier Economy</title>
+<style>
+  :root{
+    --ink:#0A0C10; --panel:#11141B; --panel-2:#151923;
+    --line:#232936; --line-soft:#1B2029;
+    --text:#EAE8E1; --muted:#8B919E; --faint:#5C6270;
+    --gold:#C9A961; --gold-soft:#8F7A48;
+    --up:#34C17D; --down:#E5484D;
+    --serif:"Didot","Playfair Display","Georgia","Times New Roman",serif;
+    --sans:"Inter","Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SF Mono","Cascadia Code","Consolas","Roboto Mono",monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--ink);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none;cursor:pointer}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+  main[hidden]{display:none}
+
+  /* progress bar */
+  #progress{position:fixed;top:0;left:0;height:2px;background:var(--gold);width:0;z-index:200;transition:width .1s linear}
+
+  /* ---------- Top bar ---------- */
+  .topbar{border-bottom:1px solid var(--line-soft);background:#07090C;font-size:11.5px;letter-spacing:.04em}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:34px}
+  .topbar .left{display:flex;gap:18px;color:var(--muted)}
+  .topbar .clock{font-family:var(--mono);color:var(--gold)}
+  .topbar .right{display:flex;gap:16px;align-items:center}
+  .topbar .signin{color:var(--muted)} .topbar .signin:hover{color:var(--text)}
+  .btn-sub{background:var(--gold);color:#0A0C10;font-weight:600;padding:4px 14px;border-radius:2px;letter-spacing:.06em;font-size:11px;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--sans)}
+  .btn-sub:hover{background:#DBBC74}
+
+  /* ---------- Ticker ---------- */
+  .ticker{background:#0D1017;border-bottom:1px solid var(--line-soft);overflow:hidden;height:38px}
+  .ticker-track{display:flex;align-items:center;height:38px;white-space:nowrap;animation:tick 60s linear infinite;width:max-content}
+  .ticker:hover .ticker-track{animation-play-state:paused}
+  @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .tk{display:inline-flex;align-items:center;gap:8px;padding:0 22px;font-family:var(--mono);font-size:12px;border-right:1px solid var(--line-soft)}
+  .tk .sym{color:var(--muted);letter-spacing:.05em}
+  .tk .px{color:var(--text)}
+  .tk .chg.up{color:var(--up)} .tk .chg.down{color:var(--down)}
+
+  /* ---------- Masthead ---------- */
+  .masthead{padding:34px 0 22px;text-align:center;border-bottom:1px solid var(--line);position:relative}
+  .masthead .brand{font-family:var(--serif);font-size:56px;letter-spacing:.28em;font-weight:400;text-indent:.28em;cursor:pointer}
+  .masthead .brand span{color:var(--gold)}
+  .masthead .tagline{margin-top:6px;font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--faint);text-indent:.42em}
+  .masthead .edition{position:absolute;left:28px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--faint);letter-spacing:.08em;text-align:left;line-height:1.7}
+  .masthead .edition b{color:var(--muted);font-weight:500}
+  .masthead .issue{position:absolute;right:28px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--faint);letter-spacing:.08em;text-align:right;line-height:1.7}
+  .masthead .issue b{color:var(--muted);font-weight:500}
+
+  /* ---------- Nav ---------- */
+  nav{border-bottom:1px solid var(--line);background:var(--ink);position:sticky;top:0;z-index:50}
+  nav .wrap{display:flex;justify-content:center;gap:4px}
+  nav a{padding:14px 20px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid transparent;transition:.18s}
+  nav a:hover{color:var(--text)}
+  nav a.active{color:var(--gold);border-bottom-color:var(--gold)}
+  nav a.archive-link{color:var(--gold-soft)} nav a.archive-link:hover{color:var(--gold)}
+
+  /* ---------- Section labels ---------- */
+  .sec-label{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+  .sec-label h2{font-family:var(--serif);font-size:22px;font-weight:400;letter-spacing:.05em;white-space:nowrap}
+  .sec-label .rule{flex:1;height:1px;background:var(--line)}
+  .sec-label .more{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-soft)}
+  .sec-label .more:hover{color:var(--gold)}
+  .kicker{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:block}
+  .byline{font-size:11.5px;color:var(--faint);letter-spacing:.03em}
+  .byline b{color:var(--muted);font-weight:500}
+  .byline a b:hover, .byline a:hover b{color:var(--gold)}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:44px 0 40px;border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid;grid-template-columns:1.7fr 1fr;gap:44px}
+  .visual{border:1px solid var(--line);position:relative;overflow:hidden}
+  .hero-main .visual{height:340px}
+  .visual .badge{position:absolute;top:18px;left:18px;background:rgba(10,12,16,.75);border:1px solid var(--gold-soft);color:var(--gold);font-size:10px;letter-spacing:.24em;text-transform:uppercase;padding:6px 12px;backdrop-filter:blur(4px);z-index:2}
+  .visual svg{position:absolute;inset:0;width:100%;height:100%}
+  .hero-main h1{font-family:var(--serif);font-size:42px;line-height:1.14;font-weight:400;margin:24px 0 14px}
+  .hero-main h1 a:hover{color:var(--gold)}
+  .hero-main .dek{color:var(--muted);font-size:16.5px;line-height:1.6;margin-bottom:14px;max-width:680px}
+  .hero-side{display:flex;flex-direction:column}
+  .hero-side .side-item{padding:20px 0;border-bottom:1px solid var(--line-soft)}
+  .hero-side .side-item:first-child{padding-top:4px}
+  .hero-side .side-item:last-child{border-bottom:none}
+  .hero-side h3{font-family:var(--serif);font-size:19px;line-height:1.3;font-weight:400;margin-bottom:8px}
+  .hero-side h3 a:hover{color:var(--gold)}
+  .hero-side p{color:var(--muted);font-size:13px;line-height:1.55;margin-bottom:8px}
+
+  /* ---------- Stories grid ---------- */
+  .stories{padding:48px 0;border-bottom:1px solid var(--line)}
+  .filters{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap}
+  .filters button{background:transparent;border:1px solid var(--line);color:var(--muted);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:8px 18px;cursor:pointer;transition:.18s}
+  .filters button:hover{border-color:var(--gold-soft);color:var(--text)}
+  .filters button.on{background:var(--gold);border-color:var(--gold);color:#0A0C10;font-weight:600}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px 40px}
+  .card{display:flex;flex-direction:column;border-top:1px solid var(--line);padding-top:18px}
+  .card .cat{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+  .card h3{font-family:var(--serif);font-size:20px;line-height:1.28;font-weight:400;margin-bottom:10px}
+  .card h3 a:hover{color:var(--gold)}
+  .card p{color:var(--muted);font-size:13.5px;line-height:1.6;margin-bottom:12px;flex:1}
+  .card.hidden{display:none}
+
+  /* ---------- Market board ---------- */
+  .board{padding:48px 0;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#0C0E13,var(--ink))}
+  .board-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .panel{background:var(--panel);border:1px solid var(--line);padding:22px 24px}
+  .panel h4{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--line-soft)}
+  .row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line-soft);font-family:var(--mono);font-size:13px}
+  .row:last-child{border-bottom:none}
+  .row .name{color:var(--muted);font-family:var(--sans);font-size:12.5px;letter-spacing:.03em}
+  .row .val{color:var(--text)}
+  .row .d{font-size:11.5px;margin-left:10px}
+  .d.up{color:var(--up)} .d.down{color:var(--down)}
+  .board-note{margin-top:14px;font-size:11px;color:var(--faint);letter-spacing:.04em}
+
+  /* ---------- Archive ---------- */
+  .archive{padding:56px 0;border-bottom:1px solid var(--line);background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(201,169,97,.06),transparent 60%),var(--ink)}
+  .archive-head{text-align:center;margin-bottom:12px}
+  .archive-head h2{font-family:var(--serif);font-size:36px;font-weight:400;letter-spacing:.04em}
+  .archive-head p{color:var(--muted);max-width:620px;margin:14px auto 0;font-size:14.5px;line-height:1.65}
+  .era-tabs{display:flex;justify-content:center;margin:34px 0 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .era-tabs button{background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-family:var(--serif);font-size:16px;letter-spacing:.06em;padding:12px 26px;cursor:pointer;transition:.18s}
+  .era-tabs button:hover{color:var(--text)}
+  .era-tabs button.on{color:var(--gold);border-bottom-color:var(--gold)}
+  .era-sub{text-align:center;color:var(--faint);font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:22px 0 30px}
+  .timeline{max-width:860px;margin:0 auto;position:relative;padding-left:34px}
+  .timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:1px;background:linear-gradient(180deg,var(--gold-soft),var(--line))}
+  .t-item{position:relative;padding:0 0 30px}
+  .t-item::before{content:"";position:absolute;left:-30px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--ink);border:2px solid var(--gold)}
+  .t-item .t-date{font-family:var(--mono);font-size:11.5px;color:var(--gold);letter-spacing:.1em;margin-bottom:6px}
+  .t-item h3{font-family:var(--serif);font-size:21px;font-weight:400;line-height:1.3;margin-bottom:8px}
+  .t-item h3 a:hover{color:var(--gold)}
+  .t-item p{color:var(--muted);font-size:13.5px;line-height:1.6;max-width:720px}
+  .era{display:none}
+  .era.on{display:block;animation:fade .35s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .archive-cta{text-align:center;margin-top:12px}
+  .btn-ghost{display:inline-block;border:1px solid var(--gold-soft);color:var(--gold);font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:12px 34px;transition:.18s;background:none;cursor:pointer;font-family:var(--sans)}
+  .btn-ghost:hover{background:var(--gold);color:#0A0C10}
+
+  /* ---------- Opinion ---------- */
+  .opinion{padding:48px 0;border-bottom:1px solid var(--line)}
+  .op-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+  .op{padding:6px 36px;border-right:1px solid var(--line-soft)}
+  .op:first-child{padding-left:0}
+  .op:last-child{border-right:none;padding-right:0}
+  .op .q{font-family:var(--serif);font-size:19px;line-height:1.42;font-style:italic;margin-bottom:16px}
+  .op .q::before{content:"“";color:var(--gold);font-size:30px;line-height:0;vertical-align:-8px;margin-right:2px}
+  .op:hover .q{color:var(--gold)}
+
+  /* ---------- Newsletter ---------- */
+  .news-cta{padding:60px 0;border-bottom:1px solid var(--line);text-align:center;background:radial-gradient(ellipse 60% 80% at 50% 100%,rgba(201,169,97,.07),transparent 60%)}
+  .news-cta h2{font-family:var(--serif);font-size:30px;font-weight:400;margin-bottom:10px}
+  .news-cta p{color:var(--muted);margin-bottom:26px;font-size:14px}
+  .nl-form{display:flex;max-width:460px;margin:0 auto;border:1px solid var(--line)}
+  .nl-form input{flex:1;background:var(--panel);border:none;color:var(--text);padding:14px 18px;font-family:var(--sans);font-size:13.5px;outline:none}
+  .nl-form input::placeholder{color:var(--faint)}
+  .nl-form button{background:var(--gold);border:none;color:#0A0C10;font-weight:600;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;padding:0 26px;cursor:pointer}
+  .nl-form button:hover{background:#DBBC74}
+  .nl-done{color:var(--up);font-size:13px;margin-top:14px;display:none}
+
+  /* ---------- Footer ---------- */
+  footer{padding:44px 0 36px;color:var(--faint);font-size:12px}
+  .f-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:36px}
+  .f-brand{font-family:var(--serif);font-size:24px;letter-spacing:.24em;color:var(--text)}
+  .f-brand span{color:var(--gold)}
+  footer h5{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  footer li{list-style:none;margin-bottom:9px}
+  footer li a:hover{color:var(--text)}
+  .f-bottom{border-top:1px solid var(--line-soft);padding-top:22px;display:flex;justify-content:space-between;letter-spacing:.05em}
+
+  /* ---------- Article view ---------- */
+  .art{max-width:760px;margin:0 auto;padding:44px 28px 60px}
+  .back{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:30px}
+  .back:hover{color:var(--gold)}
+  .art h1{font-family:var(--serif);font-size:40px;line-height:1.16;font-weight:400;margin:14px 0 18px}
+  .art .dek{font-size:18px;color:var(--muted);line-height:1.6;margin-bottom:30px;font-family:var(--serif);font-style:italic}
+  .art-meta{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin-bottom:34px;flex-wrap:wrap;gap:14px}
+  .auth-chip{display:flex;align-items:center;gap:14px}
+  .ava{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px;color:#0A0C10;background:linear-gradient(135deg,#DBBC74,#8F7A48);flex-shrink:0;letter-spacing:.02em}
+  .ava.lg{width:96px;height:96px;font-size:32px}
+  .auth-chip .nm{font-size:14px;font-weight:600;letter-spacing:.02em}
+  .auth-chip .nm:hover{color:var(--gold)}
+  .auth-chip .rl{font-size:11.5px;color:var(--faint);letter-spacing:.04em}
+  .art-actions{display:flex;gap:10px}
+  .icon-btn{width:34px;height:34px;border:1px solid var(--line);background:none;color:var(--muted);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:.18s}
+  .icon-btn:hover{border-color:var(--gold-soft);color:var(--gold)}
+  .art .visual{height:300px;margin-bottom:36px}
+  .art-body p{font-size:16.5px;line-height:1.8;color:#D5D3CC;margin-bottom:24px}
+  .art-body p:first-of-type::first-letter{font-family:var(--serif);font-size:52px;line-height:.85;float:left;padding:6px 10px 0 0;color:var(--gold)}
+  .pull{border-left:2px solid var(--gold);margin:34px 0;padding:8px 0 8px 28px}
+  .pull .q{font-family:var(--serif);font-size:23px;line-height:1.4;font-style:italic}
+  .pull .a{margin-top:10px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+  .keypoints{background:var(--panel);border:1px solid var(--line);padding:24px 28px;margin:34px 0}
+  .keypoints h4{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  .keypoints li{list-style:none;padding:8px 0 8px 22px;position:relative;color:var(--muted);font-size:14px;line-height:1.55;border-bottom:1px solid var(--line-soft)}
+  .keypoints li:last-child{border-bottom:none}
+  .keypoints li::before{content:"◆";position:absolute;left:0;top:9px;color:var(--gold);font-size:9px}
+  .tags{display:flex;gap:8px;flex-wrap:wrap;margin:36px 0}
+  .tag{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);padding:6px 14px}
+  .tag:hover{color:var(--gold);border-color:var(--gold-soft)}
+  .auth-box{display:flex;gap:22px;background:var(--panel);border:1px solid var(--line);padding:26px 28px;margin:10px 0 44px}
+  .auth-box .bio-nm{font-family:var(--serif);font-size:20px;margin-bottom:2px}
+  .auth-box .bio-nm:hover{color:var(--gold)}
+  .auth-box .bio-rl{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:10px}
+  .auth-box p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:10px}
+  .auth-box .lnk{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft)}
+  .auth-box .lnk:hover{color:var(--gold)}
+  .related{border-top:1px solid var(--line);padding-top:34px}
+  .related h4{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);margin-bottom:24px}
+
+  /* ---------- Author view ---------- */
+  .author-page{max-width:860px;margin:0 auto;padding:50px 28px 60px}
+  .auth-hero{display:flex;gap:30px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:34px;margin-bottom:14px;flex-wrap:wrap}
+  .auth-hero h1{font-family:var(--serif);font-size:34px;font-weight:400}
+  .auth-hero .rl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:6px 0 12px}
+  .auth-hero .bio{color:var(--muted);font-size:14.5px;line-height:1.65;max-width:560px}
+  .auth-stats{display:flex;gap:0;margin:0 0 34px;border-bottom:1px solid var(--line)}
+  .auth-stats div{padding:16px 34px 16px 0;margin-right:34px;font-size:12px;color:var(--faint);letter-spacing:.08em;text-transform:uppercase;border-right:1px solid var(--line-soft)}
+  .auth-stats div:last-child{border-right:none}
+  .auth-stats b{display:block;font-family:var(--serif);font-size:22px;color:var(--text);font-weight:400;letter-spacing:0;text-transform:none;margin-bottom:2px}
+  .auth-list .card{margin-bottom:26px}
+
+  /* ---------- Section & archive views ---------- */
+  .listing{padding:44px 0 60px}
+  .listing .page-title{font-family:var(--serif);font-size:34px;font-weight:400;margin-bottom:8px}
+  .listing .page-sub{color:var(--faint);font-size:13px;margin-bottom:34px;letter-spacing:.04em}
+  .search-bar{display:flex;max-width:520px;border:1px solid var(--line);margin-bottom:12px}
+  .search-bar input{flex:1;background:var(--panel);border:none;color:var(--text);padding:13px 18px;font-size:13.5px;outline:none;font-family:var(--sans)}
+  .search-bar input::placeholder{color:var(--faint)}
+  .search-bar span{display:flex;align-items:center;padding:0 16px;color:var(--gold);font-size:14px}
+  .result-count{font-size:11.5px;color:var(--faint);letter-spacing:.08em;text-transform:uppercase;margin-bottom:26px}
+
+  /* ---------- Modal & toast ---------- */
+  .modal-bg{position:fixed;inset:0;background:rgba(4,5,8,.78);backdrop-filter:blur(3px);z-index:150;display:none;align-items:center;justify-content:center}
+  .modal-bg.on{display:flex}
+  .modal{background:var(--panel);border:1px solid var(--line);max-width:420px;width:92%;padding:38px 40px;position:relative;animation:fade .25s ease}
+  .modal .x{position:absolute;top:14px;right:18px;background:none;border:none;color:var(--faint);font-size:18px;cursor:pointer}
+  .modal .x:hover{color:var(--text)}
+  .modal h3{font-family:var(--serif);font-size:24px;font-weight:400;margin-bottom:6px}
+  .modal .sub{color:var(--faint);font-size:12.5px;margin-bottom:24px}
+  .modal label{display:block;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+  .modal input{width:100%;background:var(--ink);border:1px solid var(--line);color:var(--text);padding:12px 14px;font-size:13.5px;margin-bottom:18px;outline:none;font-family:var(--sans)}
+  .modal input:focus{border-color:var(--gold-soft)}
+  .modal .full{width:100%;padding:13px;font-size:11.5px}
+  .modal p.body{color:var(--muted);font-size:13.5px;line-height:1.7}
+  #toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--panel-2);border:1px solid var(--gold-soft);color:var(--text);font-size:13px;padding:13px 26px;z-index:300;transition:.3s;letter-spacing:.03em}
+  #toast.on{transform:translateX(-50%) translateY(0)}
+
+  /* ---------- Admin (hidden) ---------- */
+  .admin label{display:block;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0 0 7px}
+  .admin input,.admin select,.admin textarea{width:100%;background:var(--panel);border:1px solid var(--line);color:var(--text);padding:12px 14px;font-size:13.5px;margin-bottom:18px;outline:none;font-family:var(--sans)}
+  .admin textarea{min-height:120px;resize:vertical;line-height:1.6}
+  .admin input:focus,.admin textarea:focus,.admin select:focus{border-color:var(--gold-soft)}
+  .af-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 22px}
+  .af-grid .full2{grid-column:1/-1}
+  .admin-bar{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:28px;flex-wrap:wrap;gap:14px}
+  .admin-note{background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--gold);padding:14px 18px;font-size:12.5px;color:var(--muted);line-height:1.6;margin-bottom:28px}
+  .a-row{display:flex;justify-content:space-between;align-items:center;gap:14px;border-bottom:1px solid var(--line-soft);padding:13px 0}
+  .a-row .t{font-family:var(--serif);font-size:16px}
+  .a-row .m{font-size:11px;color:var(--faint);margin-top:2px}
+  .a-row .acts{display:flex;gap:8px;flex-shrink:0}
+  .mini{background:none;border:1px solid var(--line);color:var(--muted);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;cursor:pointer;font-family:var(--sans)}
+  .mini:hover{border-color:var(--gold-soft);color:var(--gold)}
+  .mini.danger:hover{border-color:var(--down);color:var(--down)}
+  .login-box{max-width:380px;margin:40px auto;background:var(--panel);border:1px solid var(--line);padding:38px 40px;text-align:center}
+  .tabs{display:flex;border-bottom:1px solid var(--line);margin-bottom:28px;flex-wrap:wrap}
+  .tabs button{background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-family:var(--sans);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;padding:12px 22px;cursor:pointer}
+  .tabs button:hover{color:var(--text)}
+  .tabs button.on{color:var(--gold);border-bottom-color:var(--gold)}
+  .badge-st{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px;border:1px solid var(--line);vertical-align:2px;margin-left:6px}
+  .badge-st.pub{color:var(--up);border-color:rgba(52,193,125,.4)}
+  .badge-st.dr{color:var(--gold);border-color:var(--gold-soft)}
+  .a-row .thumb{width:56px;height:40px;object-fit:cover;border:1px solid var(--line);flex-shrink:0}
+  .img-drop{border:1px dashed var(--line);padding:22px;text-align:center;color:var(--faint);font-size:12px;margin-bottom:14px;cursor:pointer;letter-spacing:.04em}
+  .img-drop:hover{border-color:var(--gold-soft);color:var(--muted)}
+  .img-prev{position:relative;margin-bottom:14px}
+  .img-prev img{width:100%;max-height:260px;object-fit:cover;border:1px solid var(--line);display:block}
+  .img-prev button{position:absolute;top:10px;right:10px;background:rgba(10,12,16,.85)}
+  .card .thumb-c{width:100%;height:150px;object-fit:cover;border:1px solid var(--line);margin-bottom:14px;display:block}
+  .art-img{margin-top:0}
+  .art-img img{width:100%;max-height:420px;object-fit:cover;border:1px solid var(--line);display:block}
+  .art-img .cap{font-size:11.5px;color:var(--faint);margin-top:8px;letter-spacing:.03em}
+  .preview-note{background:var(--gold);color:#0A0C10;text-align:center;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;padding:9px;margin-bottom:26px;font-weight:600}
+  .wc-hint{font-size:11px;color:var(--faint);margin:-12px 0 16px;letter-spacing:.04em}
+
+  @media(max-width:960px){
+    .af-grid{grid-template-columns:1fr}
+    .hero-grid,.grid,.board-grid,.op-grid,.f-grid{grid-template-columns:1fr}
+    .op{border-right:none;border-bottom:1px solid var(--line-soft);padding:22px 0}
+    .masthead .edition,.masthead .issue{display:none}
+    .masthead .brand{font-size:38px}
+    nav .wrap{overflow-x:auto;justify-content:flex-start}
+    .art h1{font-size:30px}
+  }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="left"><span id="today"></span><span class="clock" id="clock"></span><span>NEW YORK · LONDON · HONG KONG</span></div>
+    <div class="right"><a class="signin" onclick="openModal('signin')">Sign In</a><button class="btn-sub" onclick="goSubscribe()">Subscribe</button></div>
+  </div>
+</div>
+
+<div class="ticker"><div class="ticker-track" id="ticker"></div></div>
+
+<header class="masthead">
+  <div class="edition"><b>GLOBAL EDITION</b><br>Vol. I — No. 128</div>
+  <div class="brand" onclick="nav('home')">MERID<span>I</span>AN</div>
+  <div class="tagline">Markets · Crypto · The Frontier Economy</div>
+  <div class="issue"><b>THE ARCHIVE</b><br>Every market day since 2009</div>
+</header>
+
+<nav>
+  <div class="wrap" id="mainnav">
+    <a data-nav="home" class="active" onclick="nav('home')">Home</a>
+    <a data-nav="all" onclick="nav('section','all')">Markets</a>
+    <a data-nav="stocks" onclick="nav('section','stocks')">Stocks</a>
+    <a data-nav="crypto" onclick="nav('section','crypto')">Crypto</a>
+    <a data-nav="tech" onclick="nav('section','tech')">Technology</a>
+    <a data-nav="space" onclick="nav('section','space')">Space &amp; Frontier</a>
+    <a data-nav="policy" onclick="nav('section','policy')">Policy</a>
+    <a data-nav="archive" class="archive-link" onclick="nav('archiveFull')">◈ The Archive</a>
+  </div>
+</nav>
+
+<!-- ============ HOME ============ -->
+<main id="view-home">
+  <section class="hero"><div class="wrap hero-grid"><div class="hero-main" id="hero-slot"></div><div class="hero-side" id="side-slot"></div></div></section>
+
+  <section class="stories" id="stories">
+    <div class="wrap">
+      <div class="sec-label"><h2>Top Stories</h2><div class="rule"></div><a class="more" onclick="nav('section','all')">View All →</a></div>
+      <div class="filters" id="filters">
+        <button class="on" data-f="all">All</button><button data-f="stocks">Stocks</button><button data-f="crypto">Crypto</button><button data-f="tech">Technology</button><button data-f="space">Space</button><button data-f="policy">Policy &amp; Macro</button>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="board">
+    <div class="wrap">
+      <div class="sec-label"><h2>Markets at a Glance</h2><div class="rule"></div></div>
+      <div class="board-grid">
+        <div class="panel"><h4>Equities</h4>
+          <div class="row"><span class="name">S&amp;P 500</span><span><span class="val">7,463.20</span><span class="d up">+0.42%</span></span></div>
+          <div class="row"><span class="name">Nasdaq Composite</span><span><span class="val">25,614.88</span><span class="d up">+0.61%</span></span></div>
+          <div class="row"><span class="name">Dow Jones</span><span><span class="val">53,041.15</span><span class="d up">+0.27%</span></span></div>
+          <div class="row"><span class="name">VIX</span><span><span class="val">18.02</span><span class="d down">-1.10%</span></span></div>
+          <div class="row"><span class="name">SpaceX (SPCX)</span><span><span class="val">158.40</span><span class="d down">-1.62%</span></span></div>
+          <div class="row"><span class="name">Nvidia (NVDA)</span><span><span class="val">195.12</span><span class="d down">-0.88%</span></span></div>
+        </div>
+        <div class="panel"><h4>Digital Assets</h4>
+          <div class="row"><span class="name">Bitcoin</span><span><span class="val">$63,180</span><span class="d up">+2.14%</span></span></div>
+          <div class="row"><span class="name">Ethereum</span><span><span class="val">$1,776</span><span class="d up">+1.35%</span></span></div>
+          <div class="row"><span class="name">XRP</span><span><span class="val">$1.42</span><span class="d up">+9.8%</span></span></div>
+          <div class="row"><span class="name">Arbitrum (ARB)</span><span><span class="val">$0.87</span><span class="d up">+10.2%</span></span></div>
+          <div class="row"><span class="name">BTC Market Cap</span><span><span class="val">$1.33T</span><span class="d up">+2.0%</span></span></div>
+          <div class="row"><span class="name">ETF Net Flow (wk)</span><span><span class="val">-$0.9B</span><span class="d down">outflow</span></span></div>
+        </div>
+        <div class="panel"><h4>Commodities &amp; Rates</h4>
+          <div class="row"><span class="name">Gold</span><span><span class="val">$4,052</span><span class="d down">-2.5%</span></span></div>
+          <div class="row"><span class="name">Brent Crude</span><span><span class="val">$78.19</span><span class="d up">+5.4%</span></span></div>
+          <div class="row"><span class="name">WTI Crude</span><span><span class="val">$75.36</span><span class="d up">+4.4%</span></span></div>
+          <div class="row"><span class="name">US 10-Yr Yield</span><span><span class="val">4.18%</span><span class="d down">-3bp</span></span></div>
+          <div class="row"><span class="name">DXY</span><span><span class="val">103.44</span><span class="d up">+0.2%</span></span></div>
+          <div class="row"><span class="name">Unemployment</span><span><span class="val">4.2%</span><span class="d down">Jun</span></span></div>
+        </div>
+      </div>
+      <p class="board-note">Indicative levels as of July 9, 2026. Delayed at least 15 minutes. For illustration.</p>
+    </div>
+  </section>
+
+  <section class="archive" id="archive">
+    <div class="wrap">
+      <div class="archive-head">
+        <span class="kicker">◈ The Meridian Archive</span>
+        <h2>Every Market Day Since the Genesis Block</h2>
+        <p>Most news sites begin when they launch. Meridian begins in 2009. Our editors have reconstructed the full record of crypto, equities and frontier-tech history — searchable by date, asset and event — so the context behind today's headline is never more than a click away.</p>
+      </div>
+      <div class="era-tabs" id="eras"></div>
+      <div id="era-slot"></div>
+      <div class="archive-cta"><button class="btn-ghost" onclick="nav('archiveFull')">Explore the Full Archive →</button></div>
+    </div>
+  </section>
+
+  <section class="opinion">
+    <div class="wrap">
+      <div class="sec-label"><h2>Opinion &amp; Analysis</h2><div class="rule"></div></div>
+      <div class="op-grid">
+        <div class="op" onclick="nav('article','spacex-ipo')"><p class="q">A $2.1 trillion valuation for a company that lost $4.9 billion last year isn't a bubble — it's a bet that orbit is the next cloud.</p><div class="byline">By <a onclick="event.stopPropagation();nav('author','adrian-vance')"><b>Adrian Vance</b></a> · Frontier Capital</div></div>
+        <div class="op" onclick="nav('article','btc-capitulation')"><p class="q">The 200-week moving average has been Bitcoin's floor in every cycle. June was the first real test of whether the ETF era changed the physics.</p><div class="byline">By <a onclick="event.stopPropagation();nav('author','sofia-lindqvist')"><b>Sofia Lindqvist</b></a> · Chief Crypto Strategist</div></div>
+        <div class="op" onclick="nav('article','warsh-fed')"><p class="q">Warsh inherited a divided Fed, a hot oil market and a cooling labor market. Someone is going to be wrong by September.</p><div class="byline">By <a onclick="event.stopPropagation();nav('author','lucien-moreau')"><b>Lucien Moreau</b></a> · Macro Editor</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="news-cta" id="subscribe">
+    <div class="wrap">
+      <span class="kicker">The Daily Meridian</span>
+      <h2>Markets Move at Dawn. So Do We.</h2>
+      <p>One brief, every weekday at 6:00 AM ET — equities, crypto and the frontier economy, with the archive context no one else has.</p>
+      <form class="nl-form" id="nl"><input type="email" placeholder="you@example.com" required><button type="submit">Subscribe</button></form>
+      <p class="nl-done" id="nl-done">✓ You're on the list. First brief arrives tomorrow at 6:00 AM ET.</p>
+    </div>
+  </section>
+</main>
+
+<!-- ============ ARTICLE ============ -->
+<main id="view-article" hidden><div class="art" id="art-slot"></div></main>
+
+<!-- ============ AUTHOR ============ -->
+<main id="view-author" hidden><div class="author-page" id="author-slot"></div></main>
+
+<!-- ============ SECTION LISTING ============ -->
+<main id="view-section" hidden><div class="wrap listing" id="section-slot"></div></main>
+
+<!-- ============ FULL ARCHIVE ============ -->
+<main id="view-archiveFull" hidden>
+  <div class="wrap listing">
+    <span class="kicker">◈ The Meridian Archive</span>
+    <div class="page-title">Search Seventeen Years of Market History</div>
+    <p class="page-sub">2009 — Present · Reconstructed and editorially verified</p>
+    <div class="search-bar"><span>⌕</span><input id="arch-search" type="text" placeholder="Search by event, asset, year… e.g. “FTX”, “halving”, “2020”"></div>
+    <p class="result-count" id="arch-count"></p>
+    <div class="timeline" id="arch-results" style="max-width:100%"></div>
+  </div>
+</main>
+
+<!-- ============ ADMIN (hidden — open with #/admin) ============ -->
+<main id="view-admin" hidden><div class="wrap listing" id="admin-slot" style="max-width:920px"></div></main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div><div class="f-brand">MERID<span>I</span>AN</div><p style="margin-top:14px;line-height:1.7;max-width:300px">Independent coverage of markets, digital assets and the frontier economy — with a complete historical archive back to 2009.</p></div>
+      <div><h5>Sections</h5><ul><li><a onclick="nav('section','all')">Markets</a></li><li><a onclick="nav('section','stocks')">Stocks</a></li><li><a onclick="nav('section','crypto')">Crypto</a></li><li><a onclick="nav('section','tech')">Technology</a></li><li><a onclick="nav('archiveFull')">The Archive</a></li></ul></div>
+      <div><h5>Company</h5><ul><li><a onclick="openModal('about')">About</a></li><li><a onclick="openModal('standards')">Editorial Standards</a></li><li><a onclick="toast('Careers page — demo build')">Careers</a></li><li><a onclick="toast('Ad sales — demo build')">Advertise</a></li></ul></div>
+      <div><h5>Legal</h5><ul><li><a onclick="toast('Terms of Use — demo build')">Terms of Use</a></li><li><a onclick="toast('Privacy Policy — demo build')">Privacy</a></li><li><a onclick="toast('Data Disclaimer — demo build')">Data Disclaimer</a></li></ul></div>
+    </div>
+    <div class="f-bottom"><span>© 2026 Meridian Media Group. All rights reserved.</span><span>Not investment advice. Market data for illustration.</span></div>
+  </div>
+</footer>
+
+<!-- Modals -->
+<div class="modal-bg" id="modal-signin" onclick="if(event.target===this)closeModal('signin')">
+  <div class="modal">
+    <button class="x" onclick="closeModal('signin')">✕</button>
+    <h3>Welcome back</h3><p class="sub">Sign in to your Meridian account</p>
+    <form onsubmit="event.preventDefault();closeModal('signin');toast('Signed in — welcome back (demo)')">
+      <label>Email</label><input type="email" required placeholder="you@example.com">
+      <label>Password</label><input type="password" required placeholder="••••••••">
+      <button class="btn-sub full" type="submit">Sign In</button>
+    </form>
+  </div>
+</div>
+<div class="modal-bg" id="modal-about" onclick="if(event.target===this)closeModal('about')">
+  <div class="modal">
+    <button class="x" onclick="closeModal('about')">✕</button>
+    <h3>About Meridian</h3><p class="sub">Founded 2026 · New York</p>
+    <p class="body">Meridian covers the convergence of traditional markets, digital assets and the frontier economy. Our differentiator is depth of record: an editorially reconstructed archive of every significant market event since Bitcoin's genesis block in January 2009 — so readers who join us today inherit seventeen years of context.</p>
+  </div>
+</div>
+<div class="modal-bg" id="modal-standards" onclick="if(event.target===this)closeModal('standards')">
+  <div class="modal">
+    <button class="x" onclick="closeModal('standards')">✕</button>
+    <h3>Editorial Standards</h3><p class="sub">Independence · Accuracy · Correction</p>
+    <p class="body">Meridian journalists do not hold positions in assets they cover. Every archive entry is verified against at least two primary sources. Errors are corrected prominently and logged publicly. Analysis is clearly labeled and never presented as investment advice.</p>
+  </div>
+</div>
+<div id="toast"></div>
+
+<script>
+/* ================= DATA ================= */
+const AUTHORS={
+ 'adrian-vance':{name:'Adrian Vance',initials:'AV',role:'Senior Correspondent, Space & Frontier Capital',loc:'Los Angeles',joined:'2026',
+  bio:'Adrian spent eight years as a propulsion engineer before switching to journalism, and has covered the commercial launch industry for over a decade. He broke three of the earliest stories on SpaceX’s IPO preparations and is the author of “Escape Velocity: How Private Capital Bought the Sky.”',
+  x:'@advance_orbit'},
+ 'maya-okafor':{name:'Maya Okafor',initials:'MO',role:'Semiconductors & Hardware Reporter',loc:'San Francisco',joined:'2026',
+  bio:'Maya covers the chip industry from design to fab. A former senior analyst at a leading semiconductor research house, she has visited every major foundry in Taiwan, Korea and Arizona, and writes the weekly “Silicon Ledger” column on AI hardware economics.',
+  x:'@mokafor_si'},
+ 'jisoo-park':{name:'Jisoo Park',initials:'JP',role:'Asia Markets Correspondent',loc:'Seoul',joined:'2026',
+  bio:'Jisoo reports on Asian equities and the memory-chip supercycle from Seoul, with a focus on Samsung, SK Hynix and the regional supply chain. She previously spent six years on the Asia desk of a global newswire and speaks Korean, Japanese and Mandarin.',
+  x:'@jisoopark_mkt'},
+ 'sofia-lindqvist':{name:'Sofia Lindqvist',initials:'SL',role:'Chief Crypto Strategist',loc:'Stockholm / London',joined:'2026',
+  bio:'A former quantitative trader, Sofia has published on-chain research since 2016 and built one of the first institutional Bitcoin cycle models. At Meridian she leads digital-asset coverage and writes “The Long Chain,” our flagship crypto column, read in 90 countries.',
+  x:'@slindqvist_btc'},
+ 'diego-reyes':{name:'Diego Reyes',initials:'DR',role:'DeFi & Digital Asset Markets Reporter',loc:'Buenos Aires',joined:'2026',
+  bio:'Diego came to crypto journalism the hard way — through two Argentine currency crises. He covers DeFi protocols, L2 ecosystems and tokenized assets, and was among the first reporters to document the Robinhood Chain testnet in early 2026.',
+  x:'@dreyes_defi'},
+ 'rachel-feld':{name:'Rachel Feld',initials:'RF',role:'AI & Venture Capital Correspondent',loc:'San Francisco',joined:'2026',
+  bio:'Rachel covers the private AI economy: labs, mega-rounds, and the road to the public markets. A former venture associate, she maintains Meridian’s proprietary tracker of AI lab valuations and compute contracts, cited by three congressional hearings.',
+  x:'@rfeld_ai'},
+ 'kelechi-iwu':{name:'Kelechi Iwu',initials:'KI',role:'Aerospace & Defense Reporter',loc:'Washington, D.C.',joined:'2026',
+  bio:'Kelechi covers the business of space from Washington — procurement, regulation and the new launch oligopoly. Before Meridian he covered the Pentagon budget for a defense trade daily and holds a master’s in international security studies.',
+  x:'@kiwu_aero'},
+ 'lucien-moreau':{name:'Lucien Moreau',initials:'LM',role:'Global Macro Editor',loc:'Paris / New York',joined:'2026',
+  bio:'Lucien spent nine years as an economist at a G7 central bank before crossing into journalism. He edits Meridian’s macro desk, covering the Fed, energy shocks and sovereign debt, and writes the Sunday essay “The Price of Everything.”',
+  x:'@lmoreau_macro'},
+ 'thanh-nguyen':{name:'Thanh Nguyen',initials:'TN',role:'Washington Policy Reporter',loc:'Washington, D.C.',joined:'2026',
+  bio:'Thanh covers the intersection of the White House, Congress and the markets — from retail investment policy to crypto legislation. She previously covered the SEC for a financial daily and is a graduate of Georgetown’s McCourt School.',
+  x:'@tnguyen_dc'},
+ 'archive-desk':{name:'Meridian Archive Desk',initials:'◈',role:'Historical Reconstruction Unit',loc:'New York',joined:'2026',
+  bio:'The Archive Desk is Meridian’s in-house historical unit: four editors and two data engineers who reconstruct, verify and continuously expand the record of market events back to January 2009. Every entry is checked against at least two primary sources from the period.',
+  x:'@meridian_archive'}
+};
+
+const SECTIONS={stocks:'Stocks',crypto:'Crypto',tech:'Technology',space:'Space & Frontier',policy:'Policy & Macro',all:'All Markets'};
+
+const A=[
+/* ---- HERO ---- */
+{id:'spacex-ipo',role:'hero',sec:'space',kicker:'Space & Frontier',date:'July 9, 2026',iso:'2026-07-09',read:11,author:'adrian-vance',
+ title:'SpaceX’s $75 Billion Debut Rewrites the IPO Record Book — and Mints the First Trillionaire',
+ dek:'Priced at $135 and closing its first session near $161, the June 12 listing valued the launch-and-AI giant at $2.1 trillion — absorbing xAI along the way and leaving Wall Street split between $115 bear cases and $236 average targets on a company that still burned $4.9 billion last year.',
+ body:[
+ 'Four weeks after the largest initial public offering in history, Wall Street is still arguing about what it bought. SpaceX raised $75 billion on June 12 at a fixed price of $135 a share, and by the closing bell the stock had climbed to roughly $161 — a first-day valuation of $2.1 trillion that instantly made the company more valuable than every automaker on earth combined, and made Elon Musk, at least on paper, the world’s first trillionaire.',
+ 'The listing capped a frantic six months of corporate engineering. In the spring, xAI — Musk’s artificial-intelligence lab, whose Grok 4.5 model was trained on Nvidia GB300 clusters — was folded into SpaceX, giving the combined company a story that spans orbital launch, the Starlink communications network and frontier AI. Bankers privately called it “the everything ticket”: one share, three secular themes.',
+ 'The bear case is equally simple. SpaceX lost $4.9 billion in 2025 on revenue of $18.7 billion, and Starship — the vehicle on which the entire Mars and next-generation Starlink thesis rests — remains grounded after its Flight 12 booster broke apart over the Gulf. CFRA initiated coverage with a $115 target; NewStreet answered with $165. The average across the Street sits near $236, a spread that says less about the company than about how little precedent exists for valuing it.',
+ 'What is not in dispute is the effect on the pipeline. OpenAI is now said to be delaying its own listing to 2027 rather than compete for capital in SpaceX’s shadow, Anthropic has filed confidentially, and Blue Origin responded within weeks by raising $10 billion privately. The IPO window did not just open — it was blown off its hinges.',
+ 'For public investors, the question that remains is the oldest one: at $158, are you buying a launch company, a telecom, an AI lab — or a belief? The first earnings report, expected in September, will be the most-watched debut print since Facebook’s in 2012.'],
+ quote:{t:'One share, three secular themes — launch, connectivity and AI. There is simply no precedent for valuing this.',a:'Senior equity strategist, bulge-bracket bank'},
+ points:['Priced at $135, closed day one near $161 — $2.1T valuation, $75B raised','xAI merged into SpaceX pre-listing; Grok 4.5 trained on Nvidia GB300','2025 financials: $18.7B revenue, $4.9B loss; Starship grounded pending FAA review','Street targets range $115–$165; average near $236'],
+ tags:['SpaceX','IPO','Elon Musk','xAI','Starlink']},
+
+/* ---- SIDE ---- */
+{id:'btc-recovery',role:'side',sec:'crypto',kicker:'Crypto',date:'July 8, 2026',iso:'2026-07-08',read:6,author:'sofia-lindqvist',
+ title:'Bitcoin Claws Back Above $63K After Its Deepest Drawdown Since 2022',
+ dek:'A first weekly close below the 200-week average since 2023 and record ETF outflows gave way to relief as Fed Chair Warsh softened his tone and June payrolls came in at just 57,000.',
+ body:[
+ 'Bitcoin traded back above $63,000 this week, roughly 8% off the June 25 low of $58,190 that marked its deepest drawdown since the 2022 bear market. The bounce followed two macro catalysts in quick succession: unexpectedly soft June payrolls — just 57,000 jobs added, with unemployment ticking up to 4.2% — and a notably gentler tone from new Federal Reserve Chair Kevin Warsh.',
+ 'The June breakdown was historic by on-chain standards. For the first time since 2023, Bitcoin printed a weekly close below its 200-week moving average — the line that has defined the floor of every previous cycle. Spot ETFs, the structural bid of the 2024–2025 bull run, briefly turned into the structural offer: outflows from BlackRock’s IBIT and its peers set single-week records in late June.',
+ 'The recovery, however, has been led by derivatives rather than spot. Funding rates flipped positive within 48 hours of the payrolls print, while spot ETF flows remain negative on the week at roughly $0.9 billion. Veterans of previous cycles will recognize the pattern: fast money returns first, real money waits for confirmation.',
+ 'The next test is the late-July FOMC meeting. Rate-cut odds have risen sharply since the jobs report, but Warsh presides over a visibly divided committee — and a renewed oil shock from the Gulf conflict complicates any easing narrative. Above $65,000, the 200-week average flips back to support. Below $58,000, the 2022 playbook reopens.'],
+ quote:{t:'Fast money returns first. Real money waits for confirmation.',a:'The Long Chain, Meridian'},
+ points:['BTC recovered above $63K from June 25 low of $58,190','First weekly close under the 200-week MA since 2023','Record spot-ETF outflows in late June; weekly flows still −$0.9B','July FOMC and Gulf oil shock are the next catalysts'],
+ tags:['Bitcoin','ETF','Federal Reserve','On-chain']},
+
+{id:'robinhood-chain',role:'side',sec:'crypto',kicker:'Blockchain',date:'July 1, 2026',iso:'2026-07-01',read:7,author:'diego-reyes',
+ title:'Robinhood Chain Goes Live: 24/7 Stock Trading on a 100-Millisecond Blockchain',
+ dek:'The Arbitrum Orbit L2 launched mainnet July 1 with Uniswap, Chainlink and Alchemy aboard, opening tokenized equities to users in more than 120 countries.',
+ body:[
+ 'Robinhood flipped the switch on its own blockchain on July 1, and with it a claim no traditional broker has ever made: the stock market, open every hour of every day, everywhere. Robinhood Chain — an Arbitrum Orbit Layer 2 with 100-millisecond block times — launched mainnet with tokenized U.S. equities available to users in more than 120 countries.',
+ 'The launch partners read like a DeFi all-star roster. Uniswap provides the swap layer, Chainlink delivers price feeds bridging on-chain tokens to off-chain closing prices, and Alchemy supplies developer infrastructure. The bet is that third-party builders — not Robinhood itself — will create the killer applications: collateralized lending against tokenized Apple shares, automated dividend strategies, cross-asset portfolios that rebalance themselves.',
+ 'Markets noticed immediately. ARB, the token of the Arbitrum ecosystem whose technology underpins the chain, rallied roughly 10% on the week, while HOOD shares added 3.4% even in a soft tape. XRP, riding the broader tokenization narrative, posted similar gains.',
+ 'Regulators are watching just as closely. The tokenized equities are structured as derivatives in most jurisdictions outside the U.S., and the SEC has yet to bless round-the-clock trading of on-chain stock tokens for American retail. But the strategic direction is unambiguous — as one executive put it at launch: the exchange of the future is a chain, and whoever runs the chain runs the market.'],
+ quote:{t:'The exchange of the future is a chain — and whoever runs the chain runs the market.',a:'Robinhood executive, launch event'},
+ points:['Mainnet live July 1 as an Arbitrum Orbit L2, 100ms blocks','Tokenized equities in 120+ countries; Uniswap, Chainlink, Alchemy at launch','ARB +10% and HOOD +3.4% on the news','U.S. retail access still awaits SEC clarity'],
+ tags:['Robinhood','Arbitrum','Tokenization','L2','DeFi']},
+
+{id:'gulf-oil',role:'side',sec:'policy',kicker:'Geopolitics',date:'July 8, 2026',iso:'2026-07-08',read:6,author:'lucien-moreau',
+ title:'Oil Spikes as Gulf Conflict Escalates; Brent Nears $80',
+ dek:'Iran struck 85 U.S. military sites after Washington’s July 7 raids, snarling the Strait of Hormuz and reviving inflation fears just weeks before the FOMC meets.',
+ body:[
+ 'The ceasefire is over, and the oil market believes it. Brent crude jumped 5.4% to $78.19 and WTI 4.4% to $75.36 after Iran launched strikes on 85 U.S. military sites across the Gulf — retaliation for powerful American raids on July 7 that followed weeks of attacks on shipping in the Strait of Hormuz.',
+ 'The strait remains technically open, but insurers have repriced it as a war zone. Tanker war-risk premiums have quadrupled in ten days, and several major shippers are routing around the Cape of Good Hope, adding two weeks and meaningful cost to Asia-bound crude. Energy analysts now sketch scenarios with Brent at $95 or higher if loadings from the Gulf are materially disrupted.',
+ 'For the Federal Reserve, the timing is unkind. Chair Kevin Warsh had just soothed markets with softer rhetoric after weak June payrolls; an oil shock now threatens to re-accelerate headline inflation into the late-July FOMC meeting. The bond market’s verdict so far is a shrug — the 10-year yield actually fell 3 basis points — suggesting investors see growth risk, not sustained inflation risk.',
+ 'Equities have been strangely serene, with the Dow crossing 53,000 the same week the missiles flew. Veterans note the pattern is familiar: markets price geopolitics only when barrels actually stop moving. The strait is the tripwire — and everyone is watching the same 21 miles of water.'],
+ quote:{t:'Markets price geopolitics only when barrels actually stop moving.',a:'Chief commodities strategist, European bank'},
+ points:['Iran struck 85 U.S. military sites after July 7 American raids','Brent +5.4% to $78.19; WTI +4.4% to $75.36','War-risk insurance premiums up 4x; some tankers rerouting via the Cape','Oil shock complicates the Fed’s late-July decision'],
+ tags:['Oil','Iran','Geopolitics','Inflation']},
+
+/* ---- GRID ---- */
+{id:'nvidia-slide',role:'grid',sec:'stocks',kicker:'Stocks · Semiconductors',date:'July 7, 2026',iso:'2026-07-07',read:8,author:'maya-okafor',
+ title:'Nvidia Slides 18% From June Peak Even as Blackwell Stays Sold Out Into Mid-2026',
+ dek:'At roughly $195 and a $4.7 trillion market cap, the AI bellwether is the worst performer in its chip cohort this year — a striking divergence as it rolls out Nemotron 3 Ultra and a revenue-sharing “DSX” AI-factory model.',
+ body:[
+ 'Nvidia has a problem it has never had before: it is underperforming. The stock has fallen roughly 18% from its June high to around $195, making it — remarkably — the worst performer in its own chip cohort this year, even as the company’s Blackwell accelerators remain sold out through the middle of 2026.',
+ 'The divergence is not about demand. It is about expectations, concentration and rotation. With a $4.7 trillion market cap, Nvidia is priced for a future in which it captures the majority of all AI compute spending indefinitely; any hint of customer diversification — and hyperscalers are hinting loudly — compresses the multiple. Meanwhile investors hunting AI exposure at lower valuations have rotated into memory and merchant silicon, where SK Hynix, AMD and Micron have doubled or better.',
+ 'Nvidia’s response is to move up the stack. The new Nemotron 3 Ultra model family targets enterprise AI directly, and the “DSX” AI-factory program — in which Nvidia co-develops sovereign and enterprise data centers in exchange for a share of ongoing revenue — converts one-time chip sales into recurring streams. In Europe, the Vera Rubin platform now underpins dozens of national AI supercomputers.',
+ 'The bull case, then, is that Nvidia is becoming an AI utility rather than a cyclical chipmaker. The bear case is that utilities do not trade at hyper-growth multiples. At 18% below the highs, the market is somewhere in between — and the September data-center revenue print will decide which narrative owns the autumn.'],
+ quote:{t:'Nvidia is becoming an AI utility. The question is whether utilities deserve hyper-growth multiples.',a:'Silicon Ledger, Meridian'},
+ points:['NVDA ≈ $195, down 18% from June peak; $4.7T market cap','Worst performer in its chip cohort YTD despite sold-out Blackwell supply','Nemotron 3 Ultra and revenue-sharing DSX model push into services','Vera Rubin platform powers dozens of European AI supercomputers'],
+ tags:['Nvidia','Semiconductors','AI','Blackwell']},
+
+{id:'chip-rotation',role:'grid',sec:'stocks',kicker:'Stocks · Memory',date:'July 6, 2026',iso:'2026-07-06',read:6,author:'jisoo-park',
+ title:'The Other Chip Trade: SK Hynix Up 80%, AMD and Micron Double as Nvidia Lags',
+ dek:'First-half leadership rotated hard into memory and merchant silicon, while ASML’s target was lifted to $2,300 after a Broadcom–Apple pact to source U.S.-made components.',
+ body:[
+ 'The first half of 2026 belonged to the chip stocks nobody made movies about. SK Hynix gained 80%, while AMD and Micron both more than doubled — a violent rotation out of the AI market’s single most crowded name and into everything adjacent to it.',
+ 'The logic is straightforward. Every AI accelerator, whoever designs it, needs high-bandwidth memory — and HBM supply is even tighter than GPU supply. SK Hynix, the HBM leader, is sold out through 2027. Micron’s U.S.-based capacity has become a strategic asset in an era of supply-chain nationalism. And AMD’s MI-series accelerators are finally winning hyperscaler sockets at scale, precisely because those customers want a second source.',
+ 'Equipment makers are riding the same wave: ASML’s price target was lifted to $2,300 this week after Broadcom and Apple announced a pact to source U.S.-made components, a deal read as the starting gun for another round of domestic fab construction.',
+ 'The question for the second half is whether this is rotation or expansion. If AI capex keeps growing 40% a year, both Nvidia and the field can win. If it plateaus, the market has already told you which names it will defend — the ones it just doubled.'],
+ quote:{t:'HBM is the real bottleneck. The market finally noticed.',a:'Seoul-based semiconductor analyst'},
+ points:['SK Hynix +80% in H1; AMD and Micron up 100%+','HBM supply sold out through 2027','ASML target raised to $2,300 on Broadcom–Apple U.S. components deal','Second-source demand drives AMD’s hyperscaler wins'],
+ tags:['SK Hynix','AMD','Micron','ASML','Memory']},
+
+{id:'btc-capitulation',role:'grid',sec:'crypto',kicker:'Crypto · Markets',date:'July 5, 2026',iso:'2026-07-05',read:9,author:'sofia-lindqvist',
+ title:'The $58,190 Bottom? Anatomy of Bitcoin’s June Capitulation',
+ dek:'The June 25 low marked a 21-month trough and triggered the largest single-week spot-ETF outflows on record. On-chain data now shows long-dormant supply going quiet again — a pattern last seen near the 2022 floor.',
+ body:[
+ 'Every bear market has a day the sellers exhaust themselves. The question occupying crypto desks this month is whether June 25 — when Bitcoin printed $58,190, a 21-month low — was that day.',
+ 'The case that it was rests on three legs. First, capitulation volume: the late-June selloff saw the largest single-week spot-ETF outflows since the products launched in 2024, the kind of forced, indiscriminate selling that historically marks bottoms rather than starts them. Second, the 200-week moving average: June produced the first weekly close below that line since 2023, and in every prior cycle — 2015, 2018, 2022 — sustained trade below it lasted weeks, not quarters. Third, dormancy: coins older than three years have gone quiet again, meaning long-term holders sold into the panic and then stopped.',
+ 'The case that it wasn’t is macro. The October 2025 all-time high was fueled by an easing cycle that has since stalled; Kevin Warsh’s Fed is divided, and a Gulf oil shock threatens the disinflation narrative that underwrote the entire ETF era. If real yields rise from here, the marginal ETF buyer — an advisor allocating 2% of a model portfolio — simply waits.',
+ 'The honest answer is that bottoms are only visible in hindsight, and this one has a plausible shape but no confirmation. Watch two numbers: $65,000, where the 200-week average would flip back to support, and cumulative ETF flows, which have marked every inflection of the ETF era. Price leads narrative in this asset class. It always has.'],
+ quote:{t:'Forced, indiscriminate selling historically marks bottoms rather than starts them.',a:'The Long Chain, Meridian'},
+ points:['June 25 low of $58,190 — deepest level in 21 months','Record single-week spot-ETF outflows during the flush','3yr+ dormant supply quiet again — a 2022-floor pattern','Confirmation levels: $65K reclaim and positive cumulative ETF flows'],
+ tags:['Bitcoin','Capitulation','ETF','Cycle Analysis']},
+
+{id:'xrp-arb',role:'grid',sec:'crypto',kicker:'Crypto · Altcoins',date:'July 3, 2026',iso:'2026-07-03',read:5,author:'diego-reyes',
+ title:'XRP and ARB Jump ~10% as Robinhood Chain Halo Spreads Across L2s',
+ dek:'Arbitrum’s technology underpins the brokerage’s new network, and traders are repricing the entire Orbit ecosystem — even as ether languishes near $1,775.',
+ body:[
+ 'The clearest winners of Robinhood’s blockchain launch are not on Robinhood. ARB rallied roughly 10% this week as traders connected the dots: Robinhood Chain is built on Arbitrum Orbit, and every transaction on it ultimately accrues value to the Arbitrum technology stack. XRP posted a similar move, carried by the broader tokenization narrative that a major U.S. broker just validated.',
+ 'The rally is notable for what it excludes. Ether — the settlement layer beneath all of it — sits near $1,775, barely moved and down catastrophically from its cycle highs. The market’s message is uncomfortable but coherent: value in this cycle is accruing to distribution (brokers, chains with users) rather than to base-layer infrastructure whose fees keep migrating up the stack.',
+ 'Within the Orbit ecosystem, developers report a surge of inbound interest since July 1. If tokenized equities become DeFi’s newest collateral class, the chains that host them — and the oracles that price them, hello Chainlink — capture the flow.',
+ 'The caution: halo rallies fade fast when volumes don’t follow. ARB has round-tripped narrative pumps before. The number to watch is Robinhood Chain’s daily active wallets in August, once the launch-week tourists leave.'],
+ quote:{t:'Value is accruing to distribution, not to base-layer infrastructure.',a:'L2 research desk note'},
+ points:['ARB +10.2%, XRP +9.8% on the week; ETH flat near $1,775','Robinhood Chain runs on Arbitrum Orbit technology','Tokenized equities as DeFi collateral is the emerging thesis','August active-wallet data is the durability test'],
+ tags:['XRP','Arbitrum','Ethereum','Tokenization']},
+
+{id:'openai-ipo-delay',role:'grid',sec:'tech',kicker:'Technology · AI',date:'July 4, 2026',iso:'2026-07-04',read:7,author:'rachel-feld',
+ title:'OpenAI Said to Push IPO to 2027, Guarding a $1 Trillion Valuation',
+ dek:'With SpaceX’s debut resetting expectations, the AI lab would rather wait than price into a crowded window. Anthropic, meanwhile, signed a 20-year, $19 billion-plus data-center deal with TeraWulf in Kentucky for 400MW of capacity.',
+ body:[
+ 'OpenAI has concluded that the best response to the biggest IPO in history is patience. The lab is now said to be targeting 2027 for its public debut, according to people familiar with the discussions — a delay designed to protect a valuation near $1 trillion rather than price into a market still digesting SpaceX’s $75 billion raise.',
+ 'The math is unsentimental. SpaceX absorbed an enormous share of the capital earmarked for “generational” listings, and its volatile aftermarket — the stock has swung between $145 and $170 since June — is exactly the comp OpenAI’s bankers do not want on the cover of a roadshow deck. Waiting a year lets revenue catch up to the number.',
+ 'Anthropic, OpenAI’s chief rival, is meanwhile solving a different bottleneck: power. The company signed a 20-year agreement with TeraWulf covering a Kentucky data-center campus — 400 megawatts of capacity and more than $19 billion in contracted revenue over the term, one of the largest compute-infrastructure deals ever struck by a private company. Anthropic has also filed confidentially for its own eventual listing.',
+ 'The sequencing now fascinates Silicon Valley: two AI labs, both public-market bound, one racing for the window and one waiting for it to widen. Between them sits a question the SpaceX debut did not answer — how do public investors value companies whose costs are measured in gigawatts?'],
+ quote:{t:'How do public investors value companies whose costs are measured in gigawatts?',a:'Venture partner, Sand Hill Road'},
+ points:['OpenAI IPO reportedly slipping to 2027 to protect ~$1T valuation','SpaceX’s volatile aftermarket spooked the pricing conversation','Anthropic–TeraWulf: 20 years, 400MW, $19B+ contracted revenue','Anthropic has filed confidentially for an eventual listing'],
+ tags:['OpenAI','Anthropic','IPO','Data Centers','AI']},
+
+{id:'starship-f12',role:'grid',sec:'space',kicker:'Space · Launch',date:'July 2, 2026',iso:'2026-07-02',read:7,author:'adrian-vance',
+ title:'Starship Flight 12: Biggest Test Yet Ends in a Grounding',
+ dek:'The 407-foot stack deployed 20 mock Starlinks and the ship soft-landed in the Indian Ocean, but the Super Heavy booster broke apart over the Gulf — prompting an FAA review weeks after the IPO.',
+ body:[
+ 'Starship’s twelfth test flight was simultaneously its most successful and its most consequential failure. The 407-foot vehicle — the largest flying object ever built — lifted off from Starbase, deployed 20 mock Starlink satellites in a clean demonstration of its payload bay, and guided the upper stage to a soft splashdown in the Indian Ocean, where it exploded as engineers expected and intended.',
+ 'The booster was another story. Super Heavy broke apart over the Gulf during its return, scattering debris across a pre-cleared corridor and triggering an automatic FAA mishap investigation. The fleet is grounded until the review concludes — an awkward headline for a company whose shares began trading three weeks earlier.',
+ 'The stakes extend beyond SpaceX’s income statement. NASA has begun assigning crews for Artemis III, the lunar landing that depends on a Starship-derived lander; every month of grounding compresses an already tight schedule. And the next-generation Starlink constellation — the revenue engine in every bullish IPO model — needs Starship’s payload volume to deploy economically.',
+ 'Wall Street’s reaction has been strangely mature: the stock dipped less than 2% on the grounding, suggesting investors have internalized what aerospace engineers keep saying — this is what iterative development looks like at full scale. The FAA’s timeline, not the explosion itself, is the number that matters. Flight 13 hardware is already stacked.'],
+ quote:{t:'This is what iterative development looks like at full scale.',a:'Former NASA flight director'},
+ points:['Flight 12: 20 mock Starlinks deployed; ship soft-landed in Indian Ocean','Super Heavy booster broke apart over the Gulf on return','FAA mishap review grounds the fleet; Artemis III crews being assigned','SPCX fell <2% on the news; Flight 13 hardware already stacked'],
+ tags:['Starship','SpaceX','FAA','NASA','Artemis']},
+
+{id:'blue-origin-raise',role:'grid',sec:'space',kicker:'Space · Private Markets',date:'June 30, 2026',iso:'2026-06-30',read:6,author:'kelechi-iwu',
+ title:'Blue Origin Answers Back: $10 Billion Raise at a $130 Billion Valuation',
+ dek:'Jeff Bezos is putting in $2 billion of his own and Coatue $4 billion, as the runner-up in the launch race arms itself for a public-market rival worth sixteen times more.',
+ body:[
+ 'Two weeks after SpaceX listed at $2.1 trillion, Blue Origin announced its counterpunch: a $10 billion private round at a $130 billion valuation, the largest venture-stage raise in aerospace history — and still a reminder that the gap between first and second place in orbit is measured in multiples, not percentages.',
+ 'The round’s structure tells its own story. Jeff Bezos is contributing $2 billion personally, an unusual founder re-up that bankers read as a signal of patience: Blue Origin will not be rushed into a public listing to chase its rival’s multiple. Coatue leads outside investors with $4 billion, with sovereign funds filling most of the remainder.',
+ 'The capital has clear destinations. New Glenn’s launch cadence needs a second manufacturing line; the Blue Moon lunar lander has NASA milestones through 2028; and the company’s Orbital Reef station project inherits new urgency as the ISS approaches retirement. Blue Origin’s pitch to investors, according to people who saw the deck, leaned heavily on being the “second source” — the same logic rewarding AMD in semiconductors.',
+ 'The unspoken subtext is that the launch market is consolidating into a duopoly with a very long tail. For customers — Pentagon, NASA, satellite operators — a credible number two is worth paying for. Investors just priced that credibility at $130 billion.'],
+ quote:{t:'A credible number two is worth paying for. Investors just priced it at $130 billion.',a:'Aerospace banker, Washington'},
+ points:['$10B raise at $130B valuation — largest private aerospace round ever','Bezos in for $2B personally; Coatue $4B','Funds target New Glenn cadence, Blue Moon lander, Orbital Reef','“Second source” thesis mirrors AMD’s in chips'],
+ tags:['Blue Origin','Bezos','New Glenn','Private Markets']},
+
+{id:'warsh-fed',role:'grid',sec:'policy',kicker:'Policy · Federal Reserve',date:'July 6, 2026',iso:'2026-07-06',read:8,author:'lucien-moreau',
+ title:'Warsh’s Divided Fed: Cuts Priced In, Hikes Still on the Table',
+ dek:'The new chair’s softer rhetoric lifted risk assets, but minutes reveal a committee split — with some members eyeing hikes even as June payrolls rose only 57,000 and unemployment hit 4.2%.',
+ body:[
+ 'Kevin Warsh’s Federal Reserve is learning to speak with two voices at once. The chair’s softer tone after June’s startlingly weak payrolls — 57,000 jobs added, unemployment up to 4.2% — sent equities to records and lifted Bitcoin back above $63,000. The committee minutes released this week told a different story: several members still argue the next move should be a hike.',
+ 'The hawks’ case is not frivolous. Gold above $4,000, oil surging on the Gulf conflict, and fiscal stimulus arriving via the new “Trump investment accounts” all point to reflation risk. The doves counter with the labor market: three consecutive months of sub-100K payrolls is how recessions start, and monetary policy famously operates with long lags.',
+ 'Warsh’s personal position remains studiedly ambiguous — a marked change from his hawkish reputation before appointment. People who know him describe a chair intent on restoring what he calls “optionality,” refusing to let futures markets write the committee’s statements in advance. Markets, characteristically, have ignored the ambiguity and priced two cuts by December.',
+ 'The late-July meeting is therefore set up as the year’s defining risk event: any statement that fails to validate the priced-in easing meets a market at all-time highs with an oil shock in progress. Someone — the bond market, the equity market, or the committee — is about to be wrong.'],
+ quote:{t:'Warsh wants optionality. Markets have already spent it.',a:'The Price of Everything, Meridian'},
+ points:['June payrolls +57K; unemployment 4.2% — third straight soft month','Minutes show members arguing for hikes despite priced-in cuts','Gold >$4,000 and Gulf oil shock feed the reflation case','Late-July FOMC is the year’s defining macro event'],
+ tags:['Federal Reserve','Kevin Warsh','Rates','Inflation']},
+
+{id:'dow-53000',role:'grid',sec:'policy',kicker:'Policy · Markets',date:'July 6, 2026',iso:'2026-07-06',read:6,author:'thanh-nguyen',
+ title:'Dow Crosses 53,000 as “Trump Investment Accounts” Launch From the Oval Office',
+ dek:'The July 6 rollout — complete with an opening bell rung from the White House — pushed retail flows to records, while gold held above $4,000 despite a 2.5% pullback.',
+ body:[
+ 'The New York Stock Exchange’s opening bell rang from an unusual location on July 6: the Oval Office. President Trump inaugurated his administration’s new “Trump investment accounts” — tax-advantaged retail brokerage accounts seeded for newborns and matched for low-income savers — by ringing the bell remotely as the Dow crossed 53,000 for the first time.',
+ 'The programme’s mechanics matter more than the ceremony. Accounts open automatically, invest by default in broad index funds, and add a structural retail bid to U.S. equities that Wall Street strategists have already begun modeling — early estimates suggest tens of billions in annual flows once fully phased in.',
+ 'Critics span an unusual coalition: fiscal conservatives worried about the budget cost, market-structure scholars uneasy about a government-sponsored equity bid, and progressives who note the accounts do most for those who already file capital gains. Supporters answer with a simple chart — household equity ownership, and its correlation with wealth accumulation over every 30-year window in market history.',
+ 'The market, for its part, has voted: record highs the same week missiles flew over the Gulf. Whether that is resilience or complacency is the question every strategist’s July note is asking — usually right before the paragraph about gold refusing to fall below $4,000.'],
+ quote:{t:'A structural retail bid, sponsored by the state — there is no precedent to model.',a:'Market-structure scholar, Georgetown'},
+ points:['Dow crossed 53,000 on July 6, an all-time first','“Trump investment accounts” launch: default index investing, federal match','Strategists model tens of billions in annual structural flows','Gold holds above $4,000 despite a 2.5% weekly pullback'],
+ tags:['Dow','Retail Investing','White House','Gold']},
+
+/* ---- ARCHIVE ---- */
+{id:'genesis-block',role:'archive',era:'e1',sec:'crypto',kicker:'Archive · 2009',tDate:'JAN 3, 2009',date:'January 3, 2009',iso:'2009-01-03',read:4,author:'archive-desk',
+ title:'Genesis: An Anonymous Coder Mines Block Zero of “Bitcoin”',
+ dek:'Embedded in the first block, a newspaper headline about bank bailouts — a mission statement disguised as a timestamp.',
+ body:[
+ 'On January 3, 2009, a programmer working under the name Satoshi Nakamoto mined the first block of a new electronic cash system called Bitcoin. Almost nobody noticed. The network had no exchange rate, no users beyond a handful of cryptography mailing-list subscribers, and no obvious reason to exist — except the one Nakamoto encoded into the block itself.',
+ 'Embedded in the genesis block’s coinbase parameter is a headline from that morning’s Times of London: “Chancellor on brink of second bailout for banks.” It was a timestamp, proving the block could not have been created earlier — and it was unmistakably a mission statement, minted at the exact nadir of the global financial crisis.',
+ 'Seventeen years later, the 50 bitcoins created in that block — unspendable by a quirk of the original code — sit untouched, a monument visible on every block explorer. Everything Meridian covers in digital assets traces back to this single act of pseudonymous defiance.'],
+ quote:{t:'Chancellor on brink of second bailout for banks.',a:'The Times, Jan 3, 2009 — as encoded in Block 0'},
+ points:['Block 0 mined January 3, 2009 by Satoshi Nakamoto','Times headline embedded as timestamp and manifesto','The genesis 50 BTC remain unspendable and untouched'],
+ tags:['Bitcoin','Satoshi','Genesis Block','2009']},
+
+{id:'pizza-day',role:'archive',era:'e1',sec:'crypto',kicker:'Archive · 2010',tDate:'MAY 22, 2010',date:'May 22, 2010',iso:'2010-05-22',read:4,author:'archive-desk',
+ title:'Two Pizzas, 10,000 Bitcoin: The First Real-World Crypto Purchase',
+ dek:'Laszlo Hanyecz’s lunch order becomes the most expensive meal in history and the industry’s favorite cautionary tale.',
+ body:[
+ 'On May 22, 2010, a Florida programmer named Laszlo Hanyecz posted an offer on the Bitcointalk forum: 10,000 bitcoins to anyone who would send him two pizzas. A British user took the deal, ordering two large pies from Papa John’s for about $25. It was the first documented purchase of a physical good with bitcoin — the moment the experiment became money.',
+ 'The exchange rate implied by the trade valued each bitcoin at a quarter of a cent. At Bitcoin’s 2025 cycle peak, the same 10,000 coins were worth well over a billion dollars — making Hanyecz’s lunch, by common reckoning, the most expensive meal ever eaten.',
+ 'Hanyecz himself has always been unbothered, noting that someone had to start using it. He is right in a way the meme misses: without the pizzas proving bitcoin could buy things, the coins might never have been worth anything at all. May 22 is still celebrated across the industry as Bitcoin Pizza Day.'],
+ quote:{t:'I’ll pay 10,000 bitcoins for a couple of pizzas.',a:'Laszlo Hanyecz, Bitcointalk, May 2010'},
+ points:['First documented physical purchase with bitcoin','Implied price: ~$0.0025 per BTC','Celebrated annually as Bitcoin Pizza Day'],
+ tags:['Bitcoin','Pizza Day','2010']},
+
+{id:'btc-1000',role:'archive',era:'e1',sec:'crypto',kicker:'Archive · 2013',tDate:'NOV 28, 2013',date:'November 28, 2013',iso:'2013-11-28',read:4,author:'archive-desk',
+ title:'Bitcoin Crosses $1,000 for the First Time',
+ dek:'Four years from worthless to four figures; regulators and Wall Street take their first serious look.',
+ body:[
+ 'On November 28, 2013, bitcoin traded above $1,000 for the first time on the Mt. Gox exchange, capping a year in which its price rose more than fifty-fold. An asset that had been worth a quarter of a cent three years earlier now had a market capitalization in the tens of billions — and, for the first time, the undivided attention of regulators.',
+ 'The 2013 rally was driven by the Cyprus banking crisis, early Chinese exchange volume, and a U.S. Senate hearing that November at which officials struck a surprisingly tolerant tone — “legitimate financial services,” one testimony called it. The Washington blessing, however qualified, sent the price vertical.',
+ 'The euphoria did not survive the winter. Within months Mt. Gox would collapse, taking the price down 80% and inaugurating the first great crypto bear market. But the four-figure print had done its work: bitcoin could no longer be dismissed as a toy. The pattern — mania, crash, higher floor — would repeat in every cycle since.'],
+ quote:{t:'Legitimate financial services — the phrase that sent bitcoin vertical.',a:'U.S. Senate hearing, November 2013'},
+ points:['First $1,000 print on Nov 28, 2013 at Mt. Gox','50x rally in a single year','Senate hearing legitimized the asset weeks earlier'],
+ tags:['Bitcoin','2013','Mt. Gox','Regulation']},
+
+{id:'mtgox',role:'archive',era:'e2',sec:'crypto',kicker:'Archive · 2014',tDate:'FEB 28, 2014',date:'February 28, 2014',iso:'2014-02-28',read:5,author:'archive-desk',
+ title:'Mt. Gox Collapses With 850,000 Bitcoin Missing',
+ dek:'The world’s largest exchange files for bankruptcy in Tokyo, defining crypto’s custody problem for a decade.',
+ body:[
+ 'On February 28, 2014, Mt. Gox — the Tokyo exchange that at its peak handled more than 70% of all bitcoin trading — filed for bankruptcy protection, admitting that approximately 850,000 bitcoins belonging to customers and the company had vanished. At prevailing prices the loss approached half a billion dollars; at later cycle peaks, the missing coins would have been worth over $50 billion.',
+ 'The failure was years in the making. Investigators later concluded that coins had been leaking from the exchange’s hot wallets since 2011 through compromised keys, with the thefts papered over by a fraudulent trading bot that inflated apparent balances. CEO Mark Karpelès, a French programmer who had bought the site — originally a trading-card exchange — became the industry’s first infamous face.',
+ 'Mt. Gox’s legacy is the phrase “not your keys, not your coins,” the rise of professional custody, and a creditor process that ran for over a decade. Every exchange failure since — FTX above all — has been narrated in Gox’s vocabulary.'],
+ quote:{t:'Not your keys, not your coins.',a:'The lesson of Mt. Gox, 2014'},
+ points:['~850,000 BTC missing; bankruptcy filed Feb 28, 2014','Thefts began 2011 via compromised hot-wallet keys','Creditor repayments ran into the 2020s'],
+ tags:['Mt. Gox','Exchange Failure','Custody','2014']},
+
+{id:'ethereum-launch',role:'archive',era:'e2',sec:'crypto',kicker:'Archive · 2015',tDate:'JUL 30, 2015',date:'July 30, 2015',iso:'2015-07-30',read:5,author:'archive-desk',
+ title:'Ethereum Goes Live, Bringing Programmable Money On-Chain',
+ dek:'Smart contracts turn a currency experiment into a platform war.',
+ body:[
+ 'On July 30, 2015, the Ethereum network mined its genesis block, launching the vision Vitalik Buterin had sketched two years earlier as a teenager: a blockchain that was not merely a ledger of payments but a general-purpose computer, programmable by anyone, stoppable by no one.',
+ 'The innovation was the smart contract — code that holds and moves money according to its own rules. Where Bitcoin asked “can money exist without banks,” Ethereum asked “can agreements exist without lawyers.” The answer spawned entire industries: the ICO boom of 2017, DeFi in 2020, NFTs in 2021, and the tokenized equities now trading on venues like Robinhood Chain trace their lineage to this launch.',
+ 'Ether, the network’s native asset, was distributed in a 2014 crowdsale at roughly 30 cents. Its subsequent history — peaks near $5,000, drawdowns of 90%, a wholesale migration from mining to staking in 2022’s “Merge” — has mirrored the industry’s own volatility. As of this writing it trades near $1,775, its relevance debated and its architecture everywhere.'],
+ quote:{t:'Can agreements exist without lawyers?',a:'The question Ethereum posed, 2015'},
+ points:['Genesis block mined July 30, 2015','Smart contracts enabled ICOs, DeFi, NFTs, tokenization','Crowdsale price ~$0.30; cycle peaks near $5,000'],
+ tags:['Ethereum','Vitalik Buterin','Smart Contracts','2015']},
+
+{id:'btc-19783',role:'archive',era:'e2',sec:'crypto',kicker:'Archive · 2017',tDate:'DEC 17, 2017',date:'December 17, 2017',iso:'2017-12-17',read:5,author:'archive-desk',
+ title:'Bitcoin Touches $19,783 as ICO Mania Peaks',
+ dek:'Futures launch on the CME the same week retail euphoria crests — the top, almost to the day.',
+ body:[
+ 'On December 17, 2017, bitcoin printed $19,783 — the crescendo of the most spectacular retail mania since the dot-com bubble. Coinbase was the most-downloaded app in America, “blockchain” in a company name added double digits to its stock, and initial coin offerings had raised billions for whitepapers that would never ship a product.',
+ 'With exquisite timing, the CME launched bitcoin futures that same week — the first regulated instrument allowing Wall Street to short the asset. Researchers at the San Francisco Fed later argued the futures launch itself helped end the rally, letting bears finally express their view. The top was in within days.',
+ 'The ensuing collapse erased 84% of bitcoin’s value over the following year and vaporized the ICO market entirely. But 2017’s true legacy was infrastructural: the exchanges, custodians and — crucially — the regulatory attention built during the mania became the foundation on which the institutional era was later constructed.'],
+ quote:{t:'The futures launch let the bears finally speak. The top was in within days.',a:'SF Fed research, paraphrased'},
+ points:['$19,783 peak on Dec 17, 2017','CME futures launched the same week','84% drawdown followed; ICO market evaporated'],
+ tags:['Bitcoin','2017','ICO','CME Futures']},
+
+{id:'winter-2018',role:'archive',era:'e3',sec:'crypto',kicker:'Archive · 2018',tDate:'DEC 15, 2018',date:'December 15, 2018',iso:'2018-12-15',read:4,author:'archive-desk',
+ title:'Crypto Winter Bottoms Near $3,200 as ICO Market Evaporates',
+ dek:'An 84% drawdown clears the field; the builders who remain will define the next cycle.',
+ body:[
+ 'On December 15, 2018, bitcoin bottomed near $3,200 — 84% below its peak of a year earlier — in what the industry had taken to calling, with gallows humor, crypto winter. Trading volumes had collapsed, ICO funding had fallen 95% from its peak, and mainstream obituaries for the asset class were a weekly genre.',
+ 'Beneath the wreckage, the foundations of the next cycle were being poured. Coinbase and Binance used the quiet to build institutional infrastructure. A team at MakerDAO kept a decentralized stablecoin alive through the crash, proving DeFi’s core primitive worked under stress. And the 200-week moving average — tested precisely at the December low — entered the analyst toolkit as the cycle’s definitive floor.',
+ 'The lesson of 2018, repeated to every subsequent generation of traders: the bear market is where the returns are made; the bull market is merely where they are collected.'],
+ quote:{t:'Bear markets are where returns are made. Bull markets are where they are collected.',a:'Crypto winter proverb, 2018'},
+ points:['Bottom near $3,200 on Dec 15, 2018 — 84% drawdown','ICO funding down 95% from peak','200-week MA established as the cycle floor'],
+ tags:['Bear Market','2018','Crypto Winter']},
+
+{id:'black-thursday',role:'archive',era:'e3',sec:'policy',kicker:'Archive · 2020',tDate:'MAR 12, 2020',date:'March 12, 2020',iso:'2020-03-12',read:5,author:'archive-desk',
+ title:'“Black Thursday”: COVID Panic Halves Bitcoin in a Day, Circuit-Breaks Wall Street',
+ dek:'Everything correlates to one in a liquidity crisis — then the largest stimulus wave in history changes everything.',
+ body:[
+ 'March 12, 2020 was the day every asset became the same asset. As pandemic lockdowns swept the globe, the S&P 500 fell 9.5% — its worst day since 1987 — circuit breakers halted trading, and bitcoin, marketed for a decade as “uncorrelated,” fell nearly 50% in twenty-four hours to briefly touch $3,850.',
+ 'The crash exposed the machinery of a liquidity crisis: when investors need dollars, they sell whatever has a bid, and crypto’s 24/7 markets made it the most sellable asset on earth. On the MakerDAO protocol, cascading liquidations briefly left the system undercollateralized — DeFi’s first true stress test, passed only barely.',
+ 'What followed rewrote the macro playbook. Trillions in fiscal and monetary stimulus flooded the system within weeks; by year-end, bitcoin had not only recovered but quadrupled, and the “digital gold” narrative found its most receptive audience ever among institutions watching money-supply charts go vertical. Black Thursday marked the low tick of the old world.'],
+ quote:{t:'When investors need dollars, they sell whatever has a bid.',a:'Liquidity crisis, distilled — March 2020'},
+ points:['S&P −9.5%, worst day since 1987; BTC −50% intraday to $3,850','MakerDAO liquidation cascade — DeFi’s first stress test','Stimulus wave quadrupled BTC by year-end'],
+ tags:['COVID','Black Thursday','2020','Liquidity']},
+
+{id:'microstrategy',role:'archive',era:'e3',sec:'stocks',kicker:'Archive · 2020',tDate:'AUG 11, 2020',date:'August 11, 2020',iso:'2020-08-11',read:5,author:'archive-desk',
+ title:'MicroStrategy Puts Its Treasury in Bitcoin, Inventing the Corporate HODL',
+ dek:'The first S&P-listed balance sheet to convert to BTC opens the institutional floodgates.',
+ body:[
+ 'On August 11, 2020, a mid-cap business-intelligence company called MicroStrategy announced it had purchased 21,454 bitcoins for $250 million — not as a trade, but as its primary treasury reserve asset. CEO Michael Saylor described cash as “a melting ice cube” in the era of pandemic stimulus, and bitcoin as the rational refuge.',
+ 'Wall Street’s initial reaction was bemusement. But the move created a template — and a vehicle. MicroStrategy’s stock became a de facto bitcoin ETF years before real ones existed, and Saylor’s relentless leveraged accumulation strategy, funded by convertible bonds, turned a $1 billion software company into a hundred-billion-dollar bitcoin proxy at the cycle peak.',
+ 'The corporate treasury thesis he pioneered — echoed by Tesla’s purchase in early 2021 and dozens of imitators since — legitimized the question in every boardroom: what, exactly, is our cash for? The 2024 ETF approvals may have made Saylor’s vehicle less necessary, but the road to them ran directly through his August 2020 press release.'],
+ quote:{t:'Cash is a melting ice cube.',a:'Michael Saylor, August 2020'},
+ points:['$250M initial purchase, Aug 11, 2020 — first corporate treasury conversion','MSTR became a de facto BTC ETF before ETFs existed','Template echoed by Tesla and dozens of corporates'],
+ tags:['MicroStrategy','Saylor','Corporate Treasury','2020']},
+
+{id:'coinbase-ipo',role:'archive',era:'e4',sec:'stocks',kicker:'Archive · 2021',tDate:'APR 14, 2021',date:'April 14, 2021',iso:'2021-04-14',read:5,author:'archive-desk',
+ title:'Coinbase Lists on Nasdaq at an $86 Billion Valuation',
+ dek:'Crypto’s first mega-listing — and a top signal for the cycle’s first act.',
+ body:[
+ 'On April 14, 2021, Coinbase went public on Nasdaq via direct listing, closing its first session valued near $86 billion — more than the parent of the New York Stock Exchange itself. For an industry born from a pseudonymous whitepaper twelve years earlier, a crypto exchange out-valuing the NYSE was symbolism almost too neat to print.',
+ 'The listing marked peak euphoria with uncanny precision: bitcoin set its then-record high near $64,800 the very same day, and would not see that level again for six months. Traders added the “Coinbase top” to the pattern library alongside the CME futures launch of 2017 — landmark industry events that coincide, almost to the hour, with local market peaks.',
+ 'The larger significance survived the drawdown. COIN gave equity investors their first liquid, regulated exposure to crypto’s cash flows, forced quarterly disclosure onto an opaque industry, and began the normalization that would culminate in the 2024 spot-ETF approvals. Every subsequent crypto listing walked through the door Coinbase opened.'],
+ quote:{t:'A crypto exchange worth more than the NYSE — symbolism too neat to print.',a:'Meridian Archive Desk'},
+ points:['Direct listing April 14, 2021; ~$86B day-one valuation','BTC peaked near $64,800 the same day','Paved the road to the 2024 spot-ETF era'],
+ tags:['Coinbase','IPO','2021','Nasdaq']},
+
+{id:'ftx-collapse',role:'archive',era:'e4',sec:'crypto',kicker:'Archive · 2022',tDate:'NOV 11, 2022',date:'November 11, 2022',iso:'2022-11-11',read:6,author:'archive-desk',
+ title:'FTX Files for Bankruptcy; $8 Billion Customer Shortfall Revealed',
+ dek:'Sam Bankman-Fried’s empire unravels in nine days, resetting regulation, custody and trust across the industry.',
+ body:[
+ 'On November 11, 2022, FTX — months earlier a $32 billion exchange whose founder graced magazine covers and congressional hearings — filed for Chapter 11 bankruptcy, revealing a hole of roughly $8 billion in customer funds. The unraveling had taken nine days from the first reporting on its balance sheet to the filing.',
+ 'The mechanism was old-fashioned beneath the crypto veneer: customer deposits had been quietly lent to Alameda Research, the founder’s trading firm, and lost on illiquid venture bets and its own token. Sam Bankman-Fried was convicted on seven fraud counts in 2023 and sentenced to 25 years. John Ray, the liquidator who had unwound Enron, testified he had never seen “such a complete failure of corporate controls.”',
+ 'The collapse’s aftershocks shaped everything that followed: proof-of-reserves became table stakes for exchanges, U.S. regulators launched their most aggressive enforcement cycle, and institutional capital retreated for a full year — returning only when the 2024 ETFs offered exposure without exchange risk. In a grim irony, the bankruptcy estate’s recovered assets appreciated so much that creditors were eventually repaid at par and beyond.'],
+ quote:{t:'A complete failure of corporate controls.',a:'John Ray III, FTX liquidator'},
+ points:['Chapter 11 filed Nov 11, 2022; ~$8B customer shortfall','SBF convicted on 7 counts; 25-year sentence','Proof-of-reserves and the 2024 ETF era were direct consequences'],
+ tags:['FTX','SBF','Fraud','2022']},
+
+{id:'svb',role:'archive',era:'e4',sec:'policy',kicker:'Archive · 2023',tDate:'MAR 10, 2023',date:'March 10, 2023',iso:'2023-03-10',read:5,author:'archive-desk',
+ title:'Silicon Valley Bank Fails — and Bitcoin Rallies as a Hedge',
+ dek:'The second-largest U.S. bank failure inverts crypto’s narrative from risk asset to refuge, for a moment.',
+ body:[
+ 'On March 10, 2023, Silicon Valley Bank — the sixteenth-largest bank in America and the balance sheet of the venture ecosystem — was seized by regulators after a 48-hour digital bank run, the second-largest bank failure in U.S. history. Depositors, coordinating on group chats, had withdrawn $42 billion in a single day.',
+ 'Crypto was entangled from the first hour: Circle disclosed $3.3 billion of USDC reserves at the bank, briefly breaking the stablecoin’s dollar peg and reminding the industry that its “crypto dollars” lived inside the very system they claimed to transcend. Then came the inversion. As regulators guaranteed deposits and the Fed opened emergency facilities, bitcoin rallied 40% in a week.',
+ 'The episode minted a narrative that endures: bitcoin as a hedge against banking-system fragility — the asset Satoshi’s genesis-block headline had implied all along. Whether the correlation was cause or coincidence, allocators noticed, and the institutional bid that powered the 2024–2025 cycle traces part of its origin to the week the banks wobbled.'],
+ quote:{t:'The genesis block’s headline, fifteen years early.',a:'Meridian Archive Desk on SVB week'},
+ points:['SVB seized March 10, 2023; $42B withdrawn in one day','USDC briefly de-pegged on $3.3B trapped reserves','BTC rallied 40% in the following week'],
+ tags:['SVB','Banking Crisis','USDC','2023']},
+
+{id:'etf-approval',role:'archive',era:'e5',sec:'crypto',kicker:'Archive · 2024',tDate:'JAN 10, 2024',date:'January 10, 2024',iso:'2024-01-10',read:5,author:'archive-desk',
+ title:'SEC Approves Spot Bitcoin ETFs After a Decade of Rejections',
+ dek:'Eleven funds launch at once; BlackRock’s IBIT becomes the fastest-growing ETF in history.',
+ body:[
+ 'On January 10, 2024, the Securities and Exchange Commission approved eleven spot bitcoin exchange-traded funds simultaneously — ending a decade of rejections that had begun with the Winklevoss twins’ first application in 2013. The approval arrived grudgingly, forced by a federal court ruling that the agency’s objections were “arbitrary and capricious.”',
+ 'The market impact exceeded even bullish forecasts. BlackRock’s IBIT reached $10 billion in assets faster than any ETF in history and kept going, ultimately holding more bitcoin than any entity except Satoshi’s dormant wallets. The structural bid from advisors allocating model-portfolio percentages powered the asset to new records within two months of launch — the first time a halving-cycle high arrived before the halving itself.',
+ 'The deeper change was institutional plumbing. Bitcoin exposure became a ticker in a brokerage account, wrapped in the same legal architecture as an S&P index fund. The asset Wall Street spent a decade rejecting became, in under two years, a standard line item in the American retirement portfolio — and, as June 2026’s record outflows demonstrated, that plumbing conducts panic as efficiently as it conducts demand.'],
+ quote:{t:'Arbitrary and capricious — the three words that unlocked the ETF era.',a:'D.C. Circuit Court ruling, 2023'},
+ points:['11 spot ETFs approved Jan 10, 2024','IBIT: fastest-growing ETF in history','ETF plumbing now transmits both demand and panic'],
+ tags:['ETF','SEC','BlackRock','2024']},
+
+{id:'halving-2024',role:'archive',era:'e5',sec:'crypto',kicker:'Archive · 2024',tDate:'APR 19, 2024',date:'April 19, 2024',iso:'2024-04-19',read:4,author:'archive-desk',
+ title:'The Fourth Halving Cuts New Supply to 3.125 BTC per Block',
+ dek:'For the first time, a halving arrives with Wall Street already inside the trade.',
+ body:[
+ 'On April 19, 2024, Bitcoin’s fourth halving cut the block subsidy from 6.25 to 3.125 coins — reducing new daily supply to roughly 450 bitcoins at the exact moment spot ETFs were absorbing multiples of that amount. The supply-demand asymmetry was, for the first time, a Wall Street talking point rather than a forum meme.',
+ 'Each previous halving — 2012, 2016, 2020 — had preceded a bull market peak by roughly 18 months, a pattern regular enough to become the industry’s founding superstition. The 2024 edition complicated the folklore: the pre-halving ETF rally meant new highs arrived before the event, and the cycle’s eventual peak in October 2025 stretched the traditional timeline.',
+ 'For miners, the economics were brutal as ever — revenue halved overnight, forcing consolidation into industrial-scale operators with access to cheap power and, increasingly, AI-compute side businesses. The halving’s true function, as always, was theatrical: a quadrennial reminder, broadcast to every portfolio manager, that this asset’s supply schedule answers to no committee.'],
+ quote:{t:'A supply schedule that answers to no committee.',a:'The halving’s standing message'},
+ points:['Block subsidy cut to 3.125 BTC on April 19, 2024','First halving of the ETF era — demand already institutional','Miner consolidation accelerated into AI-adjacent operators'],
+ tags:['Halving','Mining','2024']},
+
+{id:'cycle-peak-2025',role:'archive',era:'e5',sec:'crypto',kicker:'Archive · 2025',tDate:'OCT 2025',date:'October 2025',iso:'2025-10-15',read:5,author:'archive-desk',
+ title:'The Cycle Peaks: Bitcoin Sets Its All-Time High as AI and Crypto Euphoria Converge',
+ dek:'The top of the ETF-era bull market — and the reference point for every chart in 2026’s drawdown.',
+ body:[
+ 'In October 2025, Bitcoin set the all-time high that now anchors every drawdown chart in the industry. The peak crowned a cycle unlike its predecessors: powered not by retail apps or offshore leverage but by ETF inflows, corporate treasuries and the broadest institutional participation in the asset’s history — all amplified by an equity market in the grip of AI euphoria.',
+ 'The convergence was the story. AI and crypto, the decade’s two speculative theologies, fed each other: miners pivoted to AI compute, AI labs’ mega-rounds validated “frontier tech” as an allocation, and the same liquidity chased both. When the Fed’s easing path stalled late in the year, both trades wobbled together — and the correlation that had flattered portfolios on the way up compounded the pain on the way down.',
+ 'What followed is the market Meridian covers today: a 40%+ drawdown to June 2026’s $58,190 low, the first weekly close below the 200-week average since 2023, and the open question of whether the ETF era changed the cycle’s physics or merely its participants. The October 2025 high is either the top of act one — or the high-water mark of an era. The archive, as always, will record which.'],
+ quote:{t:'AI and crypto — the decade’s two speculative theologies — fed each other.',a:'Meridian year-in-review, 2025'},
+ points:['ATH set October 2025, crowning the ETF-era bull market','AI and crypto liquidity converged, then unwound together','Reference point for the 2026 drawdown to $58,190'],
+ tags:['Bitcoin','All-Time High','2025','Cycle']}
+];
+
+const ERAS={e1:{label:'2009–2013',sub:'The Genesis Era — an experiment becomes an asset'},
+e2:{label:'2014–2017',sub:'Boom, Bust & Believers — the first institutional glances'},
+e3:{label:'2018–2020',sub:'Winter & the Great Acceleration'},
+e4:{label:'2021–2023',sub:'Mainstream — IPOs, ETFs denied, and a $32B fraud'},
+e5:{label:'2024–2025',sub:'The ETF Age — Wall Street absorbs the asset class'}};
+
+const HUES={space:['rgba(201,169,97,.13)','rgba(60,90,160,.14)'],crypto:['rgba(201,169,97,.12)','rgba(52,193,125,.10)'],
+stocks:['rgba(201,169,97,.12)','rgba(120,60,160,.12)'],tech:['rgba(201,169,97,.12)','rgba(60,140,160,.12)'],
+policy:['rgba(201,169,97,.12)','rgba(229,72,77,.10)']};
+
+/* ================= HELPERS ================= */
+const byId=id=>A.find(a=>a.id===id);
+const authArts=aid=>A.filter(a=>a.author===aid).sort((x,y)=>y.iso.localeCompare(x.iso));
+const esc=s=>s;
+function visual(sec,badge,h){
+ const [c1,c2]=HUES[sec]||HUES.space;
+ return `<div class="visual" style="height:${h}px;background:radial-gradient(ellipse 90% 70% at 70% 10%,${c1},transparent 55%),radial-gradient(ellipse 60% 55% at 15% 90%,${c2},transparent 60%),linear-gradient(160deg,#12151E,#0B0D13)">
+ <svg viewBox="0 0 800 340" preserveAspectRatio="none"><defs><linearGradient id="g${sec}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9A961" stop-opacity=".28"/><stop offset="1" stop-color="#C9A961" stop-opacity="0"/></linearGradient></defs>
+ <path d="M0,300 L60,290 L120,296 L180,270 L240,278 L300,240 L360,252 L420,205 L480,215 L540,160 L600,175 L660,110 L720,125 L800,58 L800,340 L0,340 Z" fill="url(#g${sec})"/>
+ <path d="M0,300 L60,290 L120,296 L180,270 L240,278 L300,240 L360,252 L420,205 L480,215 L540,160 L600,175 L660,110 L720,125 L800,58" fill="none" stroke="#C9A961" stroke-width="2"/><circle cx="800" cy="58" r="4" fill="#C9A961"/></svg>
+ ${badge?`<span class="badge">${badge}</span>`:''}</div>`;
+}
+const bylineHTML=a=>{const au=AUTHORS[a.author];return `By <a onclick="event.stopPropagation();nav('author','${a.author}')"><b>${au.name}</b></a> · ${a.date}`};
+const cardHTML=a=>`<article class="card" data-c="${a.sec}">${a.img?`<img class="thumb-c" src="${a.img}" alt="" onclick="nav('article','${a.id}')" style="cursor:pointer">`:''}<span class="cat">${a.kicker}</span><h3><a onclick="nav('article','${a.id}')">${a.title}</a></h3><p>${a.dek}</p><div class="byline">${bylineHTML(a)} · ${a.read} min</div></article>`;
+
+/* ================= HOME RENDER ================= */
+function renderHome(){
+ const hero=A.find(a=>a.role==='hero');
+ document.getElementById('hero-slot').innerHTML=
+  visual(hero.sec,'Cover Story · IPO of the Decade',340)+
+  `<span class="kicker" style="margin-top:26px">${SECTIONS[hero.sec]}</span>
+   <h1><a onclick="nav('article','${hero.id}')">${hero.title}</a></h1>
+   <p class="dek">${hero.dek}</p><div class="byline">${bylineHTML(hero)} · ${hero.read} min read</div>`;
+ document.getElementById('side-slot').innerHTML=A.filter(a=>a.role==='side').map(a=>
+  `<div class="side-item"><span class="kicker">${a.kicker}</span><h3><a onclick="nav('article','${a.id}')">${a.title}</a></h3><p>${a.dek}</p><div class="byline">${bylineHTML(a)}</div></div>`).join('');
+ document.getElementById('grid').innerHTML=A.filter(a=>a.role==='grid'&&!a.draft).sort((x,y)=>y.iso.localeCompare(x.iso)).map(cardHTML).join('');
+ document.getElementById('eras').innerHTML=Object.keys(ERAS).map((k,i)=>`<button class="${i===0?'on':''}" data-e="${k}">${ERAS[k].label}</button>`).join('');
+ renderEra('e1');
+}
+function renderEra(k){
+ document.getElementById('era-slot').innerHTML=
+  `<div class="era on"><p class="era-sub">${ERAS[k].sub}</p><div class="timeline">${
+   A.filter(a=>a.era===k&&!a.draft).sort((x,y)=>x.iso.localeCompare(y.iso)).map(a=>`<div class="t-item"><div class="t-date">${a.tDate}</div><h3><a onclick="nav('article','${a.id}')">${a.title}</a></h3><p>${a.dek}</p></div>`).join('')}</div></div>`;
+}
+
+/* ================= ROUTER ================= */
+const VIEWS=['home','article','author','section','archiveFull','admin'];
+function show(v){VIEWS.forEach(x=>document.getElementById('view-'+x).hidden=(x!==v));window.scrollTo({top:0,behavior:'instant'})}
+function setNav(key){document.querySelectorAll('#mainnav a').forEach(a=>a.classList.toggle('active',a.dataset.nav===key))}
+function nav(view,arg){
+ if(view==='home'){location.hash='#/'}
+ else if(view==='article'){location.hash='#/article/'+arg}
+ else if(view==='author'){location.hash='#/author/'+arg}
+ else if(view==='section'){location.hash='#/section/'+arg}
+ else if(view==='archiveFull'){location.hash='#/archive'}
+ else if(view==='admin'){if(location.hash==='#/admin'){route()}else{location.hash='#/admin'}}
+}
+function route(){
+ const h=location.hash.replace(/^#\/?/,'');
+ const [p,arg]=h.split('/');
+ if(p==='article'&&byId(arg)){renderArticle(arg);show('article');const s=byId(arg).sec;setNav(byId(arg).role==='archive'?'archive':s)}
+ else if(p==='author'&&AUTHORS[arg]){renderAuthor(arg);show('author');setNav('')}
+ else if(p==='section'&&SECTIONS[arg]){renderSection(arg);show('section');setNav(arg)}
+ else if(p==='archive'){renderArchiveFull(document.getElementById('arch-search').value||'');show('archiveFull');setNav('archive')}
+ else if(p==='admin'){renderAdmin();show('admin');setNav('')}
+ else {show('home');setNav('home')}
+}
+window.addEventListener('hashchange',route);
+
+/* ================= ARTICLE ================= */
+function renderArticle(id){
+ const a=typeof id==='object'?id:byId(id),au=AUTHORS[a.author];
+ let body='';
+ a.body.forEach((p,i)=>{body+=`<p>${p}</p>`;if(i===1&&a.quote)body+=`<div class="pull"><div class="q">${a.quote.t}</div><div class="a">— ${a.quote.a}</div></div>`;});
+ const rel=A.filter(x=>x.id!==id&&(x.sec===a.sec||x.author===a.author)&&x.role!=='hero').slice(0,3);
+ document.getElementById('art-slot').innerHTML=`
+  ${a._preview?'<div class="preview-note">Preview — this story is not published yet</div>':''}
+  <a class="back" onclick="${a._preview?"nav('admin')":"history.length>1?history.back():nav('home')"}">← Back</a>
+  <span class="kicker">${a.kicker}</span>
+  <h1>${a.title}</h1>
+  <p class="dek">${a.dek}</p>
+  <div class="art-meta">
+    <div class="auth-chip" onclick="nav('author','${a.author}')" style="cursor:pointer">
+      <div class="ava">${au.initials}</div>
+      <div><div class="nm">${au.name}</div><div class="rl">${au.role} · ${a.date} · ${a.read} min read</div></div>
+    </div>
+    <div class="art-actions">
+      <button class="icon-btn" title="Copy link" onclick="copyLink('${a.id}')">⧉</button>
+      <button class="icon-btn" title="Share" onclick="toast('Shared to your feed (demo)')">↗</button>
+      <button class="icon-btn" title="Save" onclick="toast('Saved to your reading list (demo)')">✩</button>
+    </div>
+  </div>
+  ${a.img?`<div class="art-img"><img src="${a.img}" alt="">${a.imgCaption?`<div class="cap">${a.imgCaption}</div>`:''}</div>`:visual(a.sec,a.kicker,300)}
+  <div class="art-body" style="margin-top:36px">${body}</div>
+  ${a.points?`<div class="keypoints"><h4>Key Points</h4><ul>${a.points.map(p=>`<li>${p}</li>`).join('')}</ul></div>`:''}
+  <div class="tags">${a.tags.map(t=>`<span class="tag" onclick="nav('archiveFull');setTimeout(()=>{const i=document.getElementById('arch-search');i.value='${t}';renderArchiveFull('${t}')},50)">${t}</span>`).join('')}</div>
+  <div class="auth-box">
+    <div class="ava lg">${au.initials}</div>
+    <div>
+      <div class="bio-nm" style="cursor:pointer" onclick="nav('author','${a.author}')">${au.name}</div>
+      <div class="bio-rl">${au.role} · ${au.loc}</div>
+      <p>${au.bio}</p>
+      <a class="lnk" onclick="nav('author','${a.author}')">All articles by ${au.name.split(' ')[0]} →</a>&nbsp;&nbsp;
+      <a class="lnk" onclick="toast('${au.x} — profile opens on X (demo)')">${au.x}</a>
+    </div>
+  </div>
+  ${rel.length?`<div class="related"><h4>Related Coverage</h4><div class="grid">${rel.map(cardHTML).join('')}</div></div>`:''}`;
+}
+function copyLink(id){
+ const url=location.href.split('#')[0]+'#/article/'+id;
+ if(navigator.clipboard){navigator.clipboard.writeText(url).then(()=>toast('Link copied to clipboard'))}else{toast('Link: '+url)}
+}
+
+/* ================= AUTHOR ================= */
+function renderAuthor(aid){
+ const au=AUTHORS[aid],arts=authArts(aid);
+ document.getElementById('author-slot').innerHTML=`
+  <a class="back" onclick="history.length>1?history.back():nav('home')">← Back</a>
+  <div class="auth-hero">
+    <div class="ava lg">${au.initials}</div>
+    <div>
+      <h1>${au.name}</h1>
+      <div class="rl">${au.role}</div>
+      <p class="bio">${au.bio}</p>
+    </div>
+  </div>
+  <div class="auth-stats">
+    <div><b>${arts.length}</b>Articles</div>
+    <div><b>${au.loc}</b>Based in</div>
+    <div><b>${au.joined}</b>At Meridian since</div>
+    <div><b style="font-size:15px;padding-top:5px">${au.x}</b>On X</div>
+  </div>
+  <div class="sec-label"><h2>Latest by ${au.name.split(' ')[0]}</h2><div class="rule"></div></div>
+  <div class="auth-list">${arts.map(cardHTML).join('')}</div>`;
+}
+
+/* ================= SECTION ================= */
+function renderSection(sec){
+ const arts=A.filter(a=>(sec==='all'||a.sec===sec)&&a.role!=='archive'&&!a.draft).sort((x,y)=>y.iso.localeCompare(x.iso));
+ document.getElementById('section-slot').innerHTML=`
+  <span class="kicker">Section</span>
+  <div class="page-title">${SECTIONS[sec]}</div>
+  <p class="page-sub">${arts.length} stories · Updated July 9, 2026</p>
+  <div class="grid">${arts.map(cardHTML).join('')}</div>`;
+}
+
+/* ================= FULL ARCHIVE ================= */
+function renderArchiveFull(q){
+ q=(q||'').toLowerCase().trim();
+ const all=A.filter(a=>a.role==='archive'&&!a.draft).sort((x,y)=>x.iso.localeCompare(y.iso));
+ const hits=all.filter(a=>!q||(a.title+' '+a.dek+' '+a.date+' '+a.tags.join(' ')).toLowerCase().includes(q));
+ document.getElementById('arch-count').textContent=q?`${hits.length} result${hits.length!==1?'s':''} for “${q}”`:`${all.length} landmark entries · 2009 — present`;
+ document.getElementById('arch-results').innerHTML=hits.length?hits.map(a=>
+  `<div class="t-item"><div class="t-date">${a.tDate}</div><h3><a onclick="nav('article','${a.id}')">${a.title}</a></h3><p>${a.dek}</p><div class="byline" style="margin-top:8px">${bylineHTML(a)}</div></div>`).join('')
+  :`<p style="color:var(--faint);padding:20px 0">No entries match “${q}”. Try an asset, event or year — e.g. “FTX”, “halving”, “2020”.</p>`;
+}
+document.getElementById('arch-search').addEventListener('input',e=>renderArchiveFull(e.target.value));
+
+/* ================= UI ================= */
+function tickClock(){const n=new Date();
+ document.getElementById('clock').textContent=n.toLocaleTimeString('en-US',{hour12:false})+' ET';
+ document.getElementById('today').textContent=n.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'}).toUpperCase();}
+tickClock();setInterval(tickClock,1000);
+
+const TICK=[['S&P 500','7,463.20','+0.42%',1],['NASDAQ','25,614.88','+0.61%',1],['DOW','53,041.15','+0.27%',1],
+['BTC','$63,180','+2.14%',1],['ETH','$1,776','+1.35%',1],['XRP','$1.42','+9.8%',1],['ARB','$0.87','+10.2%',1],
+['SPCX','158.40','-1.62%',0],['NVDA','195.12','-0.88%',0],['HOOD','112.35','+3.4%',1],
+['GOLD','$4,052','-2.5%',0],['BRENT','$78.19','+5.4%',1],['WTI','$75.36','+4.4%',1],['VIX','18.02','-1.1%',0],['US10Y','4.18%','-3bp',0]];
+const half=TICK.map(d=>`<span class="tk"><span class="sym">${d[0]}</span><span class="px">${d[1]}</span><span class="chg ${d[3]?'up':'down'}">${d[3]?'▲':'▼'} ${d[2]}</span></span>`).join('');
+document.getElementById('ticker').innerHTML=half+half;
+
+document.getElementById('filters').addEventListener('click',e=>{
+ if(e.target.tagName!=='BUTTON')return;
+ document.querySelectorAll('#filters button').forEach(b=>b.classList.remove('on'));
+ e.target.classList.add('on');
+ const f=e.target.dataset.f;
+ document.querySelectorAll('#grid .card').forEach(c=>c.classList.toggle('hidden',f!=='all'&&c.dataset.c!==f));
+});
+document.getElementById('eras').addEventListener('click',e=>{
+ if(e.target.tagName!=='BUTTON')return;
+ document.querySelectorAll('#eras button').forEach(b=>b.classList.remove('on'));
+ e.target.classList.add('on');renderEra(e.target.dataset.e);
+});
+document.getElementById('nl').addEventListener('submit',e=>{
+ e.preventDefault();document.getElementById('nl-done').style.display='block';
+ e.target.querySelector('input').value='';toast('Subscribed to The Daily Meridian');
+});
+function goSubscribe(){nav('home');setTimeout(()=>document.getElementById('subscribe').scrollIntoView({behavior:'smooth'}),80);}
+function openModal(id){document.getElementById('modal-'+id).classList.add('on')}
+function closeModal(id){document.getElementById('modal-'+id).classList.remove('on')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-bg.on').forEach(m=>m.classList.remove('on'))});
+let toastTimer;
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('on'),2600);}
+window.addEventListener('scroll',()=>{
+ const h=document.documentElement;
+ const p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
+ document.getElementById('progress').style.width=(document.getElementById('view-article').hidden?0:p)+'%';
+});
+
+/* ================= ADMIN (hidden — open the site with #/admin) ================= */
+const ADMIN_PASS='meridian2026'; /* ← change your passcode here */
+const CK='meridian_custom_articles', CAK='meridian_custom_authors', EDK='meridian_editor', AFK='meridian_form_autosave';
+let editingId=null, adminTab='stories', editingAuthor=null, formImg=null, stQ='', stF='all';
+function loadCustom(){
+ try{
+  Object.assign(AUTHORS,JSON.parse(localStorage.getItem(CAK)||'{}'));
+  JSON.parse(localStorage.getItem(CK)||'[]').forEach(a=>{a.custom=true;A.push(a)});
+ }catch(e){}
+}
+const customArts=()=>A.filter(a=>a.custom);
+const saveCustom=()=>localStorage.setItem(CK,JSON.stringify(customArts()));
+const isAdmin=()=>sessionStorage.getItem('m_admin')==='1';
+const editorName=()=>localStorage.getItem(EDK)||'Editor';
+function changeEditor(){const n=prompt('Your editor name (stamped on every story you enter):',editorName());if(n&&n.trim()){localStorage.setItem(EDK,n.trim());renderAdmin()}}
+const fmtTS=ts=>ts?new Date(ts).toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'2-digit',minute:'2-digit'}):'—';
+function setTab(t){adminTab=t;if(t!=='new')editingId=null;if(t!=='authors')editingAuthor=null;renderAdmin()}
+
+function renderAdmin(){
+ const slot=document.getElementById('admin-slot');
+ if(!isAdmin()){
+  slot.innerHTML=`<div class="admin"><div class="login-box">
+   <span class="kicker">◈ Meridian Newsroom</span>
+   <h3 style="font-family:var(--serif);font-size:24px;font-weight:400;margin:6px 0 22px">Editor Access</h3>
+   <form onsubmit="event.preventDefault();adminLogin(this.pw.value)">
+    <input type="password" name="pw" placeholder="Passcode" required autofocus>
+    <button class="btn-sub" style="width:100%;padding:13px" type="submit">Enter Newsroom</button>
+   </form></div></div>`;
+  return;
+ }
+ let content='';
+ if(adminTab==='stories')content=adminStories();
+ else if(adminTab==='new')content=adminForm();
+ else content=adminAuthors();
+ slot.innerHTML=`<div class="admin">
+  <div class="admin-bar">
+   <div><span class="kicker">◈ Meridian Newsroom</span><div class="page-title" style="margin:0">Content Studio</div>
+    <div style="font-size:11px;color:var(--faint);margin-top:5px;letter-spacing:.05em">Signed in as <a style="color:var(--gold)" onclick="changeEditor()">${editorName()} ✎</a> — every story you enter is stamped with this name and a timestamp</div></div>
+   <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <button class="mini" onclick="exportCustom()">Export JSON</button>
+    <button class="mini" onclick="document.getElementById('imp-file').click()">Import JSON</button>
+    <input type="file" id="imp-file" accept=".json,application/json" style="display:none" onchange="importCustom(this)">
+    <button class="mini danger" onclick="adminLogout()">Log out</button></div></div>
+  <div class="tabs">
+   <button class="${adminTab==='stories'?'on':''}" onclick="setTab('stories')">Stories (${customArts().length})</button>
+   <button class="${adminTab==='new'?'on':''}" onclick="setTab('new')">${editingId?'✎ Edit Story':'＋ New Story'}</button>
+   <button class="${adminTab==='authors'?'on':''}" onclick="setTab('authors')">Authors (${Object.keys(AUTHORS).length})</button>
+  </div>${content}</div>`;
+ if(adminTab==='new')wireForm();
+ if(adminTab==='authors'&&editingAuthor)fillAuthorForm();
+}
+
+/* ---- Stories tab ---- */
+function storyRows(){
+ const q=stQ.toLowerCase();
+ const arts=customArts().filter(a=>(stF==='all'||(stF==='draft'?a.draft:!a.draft))&&(!q||(a.title+' '+AUTHORS[a.author].name+' '+(a.enteredBy||'')).toLowerCase().includes(q))).sort((x,y)=>(y.createdAt||0)-(x.createdAt||0));
+ if(!arts.length)return '<p style="color:var(--faint);padding:16px 0">No stories match. Publish your first from the “＋ New Story” tab.</p>';
+ return arts.map(a=>`<div class="a-row">
+  ${a.img?`<img class="thumb" src="${a.img}">`:`<div class="thumb" style="display:flex;align-items:center;justify-content:center;background:var(--panel);color:var(--gold)">◈</div>`}
+  <div style="flex:1"><div class="t">${a.title}<span class="badge-st ${a.draft?'dr':'pub'}">${a.draft?'Draft':'Live'}</span></div>
+  <div class="m">${a.role==='archive'?'Archive · '+ERAS[a.era].label:'Top Stories'} · ${SECTIONS[a.sec]} · byline: ${AUTHORS[a.author].name} · dated ${a.date}</div>
+  <div class="m">entered by <b style="color:var(--muted)">${a.enteredBy||'—'}</b> on ${fmtTS(a.createdAt)}${a.updatedAt?' · last edited '+fmtTS(a.updatedAt):''}</div></div>
+  <div class="acts">
+   <button class="mini" onclick="previewById('${a.id}')">View</button>
+   <button class="mini" onclick="editArticle('${a.id}')">Edit</button>
+   <button class="mini" onclick="toggleDraft('${a.id}')">${a.draft?'Publish':'Unpublish'}</button>
+   <button class="mini" onclick="duplicateArticle('${a.id}')">Duplicate</button>
+   <button class="mini danger" onclick="deleteArticle('${a.id}')">Delete</button></div></div>`).join('');
+}
+function refreshList(){const el=document.getElementById('st-list');if(el)el.innerHTML=storyRows()}
+function adminStories(){
+ return `<div class="admin-note">Everything you publish appears on the site instantly. Drafts stay hidden from visitors. Data lives in this browser (localStorage) — use Export JSON for backups, and connect a database/CMS later for multi-visitor publishing.</div>
+ <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start">
+  <div class="search-bar" style="flex:1;min-width:240px;margin-bottom:14px"><span>⌕</span><input value="${stQ.replace(/"/g,'&quot;')}" placeholder="Search title, byline author or editor…" oninput="stQ=this.value;refreshList()"></div>
+  <select style="width:auto;background:var(--panel);border:1px solid var(--line);color:var(--text);padding:0 14px;height:45px;font-family:var(--sans);font-size:12.5px" onchange="stF=this.value;refreshList()">
+   <option value="all"${stF==='all'?' selected':''}>All status</option>
+   <option value="live"${stF==='live'?' selected':''}>Live only</option>
+   <option value="draft"${stF==='draft'?' selected':''}>Drafts only</option></select></div>
+ <div id="st-list">${storyRows()}</div>`;
+}
+function previewById(id){const a=byId(id);if(a.draft){renderArticle(Object.assign({},a,{_preview:true}));show('article')}else nav('article',id)}
+
+/* ---- New/Edit story tab ---- */
+function adminForm(){
+ return `<form onsubmit="event.preventDefault();publishArticle(false)" id="af">
+  <div class="af-grid">
+   <div class="full2"><label>Headline *</label><input id="af-title" required placeholder="e.g. Bitcoin Breaks $70K as ETF Inflows Return"></div>
+   <div class="full2"><label>Dek / Summary *</label><textarea id="af-dek" style="min-height:64px" required placeholder="One- or two-sentence summary shown on cards"></textarea></div>
+   <div class="full2"><label>Cover image — upload or URL (optional)</label>
+    <div id="img-zone"></div>
+    <div style="display:flex;gap:10px"><input id="af-imgurl" placeholder="https://…/image.jpg" style="flex:1"><button type="button" class="mini" style="height:45px" onclick="applyImgUrl()">Apply URL</button></div>
+    <input type="file" id="af-imgfile" accept="image/*" style="display:none" onchange="readImgFile(this)">
+    <input id="af-imgcap" placeholder="Image caption / credit (optional)"></div>
+   <div><label>Section</label><select id="af-sec"><option value="stocks">Stocks</option><option value="crypto" selected>Crypto</option><option value="tech">Technology</option><option value="space">Space &amp; Frontier</option><option value="policy">Policy &amp; Macro</option></select></div>
+   <div><label>Kicker (optional)</label><input id="af-kicker" placeholder="e.g. Crypto · Markets"></div>
+   <div><label>Placement</label><select id="af-place" onchange="document.getElementById('af-era-w').style.display=this.value==='archive'?'block':'none'"><option value="grid">Top Stories</option><option value="archive">The Archive (historical)</option></select></div>
+   <div id="af-era-w" style="display:none"><label>Archive era</label><select id="af-era"><option value="e1">2009–2013</option><option value="e2">2014–2017</option><option value="e3">2018–2020</option><option value="e4">2021–2023</option><option value="e5">2024–2025</option></select></div>
+   <div><label>Story date</label><input id="af-date" type="date" value="2026-07-09"></div>
+   <div><label>Read time (auto from body)</label><input id="af-read" type="number" min="1" value="5"></div>
+   <div class="full2"><label>Byline author</label><select id="af-author" onchange="document.getElementById('af-newauth').style.display=this.value==='__new'?'grid':'none'">${Object.keys(AUTHORS).map(k=>`<option value="${k}">${AUTHORS[k].name} — ${AUTHORS[k].role}</option>`).join('')}<option value="__new">＋ Create new author…</option></select></div>
+   <div class="af-grid full2" id="af-newauth" style="display:none">
+    <div><label>Author name</label><input id="af-an" placeholder="e.g. Elif Demir"></div>
+    <div><label>Author title</label><input id="af-ar" placeholder="e.g. Istanbul Markets Correspondent"></div>
+    <div class="full2"><label>Author bio</label><textarea id="af-ab" style="min-height:56px" placeholder="Short professional bio shown on the profile page"></textarea></div>
+   </div>
+   <div class="full2"><label>Body * — separate paragraphs with a blank line</label><textarea id="af-body" required placeholder="First paragraph…&#10;&#10;Second paragraph…"></textarea><div class="wc-hint" id="wc">0 words</div></div>
+   <div><label>Pull quote (optional)</label><input id="af-qt" placeholder="Quote text"></div>
+   <div><label>Quote attribution</label><input id="af-qa" placeholder="e.g. Chief strategist, Meridian"></div>
+   <div class="full2"><label>Key points — one per line (optional)</label><textarea id="af-pts" style="min-height:64px"></textarea></div>
+   <div class="full2"><label>Tags — comma separated</label><input id="af-tags" placeholder="Bitcoin, ETF, Fed"></div>
+  </div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap">
+   <button class="btn-sub" style="padding:13px 30px" type="submit">${editingId?'Save Changes':'Publish Story'}</button>
+   <button type="button" class="mini" style="padding:13px 22px" onclick="publishArticle(true)">Save as Draft</button>
+   <button type="button" class="mini" style="padding:13px 22px" onclick="previewStory()">Preview</button>
+   ${editingId?'<button type="button" class="mini danger" style="padding:13px 22px" onclick="cancelEdit()">Cancel Edit</button>':''}
+  </div>
+  <p class="wc-hint" style="margin-top:14px">Ctrl+Enter publishes instantly · your unfinished form is auto-saved in this browser · uploaded images are auto-resized to 1200px</p>
+ </form>`;
+}
+function renderImgZone(){
+ const z=document.getElementById('img-zone');if(!z)return;
+ z.innerHTML=formImg?`<div class="img-prev"><img src="${formImg}"><button type="button" class="mini danger" onclick="formImg=null;renderImgZone()">Remove</button></div>`
+ :`<div class="img-drop" onclick="document.getElementById('af-imgfile').click()">⬆ Click to upload an image from your computer</div>`;
+}
+function readImgFile(inp){
+ const f=inp.files[0];if(!f)return;
+ const r=new FileReader();
+ r.onload=e=>{const im=new Image();im.onload=()=>{
+  const s=Math.min(1,1200/im.width);
+  const c=document.createElement('canvas');c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);
+  c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+  formImg=c.toDataURL('image/jpeg',.82);renderImgZone();toast('Image attached')};
+  im.src=e.target.result};
+ r.readAsDataURL(f);inp.value='';
+}
+function applyImgUrl(){const u=document.getElementById('af-imgurl').value.trim();if(u){formImg=u;renderImgZone();toast('Image URL applied')}}
+function wireForm(){
+ renderImgZone();
+ const f=document.getElementById('af'),body=document.getElementById('af-body');
+ f.addEventListener('keydown',e=>{if(e.ctrlKey&&e.key==='Enter'){e.preventDefault();publishArticle(false)}});
+ body.addEventListener('input',()=>{
+  const w=body.value.trim()?body.value.trim().split(/\s+/).length:0;
+  document.getElementById('wc').textContent=w+' words · ~'+Math.max(1,Math.round(w/200))+' min read';
+  document.getElementById('af-read').value=Math.max(1,Math.round(w/200));
+ });
+ const S=(i,val)=>{const el=document.getElementById(i);if(el)el.value=val==null?'':val};
+ if(editingId){
+  const a=byId(editingId);
+  S('af-title',a.title);S('af-dek',a.dek);S('af-sec',a.sec);S('af-kicker',a.kicker);
+  document.getElementById('af-place').value=a.role==='archive'?'archive':'grid';
+  document.getElementById('af-era-w').style.display=a.role==='archive'?'block':'none';
+  if(a.era)S('af-era',a.era);
+  S('af-date',a.iso);S('af-read',a.read);S('af-author',a.author);
+  S('af-body',a.body.join('\n\n'));S('af-qt',a.quote?a.quote.t:'');S('af-qa',a.quote?a.quote.a:'');
+  S('af-pts',a.points?a.points.join('\n'):'');S('af-tags',a.tags.join(', '));S('af-imgcap',a.imgCaption);
+  formImg=a.img||null;renderImgZone();
+ }else{
+  formImg=null;renderImgZone();
+  try{const d=JSON.parse(localStorage.getItem(AFK)||'null');
+   if(d){['title','dek','sec','kicker','place','era','date','read','author','body','qt','qa','pts','tags','imgcap'].forEach(k=>S('af-'+k,d[k]));
+    document.getElementById('af-era-w').style.display=d.place==='archive'?'block':'none';}
+  }catch(e){}
+ }
+ body.dispatchEvent(new Event('input'));
+ f.addEventListener('input',()=>{
+  if(editingId)return;
+  const g=i=>{const el=document.getElementById('af-'+i);return el?el.value:''};
+  localStorage.setItem(AFK,JSON.stringify({title:g('title'),dek:g('dek'),sec:g('sec'),kicker:g('kicker'),place:g('place'),era:g('era'),date:g('date'),read:g('read'),author:g('author'),body:g('body'),qt:g('qt'),qa:g('qa'),pts:g('pts'),tags:g('tags'),imgcap:g('imgcap')}));
+ });
+}
+function makeAuthor(persist){
+ const v=id=>document.getElementById(id).value.trim();
+ const nm=v('af-an');if(!nm)return null;
+ const aid=nm.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+ AUTHORS[aid]={name:nm,initials:nm.split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase(),role:v('af-ar')||'Contributing Writer',loc:'—',joined:'2026',bio:v('af-ab')||nm+' is a contributing writer at Meridian.',x:'@'+aid.replace(/-/g,'_')};
+ if(persist){const ca=JSON.parse(localStorage.getItem(CAK)||'{}');ca[aid]=AUTHORS[aid];localStorage.setItem(CAK,JSON.stringify(ca));}
+ return aid;
+}
+function collectForm(persistAuthor){
+ const v=id=>document.getElementById(id).value.trim();
+ if(!v('af-title')||!v('af-dek')||!v('af-body')){toast('Headline, summary and body are required');return null}
+ let author=v('af-author');
+ if(author==='__new'){author=makeAuthor(persistAuthor);if(!author){toast('New author needs a name');return null}}
+ const sec=v('af-sec'),place=v('af-place');
+ const dISO=v('af-date')||'2026-07-09',d=new Date(dISO+'T12:00:00');
+ const old=editingId?byId(editingId):null;
+ return{
+  id:editingId||(v('af-title').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,40)+'-'+Date.now().toString(36)),
+  custom:true,role:place==='archive'?'archive':'grid',sec,
+  era:place==='archive'?v('af-era'):undefined,
+  kicker:v('af-kicker')||((place==='archive'?'Archive · ':'')+SECTIONS[sec]),
+  tDate:d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}).toUpperCase(),
+  date:d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}),
+  iso:dISO,read:parseInt(v('af-read'))||5,author,
+  title:v('af-title'),dek:v('af-dek'),
+  body:v('af-body').split(/\n\s*\n/).map(p=>p.trim()).filter(Boolean),
+  quote:v('af-qt')?{t:v('af-qt'),a:v('af-qa')||'Meridian'}:undefined,
+  points:v('af-pts')?v('af-pts').split('\n').map(s=>s.trim()).filter(Boolean):undefined,
+  tags:v('af-tags')?v('af-tags').split(',').map(s=>s.trim()).filter(Boolean):[SECTIONS[sec]],
+  img:formImg||undefined,imgCaption:v('af-imgcap')||undefined,
+  enteredBy:old?(old.enteredBy||editorName()):editorName(),
+  createdAt:old?(old.createdAt||Date.now()):Date.now(),
+  updatedAt:old?Date.now():undefined
+ };
+}
+function publishArticle(asDraft){
+ const art=collectForm(true);if(!art)return;
+ art.draft=!!asDraft;
+ if(editingId){const i=A.findIndex(x=>x.id===editingId);A[i]=art;editingId=null;toast(asDraft?'Draft saved':'Story updated')}
+ else{A.push(art);localStorage.removeItem(AFK);toast(asDraft?'Draft saved — hidden from visitors':'Story published — live on the site')}
+ saveCustom();renderHome();adminTab='stories';renderAdmin();
+}
+function previewStory(){
+ const art=collectForm(false);if(!art)return;
+ art._preview=true;renderArticle(art);show('article');
+}
+function editArticle(id){editingId=id;adminTab='new';renderAdmin();window.scrollTo({top:0,behavior:'smooth'})}
+function cancelEdit(){editingId=null;setTab('stories')}
+function deleteArticle(id){
+ if(!confirm('Delete this story permanently?'))return;
+ const i=A.findIndex(a=>a.id===id);if(i>-1)A.splice(i,1);
+ saveCustom();renderHome();renderAdmin();toast('Story deleted');
+}
+function toggleDraft(id){const a=byId(id);a.draft=!a.draft;saveCustom();renderHome();renderAdmin();toast(a.draft?'Story unpublished — now a draft':'Story is live')}
+function duplicateArticle(id){
+ const a=byId(id),c=JSON.parse(JSON.stringify(a));
+ c.id=c.id.slice(0,40)+'-'+Date.now().toString(36);
+ c.title=a.title+' (Copy)';c.draft=true;c.createdAt=Date.now();delete c.updatedAt;c.enteredBy=editorName();
+ A.push(c);saveCustom();renderAdmin();toast('Duplicated as draft');
+}
+
+/* ---- Authors tab ---- */
+function adminAuthors(){
+ const custom=JSON.parse(localStorage.getItem(CAK)||'{}');
+ const rows=Object.keys(AUTHORS).map(k=>{const au=AUTHORS[k],isC=!!custom[k];
+  return `<div class="a-row"><div class="ava">${au.initials}</div>
+  <div style="flex:1"><div class="t">${au.name}${isC?'<span class="badge-st dr">Custom</span>':'<span class="badge-st" style="color:var(--faint)">Core</span>'}</div>
+  <div class="m">${au.role} · ${au.loc} · ${au.x} · ${authArts(k).length} stories</div></div>
+  <div class="acts"><button class="mini" onclick="nav('author','${k}')">Profile</button>
+  <button class="mini" onclick="editAuthor('${k}')">Edit</button>
+  ${isC?`<button class="mini danger" onclick="deleteAuthor('${k}')">Delete</button>`:''}</div></div>`}).join('');
+ return `<div class="admin-note">Every author gets a public profile page with avatar, bio and article list. Core authors can be edited (saved as overrides); custom authors can be deleted when none of your stories use them.</div>
+ <form onsubmit="event.preventDefault();saveAuthor()"><div class="af-grid">
+  <div><label>Full name *</label><input id="au-n" required placeholder="e.g. Elif Demir"></div>
+  <div><label>Title / Beat</label><input id="au-r" placeholder="e.g. Istanbul Markets Correspondent"></div>
+  <div><label>Location</label><input id="au-l" placeholder="e.g. Istanbul"></div>
+  <div><label>X handle</label><input id="au-x" placeholder="@elifdemir_mkt"></div>
+  <div class="full2"><label>Bio</label><textarea id="au-b" style="min-height:64px" placeholder="Professional bio shown on the public profile"></textarea></div>
+ </div><div style="display:flex;gap:10px"><button class="btn-sub" style="padding:13px 30px" type="submit">${editingAuthor?'Save Author':'Add Author'}</button>${editingAuthor?'<button type="button" class="mini" onclick="editingAuthor=null;renderAdmin()">Cancel</button>':''}</div></form>
+ <div class="sec-label" style="margin-top:40px"><h2>All Authors</h2><div class="rule"></div></div>${rows}`;
+}
+function fillAuthorForm(){
+ const au=AUTHORS[editingAuthor];if(!au)return;
+ document.getElementById('au-n').value=au.name;document.getElementById('au-r').value=au.role;
+ document.getElementById('au-l').value=au.loc;document.getElementById('au-x').value=au.x;
+ document.getElementById('au-b').value=au.bio;
+}
+function editAuthor(k){editingAuthor=k;adminTab='authors';renderAdmin();window.scrollTo({top:0,behavior:'smooth'})}
+function saveAuthor(){
+ const v=id=>document.getElementById(id).value.trim();
+ const nm=v('au-n');if(!nm)return;
+ const aid=editingAuthor||nm.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+ const prev=AUTHORS[aid]||{};
+ AUTHORS[aid]={name:nm,initials:nm.split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase(),
+  role:v('au-r')||prev.role||'Contributing Writer',loc:v('au-l')||prev.loc||'—',joined:prev.joined||'2026',
+  bio:v('au-b')||prev.bio||nm+' is a contributing writer at Meridian.',x:v('au-x')||prev.x||('@'+aid.replace(/-/g,'_'))};
+ const ca=JSON.parse(localStorage.getItem(CAK)||'{}');ca[aid]=AUTHORS[aid];localStorage.setItem(CAK,JSON.stringify(ca));
+ editingAuthor=null;renderAdmin();toast('Author saved — profile is live');
+}
+function deleteAuthor(k){
+ if(A.some(a=>a.author===k)){toast('This author has stories — reassign them first');return}
+ if(!confirm('Delete this author profile?'))return;
+ delete AUTHORS[k];
+ const ca=JSON.parse(localStorage.getItem(CAK)||'{}');delete ca[k];localStorage.setItem(CAK,JSON.stringify(ca));
+ renderAdmin();toast('Author deleted');
+}
+
+/* ---- Session & data ---- */
+function adminLogin(pw){if(pw===ADMIN_PASS){sessionStorage.setItem('m_admin','1');renderAdmin();toast('Welcome to the newsroom, '+editorName())}else toast('Wrong passcode')}
+function adminLogout(){sessionStorage.removeItem('m_admin');renderAdmin();toast('Logged out')}
+function exportCustom(){
+ const data={authors:JSON.parse(localStorage.getItem(CAK)||'{}'),articles:customArts()};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+ const u=URL.createObjectURL(blob),l=document.createElement('a');
+ l.href=u;l.download='meridian-backup.json';l.click();URL.revokeObjectURL(u);toast('Backup downloaded');
+}
+function importCustom(inp){
+ const f=inp.files[0];if(!f)return;
+ const r=new FileReader();
+ r.onload=e=>{try{
+  const d=JSON.parse(e.target.result);
+  const arts=Array.isArray(d)?d:(d.articles||[]);
+  if(d&&d.authors){Object.assign(AUTHORS,d.authors);const ca=JSON.parse(localStorage.getItem(CAK)||'{}');Object.assign(ca,d.authors);localStorage.setItem(CAK,JSON.stringify(ca));}
+  let n=0;arts.forEach(a=>{if(!byId(a.id)){a.custom=true;A.push(a);n++}});
+  saveCustom();renderHome();renderAdmin();toast(n+' stories imported');
+ }catch(err){toast('Import failed — invalid JSON')}};
+ r.readAsText(f);inp.value='';
+}
+
+/* boot */
+loadCustom();
+renderHome();
+route();
+/* MERIDIAN v3 — content studio build */
+</script>
+</body>
+</html>
