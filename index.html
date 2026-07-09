@@ -21,11 +21,8 @@
   a{color:inherit;text-decoration:none;cursor:pointer}
   .wrap{max-width:1240px;margin:0 auto;padding:0 28px}
   main[hidden]{display:none}
-
-  /* progress bar */
   #progress{position:fixed;top:0;left:0;height:2px;background:var(--gold);width:0;z-index:200;transition:width .1s linear}
 
-  /* ---------- Top bar ---------- */
   .topbar{border-bottom:1px solid var(--line-soft);background:#07090C;font-size:11.5px;letter-spacing:.04em}
   .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:34px}
   .topbar .left{display:flex;gap:18px;color:var(--muted)}
@@ -35,7 +32,6 @@
   .btn-sub{background:var(--gold);color:#0A0C10;font-weight:600;padding:4px 14px;border-radius:2px;letter-spacing:.06em;font-size:11px;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--sans)}
   .btn-sub:hover{background:#DBBC74}
 
-  /* ---------- Ticker ---------- */
   .ticker{background:#0D1017;border-bottom:1px solid var(--line-soft);overflow:hidden;height:38px}
   .ticker-track{display:flex;align-items:center;height:38px;white-space:nowrap;animation:tick 60s linear infinite;width:max-content}
   .ticker:hover .ticker-track{animation-play-state:paused}
@@ -45,7 +41,6 @@
   .tk .px{color:var(--text)}
   .tk .chg.up{color:var(--up)} .tk .chg.down{color:var(--down)}
 
-  /* ---------- Masthead ---------- */
   .masthead{padding:34px 0 22px;text-align:center;border-bottom:1px solid var(--line);position:relative}
   .masthead .brand{font-family:var(--serif);font-size:56px;letter-spacing:.28em;font-weight:400;text-indent:.28em;cursor:pointer}
   .masthead .brand span{color:var(--gold)}
@@ -55,7 +50,6 @@
   .masthead .issue{position:absolute;right:28px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--faint);letter-spacing:.08em;text-align:right;line-height:1.7}
   .masthead .issue b{color:var(--muted);font-weight:500}
 
-  /* ---------- Nav ---------- */
   nav{border-bottom:1px solid var(--line);background:var(--ink);position:sticky;top:0;z-index:50}
   nav .wrap{display:flex;justify-content:center;gap:4px}
   nav a{padding:14px 20px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid transparent;transition:.18s}
@@ -63,7 +57,6 @@
   nav a.active{color:var(--gold);border-bottom-color:var(--gold)}
   nav a.archive-link{color:var(--gold-soft)} nav a.archive-link:hover{color:var(--gold)}
 
-  /* ---------- Section labels ---------- */
   .sec-label{display:flex;align-items:center;gap:14px;margin-bottom:22px}
   .sec-label h2{font-family:var(--serif);font-size:22px;font-weight:400;letter-spacing:.05em;white-space:nowrap}
   .sec-label .rule{flex:1;height:1px;background:var(--line)}
@@ -74,7 +67,6 @@
   .byline b{color:var(--muted);font-weight:500}
   .byline a b:hover, .byline a:hover b{color:var(--gold)}
 
-  /* ---------- Hero ---------- */
   .hero{padding:44px 0 40px;border-bottom:1px solid var(--line)}
   .hero-grid{display:grid;grid-template-columns:1.7fr 1fr;gap:44px}
   .visual{border:1px solid var(--line);position:relative;overflow:hidden}
@@ -92,7 +84,6 @@
   .hero-side h3 a:hover{color:var(--gold)}
   .hero-side p{color:var(--muted);font-size:13px;line-height:1.55;margin-bottom:8px}
 
-  /* ---------- Stories grid ---------- */
   .stories{padding:48px 0;border-bottom:1px solid var(--line)}
   .filters{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap}
   .filters button{background:transparent;border:1px solid var(--line);color:var(--muted);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:8px 18px;cursor:pointer;transition:.18s}
@@ -105,8 +96,8 @@
   .card h3 a:hover{color:var(--gold)}
   .card p{color:var(--muted);font-size:13.5px;line-height:1.6;margin-bottom:12px;flex:1}
   .card.hidden{display:none}
+  .card .thumb-c{width:100%;height:150px;object-fit:cover;border:1px solid var(--line);margin-bottom:14px;display:block}
 
-  /* ---------- Market board ---------- */
   .board{padding:48px 0;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#0C0E13,var(--ink))}
   .board-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
   .panel{background:var(--panel);border:1px solid var(--line);padding:22px 24px}
@@ -119,7 +110,6 @@
   .d.up{color:var(--up)} .d.down{color:var(--down)}
   .board-note{margin-top:14px;font-size:11px;color:var(--faint);letter-spacing:.04em}
 
-  /* ---------- Archive ---------- */
   .archive{padding:56px 0;border-bottom:1px solid var(--line);background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(201,169,97,.06),transparent 60%),var(--ink)}
   .archive-head{text-align:center;margin-bottom:12px}
   .archive-head h2{font-family:var(--serif);font-size:36px;font-weight:400;letter-spacing:.04em}
@@ -144,17 +134,15 @@
   .btn-ghost{display:inline-block;border:1px solid var(--gold-soft);color:var(--gold);font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:12px 34px;transition:.18s;background:none;cursor:pointer;font-family:var(--sans)}
   .btn-ghost:hover{background:var(--gold);color:#0A0C10}
 
-  /* ---------- Opinion ---------- */
   .opinion{padding:48px 0;border-bottom:1px solid var(--line)}
   .op-grid{display:grid;grid-template-columns:repeat(3,1fr)}
-  .op{padding:6px 36px;border-right:1px solid var(--line-soft)}
+  .op{padding:6px 36px;border-right:1px solid var(--line-soft);cursor:pointer}
   .op:first-child{padding-left:0}
   .op:last-child{border-right:none;padding-right:0}
   .op .q{font-family:var(--serif);font-size:19px;line-height:1.42;font-style:italic;margin-bottom:16px}
   .op .q::before{content:"“";color:var(--gold);font-size:30px;line-height:0;vertical-align:-8px;margin-right:2px}
   .op:hover .q{color:var(--gold)}
 
-  /* ---------- Newsletter ---------- */
   .news-cta{padding:60px 0;border-bottom:1px solid var(--line);text-align:center;background:radial-gradient(ellipse 60% 80% at 50% 100%,rgba(201,169,97,.07),transparent 60%)}
   .news-cta h2{font-family:var(--serif);font-size:30px;font-weight:400;margin-bottom:10px}
   .news-cta p{color:var(--muted);margin-bottom:26px;font-size:14px}
@@ -165,7 +153,6 @@
   .nl-form button:hover{background:#DBBC74}
   .nl-done{color:var(--up);font-size:13px;margin-top:14px;display:none}
 
-  /* ---------- Footer ---------- */
   footer{padding:44px 0 36px;color:var(--faint);font-size:12px}
   .f-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:36px}
   .f-brand{font-family:var(--serif);font-size:24px;letter-spacing:.24em;color:var(--text)}
@@ -175,7 +162,6 @@
   footer li a:hover{color:var(--text)}
   .f-bottom{border-top:1px solid var(--line-soft);padding-top:22px;display:flex;justify-content:space-between;letter-spacing:.05em}
 
-  /* ---------- Article view ---------- */
   .art{max-width:760px;margin:0 auto;padding:44px 28px 60px}
   .back{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:30px}
   .back:hover{color:var(--gold)}
@@ -203,7 +189,7 @@
   .keypoints li:last-child{border-bottom:none}
   .keypoints li::before{content:"◆";position:absolute;left:0;top:9px;color:var(--gold);font-size:9px}
   .tags{display:flex;gap:8px;flex-wrap:wrap;margin:36px 0}
-  .tag{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);padding:6px 14px}
+  .tag{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);padding:6px 14px;cursor:pointer}
   .tag:hover{color:var(--gold);border-color:var(--gold-soft)}
   .auth-box{display:flex;gap:22px;background:var(--panel);border:1px solid var(--line);padding:26px 28px;margin:10px 0 44px}
   .auth-box .bio-nm{font-family:var(--serif);font-size:20px;margin-bottom:2px}
@@ -214,20 +200,21 @@
   .auth-box .lnk:hover{color:var(--gold)}
   .related{border-top:1px solid var(--line);padding-top:34px}
   .related h4{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);margin-bottom:24px}
+  .art-img img{width:100%;max-height:420px;object-fit:cover;border:1px solid var(--line);display:block}
+  .art-img .cap{font-size:11.5px;color:var(--faint);margin-top:8px;letter-spacing:.03em}
+  .preview-note{background:var(--gold);color:#0A0C10;text-align:center;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;padding:9px;margin-bottom:26px;font-weight:600}
 
-  /* ---------- Author view ---------- */
   .author-page{max-width:860px;margin:0 auto;padding:50px 28px 60px}
   .auth-hero{display:flex;gap:30px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:34px;margin-bottom:14px;flex-wrap:wrap}
   .auth-hero h1{font-family:var(--serif);font-size:34px;font-weight:400}
   .auth-hero .rl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:6px 0 12px}
   .auth-hero .bio{color:var(--muted);font-size:14.5px;line-height:1.65;max-width:560px}
-  .auth-stats{display:flex;gap:0;margin:0 0 34px;border-bottom:1px solid var(--line)}
+  .auth-stats{display:flex;margin:0 0 34px;border-bottom:1px solid var(--line)}
   .auth-stats div{padding:16px 34px 16px 0;margin-right:34px;font-size:12px;color:var(--faint);letter-spacing:.08em;text-transform:uppercase;border-right:1px solid var(--line-soft)}
   .auth-stats div:last-child{border-right:none}
   .auth-stats b{display:block;font-family:var(--serif);font-size:22px;color:var(--text);font-weight:400;letter-spacing:0;text-transform:none;margin-bottom:2px}
   .auth-list .card{margin-bottom:26px}
 
-  /* ---------- Section & archive views ---------- */
   .listing{padding:44px 0 60px}
   .listing .page-title{font-family:var(--serif);font-size:34px;font-weight:400;margin-bottom:8px}
   .listing .page-sub{color:var(--faint);font-size:13px;margin-bottom:34px;letter-spacing:.04em}
@@ -237,7 +224,6 @@
   .search-bar span{display:flex;align-items:center;padding:0 16px;color:var(--gold);font-size:14px}
   .result-count{font-size:11.5px;color:var(--faint);letter-spacing:.08em;text-transform:uppercase;margin-bottom:26px}
 
-  /* ---------- Modal & toast ---------- */
   .modal-bg{position:fixed;inset:0;background:rgba(4,5,8,.78);backdrop-filter:blur(3px);z-index:150;display:none;align-items:center;justify-content:center}
   .modal-bg.on{display:flex}
   .modal{background:var(--panel);border:1px solid var(--line);max-width:420px;width:92%;padding:38px 40px;position:relative;animation:fade .25s ease}
@@ -249,7 +235,9 @@
   .modal input{width:100%;background:var(--ink);border:1px solid var(--line);color:var(--text);padding:12px 14px;font-size:13.5px;margin-bottom:18px;outline:none;font-family:var(--sans)}
   .modal input:focus{border-color:var(--gold-soft)}
   .modal .full{width:100%;padding:13px;font-size:11.5px}
-  .modal p.body{color:var(--muted);font-size:13.5px;line-height:1.7}
+  .modal p.body{color:var(--muted);font-size:13.5px;line-height:1.7;margin-bottom:12px}
+  .modal.wide{max-width:560px;max-height:82vh;overflow-y:auto}
+  .modal h6{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:18px 0 8px}
   #toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--panel-2);border:1px solid var(--gold-soft);color:var(--text);font-size:13px;padding:13px 26px;z-index:300;transition:.3s;letter-spacing:.03em}
   #toast.on{transform:translateX(-50%) translateY(0)}
 
@@ -265,7 +253,8 @@
   .a-row{display:flex;justify-content:space-between;align-items:center;gap:14px;border-bottom:1px solid var(--line-soft);padding:13px 0}
   .a-row .t{font-family:var(--serif);font-size:16px}
   .a-row .m{font-size:11px;color:var(--faint);margin-top:2px}
-  .a-row .acts{display:flex;gap:8px;flex-shrink:0}
+  .a-row .acts{display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap}
+  .a-row .thumb{width:56px;height:40px;object-fit:cover;border:1px solid var(--line);flex-shrink:0}
   .mini{background:none;border:1px solid var(--line);color:var(--muted);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;cursor:pointer;font-family:var(--sans)}
   .mini:hover{border-color:var(--gold-soft);color:var(--gold)}
   .mini.danger:hover{border-color:var(--down);color:var(--down)}
@@ -277,17 +266,11 @@
   .badge-st{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px;border:1px solid var(--line);vertical-align:2px;margin-left:6px}
   .badge-st.pub{color:var(--up);border-color:rgba(52,193,125,.4)}
   .badge-st.dr{color:var(--gold);border-color:var(--gold-soft)}
-  .a-row .thumb{width:56px;height:40px;object-fit:cover;border:1px solid var(--line);flex-shrink:0}
   .img-drop{border:1px dashed var(--line);padding:22px;text-align:center;color:var(--faint);font-size:12px;margin-bottom:14px;cursor:pointer;letter-spacing:.04em}
   .img-drop:hover{border-color:var(--gold-soft);color:var(--muted)}
   .img-prev{position:relative;margin-bottom:14px}
   .img-prev img{width:100%;max-height:260px;object-fit:cover;border:1px solid var(--line);display:block}
   .img-prev button{position:absolute;top:10px;right:10px;background:rgba(10,12,16,.85)}
-  .card .thumb-c{width:100%;height:150px;object-fit:cover;border:1px solid var(--line);margin-bottom:14px;display:block}
-  .art-img{margin-top:0}
-  .art-img img{width:100%;max-height:420px;object-fit:cover;border:1px solid var(--line);display:block}
-  .art-img .cap{font-size:11.5px;color:var(--faint);margin-top:8px;letter-spacing:.03em}
-  .preview-note{background:var(--gold);color:#0A0C10;text-align:center;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;padding:9px;margin-bottom:26px;font-weight:600}
   .wc-hint{font-size:11px;color:var(--faint);margin:-12px 0 16px;letter-spacing:.04em}
 
   @media(max-width:960px){
@@ -360,11 +343,11 @@
           <div class="row"><span class="name">Nvidia (NVDA)</span><span><span class="val">195.12</span><span class="d down">-0.88%</span></span></div>
         </div>
         <div class="panel"><h4>Digital Assets</h4>
-          <div class="row"><span class="name">Bitcoin</span><span><span class="val">$63,180</span><span class="d up">+2.14%</span></span></div>
-          <div class="row"><span class="name">Ethereum</span><span><span class="val">$1,776</span><span class="d up">+1.35%</span></span></div>
-          <div class="row"><span class="name">XRP</span><span><span class="val">$1.42</span><span class="d up">+9.8%</span></span></div>
-          <div class="row"><span class="name">Arbitrum (ARB)</span><span><span class="val">$0.87</span><span class="d up">+10.2%</span></span></div>
-          <div class="row"><span class="name">BTC Market Cap</span><span><span class="val">$1.33T</span><span class="d up">+2.0%</span></span></div>
+          <div class="row" id="bd-btc"><span class="name">Bitcoin</span><span><span class="val">$63,180</span><span class="d up">+2.14%</span></span></div>
+          <div class="row" id="bd-eth"><span class="name">Ethereum</span><span><span class="val">$1,776</span><span class="d up">+1.35%</span></span></div>
+          <div class="row" id="bd-xrp"><span class="name">XRP</span><span><span class="val">$1.42</span><span class="d up">+9.8%</span></span></div>
+          <div class="row" id="bd-arb"><span class="name">Arbitrum (ARB)</span><span><span class="val">$0.87</span><span class="d up">+10.2%</span></span></div>
+          <div class="row" id="bd-btc-mc"><span class="name">BTC Market Cap</span><span><span class="val">$1.33T</span><span class="d up">+2.0%</span></span></div>
           <div class="row"><span class="name">ETF Net Flow (wk)</span><span><span class="val">-$0.9B</span><span class="d down">outflow</span></span></div>
         </div>
         <div class="panel"><h4>Commodities &amp; Rates</h4>
@@ -376,7 +359,7 @@
           <div class="row"><span class="name">Unemployment</span><span><span class="val">4.2%</span><span class="d down">Jun</span></span></div>
         </div>
       </div>
-      <p class="board-note">Indicative levels as of July 9, 2026. Delayed at least 15 minutes. For illustration.</p>
+      <p class="board-note" id="live-note">Indicative levels as of July 9, 2026. Delayed at least 15 minutes. For illustration.</p>
     </div>
   </section>
 
@@ -415,16 +398,10 @@
   </section>
 </main>
 
-<!-- ============ ARTICLE ============ -->
 <main id="view-article" hidden><div class="art" id="art-slot"></div></main>
-
-<!-- ============ AUTHOR ============ -->
 <main id="view-author" hidden><div class="author-page" id="author-slot"></div></main>
-
-<!-- ============ SECTION LISTING ============ -->
 <main id="view-section" hidden><div class="wrap listing" id="section-slot"></div></main>
 
-<!-- ============ FULL ARCHIVE ============ -->
 <main id="view-archiveFull" hidden>
   <div class="wrap listing">
     <span class="kicker">◈ The Meridian Archive</span>
@@ -444,14 +421,13 @@
     <div class="f-grid">
       <div><div class="f-brand">MERID<span>I</span>AN</div><p style="margin-top:14px;line-height:1.7;max-width:300px">Independent coverage of markets, digital assets and the frontier economy — with a complete historical archive back to 2009.</p></div>
       <div><h5>Sections</h5><ul><li><a onclick="nav('section','all')">Markets</a></li><li><a onclick="nav('section','stocks')">Stocks</a></li><li><a onclick="nav('section','crypto')">Crypto</a></li><li><a onclick="nav('section','tech')">Technology</a></li><li><a onclick="nav('archiveFull')">The Archive</a></li></ul></div>
-      <div><h5>Company</h5><ul><li><a onclick="openModal('about')">About</a></li><li><a onclick="openModal('standards')">Editorial Standards</a></li><li><a onclick="toast('Careers page — demo build')">Careers</a></li><li><a onclick="toast('Ad sales — demo build')">Advertise</a></li></ul></div>
-      <div><h5>Legal</h5><ul><li><a onclick="toast('Terms of Use — demo build')">Terms of Use</a></li><li><a onclick="toast('Privacy Policy — demo build')">Privacy</a></li><li><a onclick="toast('Data Disclaimer — demo build')">Data Disclaimer</a></li></ul></div>
+      <div><h5>Company</h5><ul><li><a onclick="openModal('about')">About</a></li><li><a onclick="openModal('standards')">Editorial Standards</a></li><li><a onclick="openModal('careers')">Careers</a></li><li><a onclick="openModal('advertise')">Advertise</a></li></ul></div>
+      <div><h5>Legal</h5><ul><li><a onclick="openModal('terms')">Terms of Use</a></li><li><a onclick="openModal('privacy')">Privacy</a></li><li><a onclick="openModal('data')">Data Disclaimer</a></li></ul></div>
     </div>
     <div class="f-bottom"><span>© 2026 Meridian Media Group. All rights reserved.</span><span>Not investment advice. Market data for illustration.</span></div>
   </div>
 </footer>
 
-<!-- Modals -->
 <div class="modal-bg" id="modal-signin" onclick="if(event.target===this)closeModal('signin')">
   <div class="modal">
     <button class="x" onclick="closeModal('signin')">✕</button>
@@ -517,7 +493,6 @@ const AUTHORS={
 const SECTIONS={stocks:'Stocks',crypto:'Crypto',tech:'Technology',space:'Space & Frontier',policy:'Policy & Macro',all:'All Markets'};
 
 const A=[
-/* ---- HERO ---- */
 {id:'spacex-ipo',role:'hero',sec:'space',kicker:'Space & Frontier',date:'July 9, 2026',iso:'2026-07-09',read:11,author:'adrian-vance',
  title:'SpaceX’s $75 Billion Debut Rewrites the IPO Record Book — and Mints the First Trillionaire',
  dek:'Priced at $135 and closing its first session near $161, the June 12 listing valued the launch-and-AI giant at $2.1 trillion — absorbing xAI along the way and leaving Wall Street split between $115 bear cases and $236 average targets on a company that still burned $4.9 billion last year.',
@@ -531,7 +506,6 @@ const A=[
  points:['Priced at $135, closed day one near $161 — $2.1T valuation, $75B raised','xAI merged into SpaceX pre-listing; Grok 4.5 trained on Nvidia GB300','2025 financials: $18.7B revenue, $4.9B loss; Starship grounded pending FAA review','Street targets range $115–$165; average near $236'],
  tags:['SpaceX','IPO','Elon Musk','xAI','Starlink']},
 
-/* ---- SIDE ---- */
 {id:'btc-recovery',role:'side',sec:'crypto',kicker:'Crypto',date:'July 8, 2026',iso:'2026-07-08',read:6,author:'sofia-lindqvist',
  title:'Bitcoin Claws Back Above $63K After Its Deepest Drawdown Since 2022',
  dek:'A first weekly close below the 200-week average since 2023 and record ETF outflows gave way to relief as Fed Chair Warsh softened his tone and June payrolls came in at just 57,000.',
@@ -568,7 +542,6 @@ const A=[
  points:['Iran struck 85 U.S. military sites after July 7 American raids','Brent +5.4% to $78.19; WTI +4.4% to $75.36','War-risk insurance premiums up 4x; some tankers rerouting via the Cape','Oil shock complicates the Fed’s late-July decision'],
  tags:['Oil','Iran','Geopolitics','Inflation']},
 
-/* ---- GRID ---- */
 {id:'nvidia-slide',role:'grid',sec:'stocks',kicker:'Stocks · Semiconductors',date:'July 7, 2026',iso:'2026-07-07',read:8,author:'maya-okafor',
  title:'Nvidia Slides 18% From June Peak Even as Blackwell Stays Sold Out Into Mid-2026',
  dek:'At roughly $195 and a $4.7 trillion market cap, the AI bellwether is the worst performer in its chip cohort this year — a striking divergence as it rolls out Nemotron 3 Ultra and a revenue-sharing “DSX” AI-factory model.',
@@ -677,7 +650,6 @@ const A=[
  points:['Dow crossed 53,000 on July 6, an all-time first','“Trump investment accounts” launch: default index investing, federal match','Strategists model tens of billions in annual structural flows','Gold holds above $4,000 despite a 2.5% weekly pullback'],
  tags:['Dow','Retail Investing','White House','Gold']},
 
-/* ---- ARCHIVE ---- */
 {id:'genesis-block',role:'archive',era:'e1',sec:'crypto',kicker:'Archive · 2009',tDate:'JAN 3, 2009',date:'January 3, 2009',iso:'2009-01-03',read:4,author:'archive-desk',
  title:'Genesis: An Anonymous Coder Mines Block Zero of “Bitcoin”',
  dek:'Embedded in the first block, a newspaper headline about bank bailouts — a mission statement disguised as a timestamp.',
@@ -857,7 +829,6 @@ policy:['rgba(201,169,97,.12)','rgba(229,72,77,.10)']};
 /* ================= HELPERS ================= */
 const byId=id=>A.find(a=>a.id===id);
 const authArts=aid=>A.filter(a=>a.author===aid).sort((x,y)=>y.iso.localeCompare(x.iso));
-const esc=s=>s;
 function visual(sec,badge,h){
  const [c1,c2]=HUES[sec]||HUES.space;
  return `<div class="visual" style="height:${h}px;background:radial-gradient(ellipse 90% 70% at 70% 10%,${c1},transparent 55%),radial-gradient(ellipse 60% 55% at 15% 90%,${c2},transparent 60%),linear-gradient(160deg,#12151E,#0B0D13)">
@@ -918,7 +889,7 @@ function renderArticle(id){
  const a=typeof id==='object'?id:byId(id),au=AUTHORS[a.author];
  let body='';
  a.body.forEach((p,i)=>{body+=`<p>${p}</p>`;if(i===1&&a.quote)body+=`<div class="pull"><div class="q">${a.quote.t}</div><div class="a">— ${a.quote.a}</div></div>`;});
- const rel=A.filter(x=>x.id!==id&&(x.sec===a.sec||x.author===a.author)&&x.role!=='hero').slice(0,3);
+ const rel=A.filter(x=>x.id!==a.id&&!x.draft&&(x.sec===a.sec||x.author===a.author)&&x.role!=='hero').slice(0,3);
  document.getElementById('art-slot').innerHTML=`
   ${a._preview?'<div class="preview-note">Preview — this story is not published yet</div>':''}
   <a class="back" onclick="${a._preview?"nav('admin')":"history.length>1?history.back():nav('home')"}">← Back</a>
@@ -959,7 +930,7 @@ function copyLink(id){
 
 /* ================= AUTHOR ================= */
 function renderAuthor(aid){
- const au=AUTHORS[aid],arts=authArts(aid);
+ const au=AUTHORS[aid],arts=authArts(aid).filter(a=>!a.draft);
  document.getElementById('author-slot').innerHTML=`
   <a class="back" onclick="history.length>1?history.back():nav('home')">← Back</a>
   <div class="auth-hero">
@@ -977,7 +948,7 @@ function renderAuthor(aid){
     <div><b style="font-size:15px;padding-top:5px">${au.x}</b>On X</div>
   </div>
   <div class="sec-label"><h2>Latest by ${au.name.split(' ')[0]}</h2><div class="rule"></div></div>
-  <div class="auth-list">${arts.map(cardHTML).join('')}</div>`;
+  <div class="auth-list">${arts.map(cardHTML).join('')||'<p style="color:var(--faint)">No published articles yet.</p>'}</div>`;
 }
 
 /* ================= SECTION ================= */
@@ -1012,7 +983,7 @@ const TICK=[['S&P 500','7,463.20','+0.42%',1],['NASDAQ','25,614.88','+0.61%',1],
 ['BTC','$63,180','+2.14%',1],['ETH','$1,776','+1.35%',1],['XRP','$1.42','+9.8%',1],['ARB','$0.87','+10.2%',1],
 ['SPCX','158.40','-1.62%',0],['NVDA','195.12','-0.88%',0],['HOOD','112.35','+3.4%',1],
 ['GOLD','$4,052','-2.5%',0],['BRENT','$78.19','+5.4%',1],['WTI','$75.36','+4.4%',1],['VIX','18.02','-1.1%',0],['US10Y','4.18%','-3bp',0]];
-const half=TICK.map(d=>`<span class="tk"><span class="sym">${d[0]}</span><span class="px">${d[1]}</span><span class="chg ${d[3]?'up':'down'}">${d[3]?'▲':'▼'} ${d[2]}</span></span>`).join('');
+const half=TICK.map(d=>`<span class="tk" data-sym="${d[0]}"><span class="sym">${d[0]}</span><span class="px">${d[1]}</span><span class="chg ${d[3]?'up':'down'}">${d[3]?'▲':'▼'} ${d[2]}</span></span>`).join('');
 document.getElementById('ticker').innerHTML=half+half;
 
 document.getElementById('filters').addEventListener('click',e=>{
@@ -1042,6 +1013,36 @@ window.addEventListener('scroll',()=>{
  const p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
  document.getElementById('progress').style.width=(document.getElementById('view-article').hidden?0:p)+'%';
 });
+
+/* ================= LIVE PRICES (CoinGecko, no API key) ================= */
+const CG={BTC:'bitcoin',ETH:'ethereum',XRP:'ripple',ARB:'arbitrum'};
+const fmtP=v=>v>=1000?'$'+v.toLocaleString('en-US',{maximumFractionDigits:0}):'$'+v.toLocaleString('en-US',{maximumFractionDigits:v>=1?2:4});
+async function livePrices(){
+ try{
+  const r=await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,ripple,arbitrum&vs_currencies=usd&include_24hr_change=true&include_market_cap=true');
+  if(!r.ok)throw 0;
+  const d=await r.json();
+  for(const sym in CG){
+   const c=d[CG[sym]];if(!c||c.usd==null)continue;
+   const up=(c.usd_24h_change||0)>=0;
+   const chg=(up?'+':'')+(c.usd_24h_change||0).toFixed(2)+'%';
+   document.querySelectorAll('.tk[data-sym="'+sym+'"]').forEach(el=>{
+    el.querySelector('.px').textContent=fmtP(c.usd);
+    const g=el.querySelector('.chg');g.textContent=(up?'▲ ':'▼ ')+chg;g.className='chg '+(up?'up':'down');
+   });
+   const row=document.getElementById('bd-'+sym.toLowerCase());
+   if(row){row.querySelector('.val').textContent=fmtP(c.usd);
+    const dd=row.querySelector('.d');dd.textContent=chg;dd.className='d '+(up?'up':'down');}
+  }
+  if(d.bitcoin&&d.bitcoin.usd_market_cap){
+   const el=document.getElementById('bd-btc-mc');
+   if(el)el.querySelector('.val').textContent='$'+(d.bitcoin.usd_market_cap/1e12).toFixed(2)+'T';
+  }
+  const note=document.getElementById('live-note');
+  if(note)note.textContent='● Crypto prices live via CoinGecko · updated '+new Date().toLocaleTimeString('en-US',{hour12:false})+' · equities & commodities indicative';
+ }catch(e){/* offline or rate-limited — keep last values */}
+}
+livePrices();setInterval(livePrices,60000);
 
 /* ================= ADMIN (hidden — open the site with #/admin) ================= */
 const ADMIN_PASS='meridian2026'; /* ← change your passcode here */
@@ -1347,7 +1348,7 @@ function importCustom(inp){
 loadCustom();
 renderHome();
 route();
-/* MERIDIAN v3 — content studio build */
+/* MERIDIAN v4 — live prices + content studio */
 </script>
 </body>
 </html>
