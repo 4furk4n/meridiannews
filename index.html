@@ -465,9 +465,79 @@
     <p class="body">Meridian journalists do not hold positions in assets they cover. Every archive entry is verified against at least two primary sources. Errors are corrected prominently and logged publicly. Analysis is clearly labeled and never presented as investment advice.</p>
   </div>
 </div>
+<div class="modal-bg" id="modal-careers" onclick="if(event.target===this)closeModal('careers')">
+  <div class="modal wide">
+    <button class="x" onclick="closeModal('careers')">✕</button>
+    <h3>Careers at Meridian</h3><p class="sub">New York · London · Seoul · Remote</p>
+    <p class="body">We hire reporters who can read a balance sheet, engineers who care about typography, and editors who believe context is a product. Meridian is a small newsroom with an outsized archive — and we are growing.</p>
+    <h6>Open Roles</h6>
+    <p class="body">Markets Reporter, Digital Assets (London) · Data Engineer, Archive Systems (Remote) · Newsletter Editor, The Daily Meridian (New York) · Visual Journalist (Seoul)</p>
+    <h6>How to Apply</h6>
+    <p class="body">Send a CV and three clips to <span style="color:var(--gold)">careers@meridian.news</span>. We respond to every application within ten business days. Meridian is an equal-opportunity employer.</p>
+  </div>
+</div>
+<div class="modal-bg" id="modal-advertise" onclick="if(event.target===this)closeModal('advertise')">
+  <div class="modal wide">
+    <button class="x" onclick="closeModal('advertise')">✕</button>
+    <h3>Advertise with Meridian</h3><p class="sub">Reach the people who move markets</p>
+    <p class="body">Meridian readers are portfolio managers, founders, analysts and policy makers across 90 countries. We offer premium placements in The Daily Meridian newsletter, sponsored deep-dives clearly labeled as such, and brand partnerships around our Archive franchise.</p>
+    <p class="body">We do not run programmatic ads, autoplay video, or anything that damages the reading experience. Advertising never influences editorial coverage — see our Editorial Standards.</p>
+    <p class="body">Media kit and rates: <span style="color:var(--gold)">partnerships@meridian.news</span></p>
+  </div>
+</div>
+<div class="modal-bg" id="modal-terms" onclick="if(event.target===this)closeModal('terms')">
+  <div class="modal wide">
+    <button class="x" onclick="closeModal('terms')">✕</button>
+    <h3>Terms of Use</h3><p class="sub">Last updated: July 2026</p>
+    <h6>1. Acceptance</h6>
+    <p class="body">By accessing Meridian you agree to these terms. If you do not agree, please do not use the site.</p>
+    <h6>2. Content &amp; License</h6>
+    <p class="body">All articles, graphics and archive entries are the property of Meridian Media Group. You may share links and brief quotations with attribution; wholesale reproduction, scraping or republication requires written permission.</p>
+    <h6>3. No Investment Advice</h6>
+    <p class="body">Nothing on this site constitutes investment, legal or tax advice. Content is provided for information only. You are solely responsible for your investment decisions.</p>
+    <h6>4. Accounts &amp; Conduct</h6>
+    <p class="body">You agree not to misuse the service, attempt unauthorized access, or interfere with its operation. We may suspend access for violations.</p>
+    <h6>5. Liability</h6>
+    <p class="body">The service is provided “as is.” To the maximum extent permitted by law, Meridian disclaims all warranties and shall not be liable for losses arising from use of the site or reliance on its content.</p>
+  </div>
+</div>
+<div class="modal-bg" id="modal-privacy" onclick="if(event.target===this)closeModal('privacy')">
+  <div class="modal wide">
+    <button class="x" onclick="closeModal('privacy')">✕</button>
+    <h3>Privacy Policy</h3><p class="sub">Last updated: July 2026</p>
+    <h6>What We Collect</h6>
+    <p class="body">If you subscribe to our newsletter we store your email address. Reading preferences (such as saved filters) are stored locally in your browser, not on our servers.</p>
+    <h6>What We Don’t Do</h6>
+    <p class="body">We do not sell personal data, run third-party ad trackers, or build behavioral profiles. Market data requests go directly from your browser to the data provider.</p>
+    <h6>Cookies &amp; Local Storage</h6>
+    <p class="body">We use local storage strictly for functionality — remembering your session and preferences. No cross-site tracking cookies are set.</p>
+    <h6>Your Rights</h6>
+    <p class="body">You may request deletion of your newsletter subscription at any time via <span style="color:var(--gold)">privacy@meridian.news</span>. EU/UK readers have additional rights under GDPR, including access and portability.</p>
+  </div>
+</div>
+<div class="modal-bg" id="modal-data" onclick="if(event.target===this)closeModal('data')">
+  <div class="modal wide">
+    <button class="x" onclick="closeModal('data')">✕</button>
+    <h3>Data Disclaimer</h3><p class="sub">Market data on this site</p>
+    <p class="body">Cryptocurrency prices are supplied by third-party providers (CoinGecko) and refresh periodically; they may differ from executable exchange prices. Equity, commodity and rates figures shown in tickers and panels are indicative snapshots and may be delayed at least 15 minutes or shown for illustration.</p>
+    <p class="body">Historical figures in Archive entries reflect values reported at the time of the original events and are editorially verified against period sources, but are provided without warranty.</p>
+    <p class="body">None of the data on this site should be used as the basis for trading decisions. Always confirm prices with your broker or exchange.</p>
+  </div>
+</div>
 <div id="toast"></div>
 
 <script>
+/* ==== SUPABASE — multi-visitor publishing ====
+   1) supabase.com'da proje ac  2) SQL editorde tablolari olustur (talimatta)
+   3) Settings->API'den URL ve anon key'i asagiya yapistir. Bos birakirsan
+   site eski moddadir (haberler sadece bu tarayicida gorunur). */
+const SUPA_URL='https://lnvxhujihmifwqhowlhu.supabase.co';
+const SUPA_KEY='sb_publishable_P_nM2fdUVH0MpM_lIeA39g_bGvguYzz';
+const SUPA=()=>!!(SUPA_URL&&SUPA_KEY);
+const sbAuthHeaders=()=>({'apikey':SUPA_KEY,'Authorization':'Bearer '+(sessionStorage.getItem('sb_token')||SUPA_KEY),'Content-Type':'application/json'});
+async function sbList(t){const r=await fetch(SUPA_URL+'/rest/v1/'+t+'?select=id,data',{headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY}});if(!r.ok)throw 0;return r.json()}
+async function sbUpsert(t,id,data){const r=await fetch(SUPA_URL+'/rest/v1/'+t,{method:'POST',headers:Object.assign(sbAuthHeaders(),{'Prefer':'resolution=merge-duplicates'}),body:JSON.stringify([{id:id,data:data}])});if(!r.ok)throw new Error(await r.text())}
+async function sbDelete(t,id){const r=await fetch(SUPA_URL+'/rest/v1/'+t+'?id=eq.'+encodeURIComponent(id),{method:'DELETE',headers:sbAuthHeaders()});if(!r.ok)throw new Error(await r.text())}
 /* ================= DATA ================= */
 const AUTHORS={
  'adrian-vance':{name:'Adrian Vance',initials:'AV',role:'Senior Correspondent, Space & Frontier Capital',loc:'Los Angeles',joined:'2026',
@@ -1760,7 +1830,14 @@ livePrices();setInterval(livePrices,60000);
 const ADMIN_PASS='meridian2026'; /* ← change your passcode here */
 const CK='meridian_custom_articles', CAK='meridian_custom_authors', EDK='meridian_editor', AFK='meridian_form_autosave';
 let editingId=null, adminTab='stories', editingAuthor=null, formImg=null, stQ='', stF='all';
-function loadCustom(){
+async function loadCustom(){
+ if(SUPA()){
+  try{
+   const aus=await sbList('authors');aus.forEach(r=>{AUTHORS[r.id]=r.data});
+   const sts=await sbList('stories');sts.forEach(r=>{const a=r.data;a.custom=true;if(!byId(a.id))A.push(a)});
+   return;
+  }catch(e){toast('Could not reach database — showing built-in stories only')}
+ }
  try{
   Object.assign(AUTHORS,JSON.parse(localStorage.getItem(CAK)||'{}'));
   JSON.parse(localStorage.getItem(CK)||'[]').forEach(a=>{a.custom=true;A.push(a)});
@@ -1780,8 +1857,9 @@ function renderAdmin(){
   slot.innerHTML=`<div class="admin"><div class="login-box">
    <span class="kicker">◈ Meridian Newsroom</span>
    <h3 style="font-family:var(--serif);font-size:24px;font-weight:400;margin:6px 0 22px">Editor Access</h3>
-   <form onsubmit="event.preventDefault();adminLogin(this.pw.value)">
-    <input type="password" name="pw" placeholder="Passcode" required autofocus>
+   <form onsubmit="event.preventDefault();adminLogin(this)">
+    ${SUPA()?'<input type="email" name="em" placeholder="Admin email" required autofocus>':''}
+    <input type="password" name="pw" placeholder="${SUPA()?'Password':'Passcode'}" required>
     <button class="btn-sub" style="width:100%;padding:13px" type="submit">Enter Newsroom</button>
    </form></div></div>`;
   return;
@@ -1827,7 +1905,7 @@ function storyRows(){
 }
 function refreshList(){const el=document.getElementById('st-list');if(el)el.innerHTML=storyRows()}
 function adminStories(){
- return `<div class="admin-note">Everything you publish appears on the site instantly. Drafts stay hidden from visitors. Data lives in this browser (localStorage) — use Export JSON for backups, and connect a database/CMS later for multi-visitor publishing.</div>
+ return `<div class="admin-note">Everything you publish appears on the site instantly. Drafts stay hidden from visitors. ${SUPA()?'Connected to Supabase — stories are visible to every visitor worldwide.':'Data lives in this browser only (localStorage). Fill in SUPA_URL & SUPA_KEY at the top of the file to publish for all visitors.'} Use Export JSON for backups.</div>
  <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start">
   <div class="search-bar" style="flex:1;min-width:240px;margin-bottom:14px"><span>⌕</span><input value="${stQ.replace(/"/g,'&quot;')}" placeholder="Search title, byline author or editor…" oninput="stQ=this.value;refreshList()"></div>
   <select style="width:auto;background:var(--panel);border:1px solid var(--line);color:var(--text);padding:0 14px;height:45px;font-family:var(--sans);font-size:12.5px" onchange="stF=this.value;refreshList()">
@@ -1932,7 +2010,7 @@ function makeAuthor(persist){
  const nm=v('af-an');if(!nm)return null;
  const aid=nm.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
  AUTHORS[aid]={name:nm,initials:nm.split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase(),role:v('af-ar')||'Contributing Writer',loc:'—',joined:'2026',bio:v('af-ab')||nm+' is a contributing writer at Meridian.',x:'@'+aid.replace(/-/g,'_')};
- if(persist){const ca=JSON.parse(localStorage.getItem(CAK)||'{}');ca[aid]=AUTHORS[aid];localStorage.setItem(CAK,JSON.stringify(ca));}
+ if(persist){const ca=JSON.parse(localStorage.getItem(CAK)||'{}');ca[aid]=AUTHORS[aid];localStorage.setItem(CAK,JSON.stringify(ca));if(SUPA())sbUpsert('authors',aid,AUTHORS[aid]).catch(()=>toast('Author sync failed'));}
  return aid;
 }
 function collectForm(persistAuthor){
@@ -1962,11 +2040,12 @@ function collectForm(persistAuthor){
   updatedAt:old?Date.now():undefined
  };
 }
-function publishArticle(asDraft){
+async function publishArticle(asDraft){
  const art=collectForm(true);if(!art)return;
  art.draft=!!asDraft;
+ if(SUPA()){try{await sbUpsert('stories',art.id,art)}catch(e){toast('Database error — log in again or check connection');return}}
  if(editingId){const i=A.findIndex(x=>x.id===editingId);A[i]=art;editingId=null;toast(asDraft?'Draft saved':'Story updated')}
- else{A.push(art);localStorage.removeItem(AFK);toast(asDraft?'Draft saved — hidden from visitors':'Story published — live on the site')}
+ else{A.push(art);localStorage.removeItem(AFK);toast(asDraft?'Draft saved — hidden from visitors':'Story published — live for ALL visitors')}
  saveCustom();renderHome();adminTab='stories';renderAdmin();
 }
 function previewStory(){
@@ -1975,16 +2054,18 @@ function previewStory(){
 }
 function editArticle(id){editingId=id;adminTab='new';renderAdmin();window.scrollTo({top:0,behavior:'smooth'})}
 function cancelEdit(){editingId=null;setTab('stories')}
-function deleteArticle(id){
+async function deleteArticle(id){
  if(!confirm('Delete this story permanently?'))return;
+ if(SUPA()){try{await sbDelete('stories',id)}catch(e){toast('Delete failed — are you logged in?');return}}
  const i=A.findIndex(a=>a.id===id);if(i>-1)A.splice(i,1);
  saveCustom();renderHome();renderAdmin();toast('Story deleted');
 }
-function toggleDraft(id){const a=byId(id);a.draft=!a.draft;saveCustom();renderHome();renderAdmin();toast(a.draft?'Story unpublished — now a draft':'Story is live')}
+function toggleDraft(id){const a=byId(id);a.draft=!a.draft;if(SUPA())sbUpsert('stories',a.id,a).catch(()=>toast('Sync failed'));saveCustom();renderHome();renderAdmin();toast(a.draft?'Story unpublished — now a draft':'Story is live')}
 function duplicateArticle(id){
  const a=byId(id),c=JSON.parse(JSON.stringify(a));
  c.id=c.id.slice(0,40)+'-'+Date.now().toString(36);
  c.title=a.title+' (Copy)';c.draft=true;c.createdAt=Date.now();delete c.updatedAt;c.enteredBy=editorName();
+ if(SUPA())sbUpsert('stories',c.id,c).catch(()=>toast('Sync failed'));
  A.push(c);saveCustom();renderAdmin();toast('Duplicated as draft');
 }
 
@@ -2024,19 +2105,34 @@ function saveAuthor(){
   role:v('au-r')||prev.role||'Contributing Writer',loc:v('au-l')||prev.loc||'—',joined:prev.joined||'2026',
   bio:v('au-b')||prev.bio||nm+' is a contributing writer at Meridian.',x:v('au-x')||prev.x||('@'+aid.replace(/-/g,'_'))};
  const ca=JSON.parse(localStorage.getItem(CAK)||'{}');ca[aid]=AUTHORS[aid];localStorage.setItem(CAK,JSON.stringify(ca));
+ if(SUPA())sbUpsert('authors',aid,AUTHORS[aid]).catch(()=>toast('Author sync failed'));
  editingAuthor=null;renderAdmin();toast('Author saved — profile is live');
 }
 function deleteAuthor(k){
  if(A.some(a=>a.author===k)){toast('This author has stories — reassign them first');return}
  if(!confirm('Delete this author profile?'))return;
  delete AUTHORS[k];
+ if(SUPA())sbDelete('authors',k).catch(()=>{});
  const ca=JSON.parse(localStorage.getItem(CAK)||'{}');delete ca[k];localStorage.setItem(CAK,JSON.stringify(ca));
  renderAdmin();toast('Author deleted');
 }
 
 /* ---- Session & data ---- */
-function adminLogin(pw){if(pw===ADMIN_PASS){sessionStorage.setItem('m_admin','1');renderAdmin();toast('Welcome to the newsroom, '+editorName())}else toast('Wrong passcode')}
-function adminLogout(){sessionStorage.removeItem('m_admin');renderAdmin();toast('Logged out')}
+async function adminLogin(f){
+ const pw=f.pw.value;
+ if(!SUPA()){
+  if(pw===ADMIN_PASS){sessionStorage.setItem('m_admin','1');renderAdmin();toast('Welcome to the newsroom, '+editorName())}else toast('Wrong passcode');
+  return;
+ }
+ try{
+  const r=await fetch(SUPA_URL+'/auth/v1/token?grant_type=password',{method:'POST',headers:{'apikey':SUPA_KEY,'Content-Type':'application/json'},body:JSON.stringify({email:f.em.value,password:pw})});
+  const d=await r.json();
+  if(!r.ok||!d.access_token)throw 0;
+  sessionStorage.setItem('sb_token',d.access_token);sessionStorage.setItem('m_admin','1');
+  renderAdmin();toast('Welcome to the newsroom, '+editorName());
+ }catch(e){toast('Login failed — check email/password')}
+}
+function adminLogout(){sessionStorage.removeItem('m_admin');sessionStorage.removeItem('sb_token');renderAdmin();toast('Logged out')}
 function exportCustom(){
  const data={authors:JSON.parse(localStorage.getItem(CAK)||'{}'),articles:customArts()};
  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
@@ -2051,15 +2147,14 @@ function importCustom(inp){
   const arts=Array.isArray(d)?d:(d.articles||[]);
   if(d&&d.authors){Object.assign(AUTHORS,d.authors);const ca=JSON.parse(localStorage.getItem(CAK)||'{}');Object.assign(ca,d.authors);localStorage.setItem(CAK,JSON.stringify(ca));}
   let n=0;arts.forEach(a=>{if(!byId(a.id)){a.custom=true;A.push(a);n++}});
+  if(SUPA()){arts.forEach(a=>sbUpsert('stories',a.id,a).catch(()=>{}));if(d&&d.authors)Object.keys(d.authors).forEach(k=>sbUpsert('authors',k,d.authors[k]).catch(()=>{}));}
   saveCustom();renderHome();renderAdmin();toast(n+' stories imported');
  }catch(err){toast('Import failed — invalid JSON')}};
  r.readAsText(f);inp.value='';
 }
 
 /* boot */
-loadCustom();
-renderHome();
-route();
+(async()=>{await loadCustom();renderHome();route();})();
 /* MERIDIAN v4 — live prices + content studio */
 </script>
 </body>
