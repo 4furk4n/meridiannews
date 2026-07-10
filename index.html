@@ -495,7 +495,7 @@
     <p class="body">All articles, graphics and archive entries are the property of Meridian Media Group. You may share links and brief quotations with attribution; wholesale reproduction, scraping or republication requires written permission.</p>
     <h6>3. No Investment Advice</h6>
     <p class="body">Nothing on this site constitutes investment, legal or tax advice. Content is provided for information only. You are solely responsible for your investment decisions.</p>
-    <h6>4. Accounts &amp; Conduct</h6>
+    <h6>4. Conduct</h6>
     <p class="body">You agree not to misuse the service, attempt unauthorized access, or interfere with its operation. We may suspend access for violations.</p>
     <h6>5. Liability</h6>
     <p class="body">The service is provided “as is.” To the maximum extent permitted by law, Meridian disclaims all warranties and shall not be liable for losses arising from use of the site or reliance on its content.</p>
@@ -506,13 +506,13 @@
     <button class="x" onclick="closeModal('privacy')">✕</button>
     <h3>Privacy Policy</h3><p class="sub">Last updated: July 2026</p>
     <h6>What We Collect</h6>
-    <p class="body">If you subscribe to our newsletter we store your email address. Reading preferences (such as saved filters) are stored locally in your browser, not on our servers.</p>
+    <p class="body">If you subscribe to our newsletter we store your email address. Reading preferences are stored locally in your browser, not on our servers.</p>
     <h6>What We Don’t Do</h6>
-    <p class="body">We do not sell personal data, run third-party ad trackers, or build behavioral profiles. Market data requests go directly from your browser to the data provider.</p>
+    <p class="body">We do not sell personal data, run third-party ad trackers, or build behavioral profiles. Market-data requests go directly from your browser to the data provider.</p>
     <h6>Cookies &amp; Local Storage</h6>
     <p class="body">We use local storage strictly for functionality — remembering your session and preferences. No cross-site tracking cookies are set.</p>
     <h6>Your Rights</h6>
-    <p class="body">You may request deletion of your newsletter subscription at any time via <span style="color:var(--gold)">privacy@meridian.news</span>. EU/UK readers have additional rights under GDPR, including access and portability.</p>
+    <p class="body">You may request deletion of your data at any time via <span style="color:var(--gold)">privacy@meridian.news</span>. EU/UK readers have additional rights under GDPR, including access and portability.</p>
   </div>
 </div>
 <div class="modal-bg" id="modal-data" onclick="if(event.target===this)closeModal('data')">
@@ -527,10 +527,7 @@
 <div id="toast"></div>
 
 <script>
-/* ==== SUPABASE — multi-visitor publishing ====
-   1) supabase.com'da proje ac  2) SQL editorde tablolari olustur (talimatta)
-   3) Settings->API'den URL ve anon key'i asagiya yapistir. Bos birakirsan
-   site eski moddadir (haberler sadece bu tarayicida gorunur). */
+/* ==== SUPABASE — multi-visitor publishing ==== */
 const SUPA_URL='https://lnvxhujihmifwqhowlhu.supabase.co';
 const SUPA_KEY='sb_publishable_P_nM2fdUVH0MpM_lIeA39g_bGvguYzz';
 const SUPA=()=>!!(SUPA_URL&&SUPA_KEY);
@@ -1368,8 +1365,324 @@ const A=[
  'What followed is the market Meridian covers today: a 40%+ drawdown to June 2026’s $58,190 low, the first weekly close below the 200-week average since 2023, and the open question of whether the ETF era changed the cycle’s physics or merely its participants. The October 2025 high is either the top of act one — or the high-water mark of an era. The archive, as always, will record which.'],
  quote:{t:'AI and crypto — the decade’s two speculative theologies — fed each other.',a:'Meridian year-in-review, 2025'},
  points:['ATH set October 2025, crowning the ETF-era bull market','AI and crypto liquidity converged, then unwound together','Reference point for the 2026 drawdown to $58,190'],
- tags:['Bitcoin','All-Time High','2025','Cycle']}
+ tags:['Bitcoin','All-Time High','2025','Cycle']},
+
+{id:'tesla-ipo-2010',role:'archive',era:'e1',sec:'stocks',kicker:'Archive · 2010',tDate:'JUN 29, 2010',date:'June 29, 2010',iso:'2010-06-29',read:4,author:'archive-desk',
+ title:'Tesla Goes Public at $17: Wall Street Meets the Electric Bet',
+ dek:'The first American carmaker IPO since Ford in 1956 — priced as a curiosity, remembered as a fortune.',
+ body:[
+ 'On June 29, 2010, Tesla Motors listed on Nasdaq at $17 a share, raising $226 million for a company that had delivered barely a thousand Roadsters and was burning cash on an unproven sedan called the Model S. Skeptics outnumbered believers on the order book, and the first analyst notes read like eulogies in advance.',
+ 'The listing became the defining counterexample of a generation: adjusting for splits, the IPO price works out to under 60 cents against later peaks in the hundreds of dollars. For the frontier-economy IPOs Meridian covers today — SpaceX above all — Tesla 2010 is the founding precedent: markets can price a belief long before the factories catch up.'],
+ quote:{t:'Markets can price a belief long before the factories catch up.',a:'Meridian Archive Desk'},
+ tags:['Tesla','IPO','2010','Electric Vehicles']},
+
+{id:'dollar-parity-2011',role:'archive',era:'e1',sec:'crypto',kicker:'Archive · 2011',tDate:'FEB 9, 2011',date:'February 9, 2011',iso:'2011-02-09',read:3,author:'archive-desk',
+ title:'One Bitcoin, One Dollar: Parity Day',
+ dek:'Two years after the genesis block, the experiment reaches the world’s reserve currency — briefly, and forever symbolically.',
+ body:[
+ 'On February 9, 2011, bitcoin traded at exactly one U.S. dollar on Mt. Gox for the first time. The milestone carried no institutional weight — daily volume was a rounding error — but the symbolism electrified the small community that had mined and traded the asset for two years at prices measured in fractions of a cent.',
+ 'Parity day marked the moment bitcoin acquired a public scoreboard. Tech press wrote its first wave of coverage, forum registrations spiked, and the question shifted permanently from “does this work?” to “what is it worth?” — the question every cycle since has answered differently.'],
+ quote:{t:'The question shifted from “does this work?” to “what is it worth?”',a:'Meridian Archive Desk'},
+ tags:['Bitcoin','2011','Milestone']},
+
+{id:'facebook-ipo-2012',role:'archive',era:'e1',sec:'stocks',kicker:'Archive · 2012',tDate:'MAY 18, 2012',date:'May 18, 2012',iso:'2012-05-18',read:4,author:'archive-desk',
+ title:'Facebook’s $104 Billion IPO Stumbles Out of the Gate',
+ dek:'The biggest tech listing of its era opens flat, breaks issue within days — and still becomes a template.',
+ body:[
+ 'On May 18, 2012, Facebook priced the largest technology IPO in history at $38 a share and a $104 billion valuation. Nasdaq’s systems buckled under the order flow, the stock closed its first day nearly flat, and within three months it had lost half its value amid doubts about mobile advertising.',
+ 'The recovery rewrote the lesson. Once mobile revenue arrived, the stock multiplied, and the debacle became a case study consulted by every mega-listing since: a broken first print says little about a franchise. Bankers preparing SpaceX’s 2026 debut reportedly studied the Facebook file line by line.'],
+ quote:{t:'A broken first print says little about a franchise.',a:'Meridian Archive Desk'},
+ tags:['Facebook','IPO','2012','Nasdaq']},
+
+{id:'dragon-iss-2012',role:'archive',era:'e1',sec:'space',kicker:'Archive · 2012',tDate:'MAY 25, 2012',date:'May 25, 2012',iso:'2012-05-25',read:4,author:'archive-desk',
+ title:'Dragon Berths at the ISS: Private Spaceflight Comes of Age',
+ dek:'A startup’s capsule docks where only governments had gone — the commercial space economy starts here.',
+ body:[
+ 'On May 25, 2012, SpaceX’s Dragon capsule was captured by the International Space Station’s robotic arm — the first commercial spacecraft ever to berth with the station. A company that had nearly died on its third rocket failure four years earlier was now delivering cargo for NASA under contract.',
+ 'The berthing validated the commercial cargo model that would grow into commercial crew, reusable boosters, Starlink and, fourteen years later, the largest IPO ever priced. Every valuation debate about the space economy traces to the morning a startup knocked on the station’s door.'],
+ quote:{t:'A startup knocked on the station’s door — and the station opened it.',a:'Meridian Archive Desk'},
+ tags:['SpaceX','Dragon','ISS','2012']},
+
+{id:'halving-2012',role:'archive',era:'e1',sec:'crypto',kicker:'Archive · 2012',tDate:'NOV 28, 2012',date:'November 28, 2012',iso:'2012-11-28',read:3,author:'archive-desk',
+ title:'The First Halving: Bitcoin’s Supply Clock Ticks',
+ dek:'Block rewards drop from 50 to 25 BTC — the monetary schedule proves it cannot be lobbied.',
+ body:[
+ 'On November 28, 2012, at block 210,000, Bitcoin executed the first halving in its history, cutting the block subsidy from 50 to 25 coins. Miners grumbled, skeptics predicted a death spiral, and the network shrugged: blocks kept arriving every ten minutes, exactly as the 2008 whitepaper had scheduled.',
+ 'Bitcoin traded near $12 that day. Within a year it crossed $1,000 — the first demonstration of the supply-shock arithmetic that would turn subsequent halvings into the industry’s quadrennial ritual and the anchor of every cycle model since.'],
+ quote:{t:'The monetary schedule proved it cannot be lobbied.',a:'Meridian Archive Desk'},
+ tags:['Halving','Bitcoin','2012']},
+
+{id:'cyprus-2013',role:'archive',era:'e1',sec:'policy',kicker:'Archive · 2013',tDate:'MAR 16, 2013',date:'March 16, 2013',iso:'2013-03-16',read:4,author:'archive-desk',
+ title:'Cyprus Raids Bank Deposits — and Bitcoin Finds Its First Macro Bid',
+ dek:'A bail-in that touched savings accounts gives the four-year-old asset its founding use case.',
+ body:[
+ 'On March 16, 2013, Cyprus announced a rescue package that included a levy on bank deposits — the first time in the euro era that ordinary savings accounts were tapped to recapitalize a banking system. Lines formed at ATMs across the island; a taboo had been broken on live television.',
+ 'Bitcoin, then trading near $45, tripled within weeks. Correlation is not causation, but the narrative minted that spring — an asset no committee can freeze or clip — became crypto’s most durable macro story, resurfacing at SVB in 2023 and in every banking tremor since.'],
+ quote:{t:'An asset no committee can freeze or clip.',a:'The Cyprus narrative, 2013'},
+ tags:['Cyprus','Bail-in','Bitcoin','2013']},
+
+{id:'falcon9-landing-2015',role:'archive',era:'e2',sec:'space',kicker:'Archive · 2015',tDate:'DEC 21, 2015',date:'December 21, 2015',iso:'2015-12-21',read:4,author:'archive-desk',
+ title:'Falcon 9 Sticks the Landing: Rockets Learn to Come Home',
+ dek:'The first orbital-class booster ever to return upright — launch economics change permanently.',
+ body:[
+ 'On December 21, 2015, a Falcon 9 first stage delivered eleven satellites to orbit and then did something no orbital booster had ever done: it flew back to Cape Canaveral and landed upright, engines flaring against the Florida night. The webcast audio — engineers screaming — became the sound of an industry inflecting.',
+ 'Reusability collapsed the marginal cost of reaching orbit and built the moat that later justified trillion-dollar valuations. Every SpaceX financial model, including the ones priced in the 2026 IPO, begins its arithmetic on the night the rocket came home.'],
+ quote:{t:'The webcast audio became the sound of an industry inflecting.',a:'Meridian Archive Desk'},
+ tags:['SpaceX','Falcon 9','Reusability','2015']},
+
+{id:'dao-hack-2016',role:'archive',era:'e2',sec:'crypto',kicker:'Archive · 2016',tDate:'JUN 17, 2016',date:'June 17, 2016',iso:'2016-06-17',read:5,author:'archive-desk',
+ title:'The DAO Hack: A $60 Million Exploit Splits Ethereum in Two',
+ dek:'Code was supposed to be law. Then the code had a bug worth a third of the network’s crowdfund.',
+ body:[
+ 'In June 2016, an attacker drained roughly $60 million in ether from The DAO — a decentralized venture fund that had raised a record $150 million from the Ethereum community weeks earlier. The exploit used the contract’s own withdrawal logic; by the letter of the code, nothing illegal had happened.',
+ 'The community’s answer defined the platform: a contentious hard fork reversed the theft, and dissenters who believed immutability was sacred kept mining the original chain as Ethereum Classic. The episode established the questions — is code law? who decides? — that every on-chain governance fight still relitigates.'],
+ quote:{t:'By the letter of the code, nothing illegal had happened.',a:'The DAO paradox, 2016'},
+ tags:['Ethereum','DAO','Hard Fork','2016']},
+
+{id:'halving-2016',role:'archive',era:'e2',sec:'crypto',kicker:'Archive · 2016',tDate:'JUL 9, 2016',date:'July 9, 2016',iso:'2016-07-09',read:3,author:'archive-desk',
+ title:'Second Halving Arrives With Bitcoin Quietly Rebuilding at $650',
+ dek:'No fireworks on the day — and an 18-month fuse that ended at $19,783.',
+ body:[
+ 'On July 9, 2016, Bitcoin’s second halving cut block rewards to 12.5 coins. The price barely moved — $650 that week — and mainstream coverage treated the event as a curiosity for hobbyists. The 2014–2015 bear market had thinned the audience.',
+ 'What followed became the template for halving folklore: an unremarkable event, a quiet year, then a vertical 2017. Analysts still argue whether the supply cut causes the cycle or merely coincides with it; traders long ago stopped caring about the difference.'],
+ quote:{t:'An unremarkable event, a quiet year, then a vertical 2017.',a:'Meridian Archive Desk'},
+ tags:['Halving','Bitcoin','2016']},
+
+{id:'brexit-2016',role:'archive',era:'e2',sec:'policy',kicker:'Archive · 2016',tDate:'JUN 24, 2016',date:'June 24, 2016',iso:'2016-06-24',read:4,author:'archive-desk',
+ title:'Brexit Shock: Sterling Craters, Gold and Bitcoin Catch the Fear Bid',
+ dek:'The pound’s worst day in modern history gives markets a rehearsal for the populist decade.',
+ body:[
+ 'On the morning of June 24, 2016, markets woke to a result the polls had priced out: Britain had voted to leave the European Union. Sterling fell over 8% — its worst single day in the floating-rate era — global equities shed roughly $2 trillion, and gold posted its best session in years.',
+ 'Bitcoin jumped double digits the same day, one of its first clean performances as a macro-hedge trade. For allocators, Brexit was the rehearsal: political shocks the models called impossible would keep arriving, and portfolios began budgeting for them.'],
+ quote:{t:'Political shocks the models called impossible would keep arriving.',a:'Meridian Archive Desk'},
+ tags:['Brexit','Sterling','2016','Macro']},
+
+{id:'segwit-2017',role:'archive',era:'e2',sec:'crypto',kicker:'Archive · 2017',tDate:'AUG 1, 2017',date:'August 1, 2017',iso:'2017-08-01',read:4,author:'archive-desk',
+ title:'Bitcoin Splits: SegWit Activates and Bitcoin Cash Is Born',
+ dek:'The scaling civil war ends in divorce — and both sides declare victory.',
+ body:[
+ 'On August 1, 2017, the years-long argument over Bitcoin’s block size ended the only way it could: in two chains. SegWit activated on the main network after a grassroots user campaign, while big-block advocates forked off Bitcoin Cash, each side keeping the shared history and its own vision.',
+ 'The split settled a constitutional question — users and nodes, not miners or companies, held final authority over the protocol. The market delivered its own verdict over the following years, concentrating value overwhelmingly on the original chain.'],
+ quote:{t:'Users and nodes, not miners or companies, held final authority.',a:'The scaling war’s verdict, 2017'},
+ tags:['Bitcoin','SegWit','Fork','2017']},
+
+{id:'apple-1t-2018',role:'archive',era:'e3',sec:'stocks',kicker:'Archive · 2018',tDate:'AUG 2, 2018',date:'August 2, 2018',iso:'2018-08-02',read:4,author:'archive-desk',
+ title:'Apple Becomes the First Trillion-Dollar Company',
+ dek:'A number once used as hyperbole becomes a line item — and then, within years, a stepping stone.',
+ body:[
+ 'On August 2, 2018, Apple’s market capitalization crossed $1 trillion — the first U.S. company ever to carry the number. Commentary at the time treated it as a summit; thirteen digits had previously existed mainly in jokes about national debts.',
+ 'It proved to be a base camp. Microsoft, Alphabet, Amazon, Nvidia and Saudi Aramco followed; by 2026, the scoreboard’s top entry — SpaceX at $2.1 trillion on debut — made Apple’s milestone look almost quaint. The trillion became what the billion had been a generation earlier: a threshold, not a ceiling.'],
+ quote:{t:'The trillion became what the billion had been: a threshold, not a ceiling.',a:'Meridian Archive Desk'},
+ tags:['Apple','Trillion','2018','Milestone']},
+
+{id:'libra-2019',role:'archive',era:'e3',sec:'crypto',kicker:'Archive · 2019',tDate:'JUN 18, 2019',date:'June 18, 2019',iso:'2019-06-18',read:4,author:'archive-desk',
+ title:'Facebook Unveils Libra — and Unites Washington Against It',
+ dek:'The most ambitious corporate currency ever proposed dies in committee, but changes everything anyway.',
+ body:[
+ 'On June 18, 2019, Facebook announced Libra: a global currency backed by a basket of assets, governed by a Swiss association of corporate giants, and available to billions of users on day one. Within weeks, central bankers, Congress and finance ministers had produced the most unified regulatory backlash in fintech history.',
+ 'Libra died by a thousand hearings, but its ghost built the modern landscape: central banks accelerated CBDC research, Congress began writing the stablecoin rules that became law in 2025, and the market learned that distribution — not technology — is what regulators actually fear.'],
+ quote:{t:'Distribution, not technology, is what regulators actually fear.',a:'Meridian Archive Desk'},
+ tags:['Libra','Facebook','Stablecoins','2019']},
+
+{id:'repo-2019',role:'archive',era:'e3',sec:'policy',kicker:'Archive · 2019',tDate:'SEP 17, 2019',date:'September 17, 2019',iso:'2019-09-17',read:4,author:'archive-desk',
+ title:'Repo Rupture: Overnight Rates Hit 10% and the Fed Blinks',
+ dek:'The plumbing of the dollar system seizes for a night — and quantitative tightening quietly dies.',
+ body:[
+ 'On September 17, 2019, the interest rate on overnight repurchase agreements — the plumbing through which Wall Street funds itself — spiked from about 2% to 10%. Nothing had “happened”; reserves had simply grown scarcer than the Fed’s models predicted, and the machine seized.',
+ 'The Fed restarted balance-sheet expansion within days, ending the tightening cycle without ever calling it that. For monetary plumbing nerds and bitcoiners alike, the episode became evidence for the same thesis: the system runs on liquidity, and liquidity always wins the argument.'],
+ quote:{t:'The system runs on liquidity, and liquidity always wins the argument.',a:'Meridian Archive Desk'},
+ tags:['Repo','Federal Reserve','2019','Liquidity']},
+
+{id:'halving-2020',role:'archive',era:'e3',sec:'crypto',kicker:'Archive · 2020',tDate:'MAY 11, 2020',date:'May 11, 2020',iso:'2020-05-11',read:3,author:'archive-desk',
+ title:'Third Halving Lands in a World of Infinite Stimulus',
+ dek:'Programmed scarcity meets unlimited quantitative easing — the cleanest A/B test in monetary history.',
+ body:[
+ 'On May 11, 2020, two months after Black Thursday and amid the largest stimulus wave ever deployed, Bitcoin’s third halving cut issuance to 6.25 coins per block. The timing wrote the marketing copy by itself: one monetary system printing without limit, the other cutting supply on schedule.',
+ 'Paul Tudor Jones published his “fastest horse” letter the same week, becoming the first marquee macro investor to disclose a bitcoin position. The institutional era dates, as well as anywhere, to that fortnight.'],
+ quote:{t:'The fastest horse.',a:'Paul Tudor Jones, May 2020'},
+ tags:['Halving','Stimulus','2020']},
+
+{id:'crew-dragon-2020',role:'archive',era:'e3',sec:'space',kicker:'Archive · 2020',tDate:'MAY 30, 2020',date:'May 30, 2020',iso:'2020-05-30',read:4,author:'archive-desk',
+ title:'Crew Dragon Flies: NASA Astronauts Ride a Private Rocket',
+ dek:'Nine years after the Shuttle retired, America launches its own astronauts again — on a vehicle it rents.',
+ body:[
+ 'On May 30, 2020, astronauts Bob Behnken and Doug Hurley lifted off from Kennedy Space Center aboard a SpaceX Crew Dragon — the first crewed orbital launch from American soil since 2011, and the first ever by a private company. A pandemic-locked nation watched a countdown for the first time in a generation.',
+ 'The flight converted SpaceX from cargo contractor to indispensable partner and validated the fixed-price commercial model against the cost-plus tradition. The pattern it set — government as anchor customer, company as owner-operator — is now the operating system of the entire space economy.'],
+ quote:{t:'Government as anchor customer, company as owner-operator.',a:'The commercial crew model'},
+ tags:['SpaceX','NASA','Crew Dragon','2020']},
+
+{id:'defi-summer-2020',role:'archive',era:'e3',sec:'crypto',kicker:'Archive · 2020',tDate:'AUG 15, 2020',date:'August 2020',iso:'2020-08-15',read:4,author:'archive-desk',
+ title:'DeFi Summer: Yield Farming Turns Ethereum Into a Money Lab',
+ dek:'Compound’s token launch ignites a composability boom — food coins, forks and the future of market structure.',
+ body:[
+ 'In the summer of 2020, decentralized finance stopped being a whitepaper genre. Compound’s COMP token launch in June ignited “yield farming” — users chasing token incentives across lending pools and automated market makers — and total value locked in DeFi protocols exploded from under $1 billion to over $10 billion by autumn.',
+ 'The mania produced absurdities (a week of vegetable-named tokens) and durable infrastructure in equal measure: AMMs, on-chain lending, flash loans and composable collateral. The tokenized-equity venues of 2026, Robinhood Chain included, are DeFi summer’s institutional grandchildren.'],
+ quote:{t:'Absurdities and durable infrastructure, in equal measure.',a:'Meridian Archive Desk'},
+ tags:['DeFi','Ethereum','Yield Farming','2020']},
+
+{id:'paypal-2020',role:'archive',era:'e3',sec:'crypto',kicker:'Archive · 2020',tDate:'OCT 21, 2020',date:'October 21, 2020',iso:'2020-10-21',read:3,author:'archive-desk',
+ title:'PayPal Opens Crypto to 346 Million Accounts',
+ dek:'The distribution dam breaks — buying bitcoin becomes a checkbox in an app Americans already have.',
+ body:[
+ 'On October 21, 2020, PayPal announced that its users could buy, hold and sell cryptocurrency directly in the app, with merchant payments to follow. Overnight, the largest onboarding funnel in fintech pointed at an asset class that exchanges had spent a decade explaining.',
+ 'The price responded for weeks, but the deeper effect was normalization: after PayPal, every broker, bank and super-app faced the same product question. The retail rails that carried the 2021 mania — and the 2024 ETF flows after them — were laid that October.'],
+ quote:{t:'Buying bitcoin became a checkbox in an app Americans already had.',a:'Meridian Archive Desk'},
+ tags:['PayPal','Adoption','2020']},
+
+{id:'gamestop-2021',role:'archive',era:'e4',sec:'stocks',kicker:'Archive · 2021',tDate:'JAN 28, 2021',date:'January 28, 2021',iso:'2021-01-28',read:5,author:'archive-desk',
+ title:'GameStop Mania: The Week Retail Broke Wall Street',
+ dek:'A subreddit versus the short sellers — trading halts, congressional hearings, and a new market species.',
+ body:[
+ 'In the last week of January 2021, shares of GameStop — a fading mall retailer with over 100% of its float sold short — rose from $20 toward $483 as millions of retail traders, organized on Reddit, executed history’s most public short squeeze. Melvin Capital required a rescue; Robinhood, its clearing costs exploding, restricted buying and detonated a political firestorm.',
+ 'The episode permanently changed market microstructure debates — payment for order flow, settlement times, short-interest disclosure — and announced a coordinated retail cohort that has never left. The meme trade became an asset class with its own risk premium.'],
+ quote:{t:'The meme trade became an asset class with its own risk premium.',a:'Meridian Archive Desk'},
+ tags:['GameStop','Reddit','Short Squeeze','2021']},
+
+{id:'tesla-btc-2021',role:'archive',era:'e4',sec:'crypto',kicker:'Archive · 2021',tDate:'FEB 8, 2021',date:'February 8, 2021',iso:'2021-02-08',read:3,author:'archive-desk',
+ title:'Tesla Buys $1.5 Billion in Bitcoin',
+ dek:'The corporate treasury thesis gets its celebrity endorsement — and the S&P 500 gets bitcoin exposure by index.',
+ body:[
+ 'On February 8, 2021, a line in Tesla’s 10-K disclosed a $1.5 billion bitcoin purchase and plans to accept the asset for car payments. Bitcoin jumped double digits in hours; every corporate treasurer in America received the same morning email from their CEO.',
+ 'Tesla’s position — trimmed, debated, occasionally trolled by its founder — mattered less than the precedent: a member of the S&P 500 had put the asset on its balance sheet, which meant every index investor now owned it at one remove. The wall between crypto and equities lost its first brick.'],
+ quote:{t:'Every index investor now owned it at one remove.',a:'Meridian Archive Desk'},
+ tags:['Tesla','Bitcoin','Treasury','2021']},
+
+{id:'beeple-2021',role:'archive',era:'e4',sec:'crypto',kicker:'Archive · 2021',tDate:'MAR 11, 2021',date:'March 11, 2021',iso:'2021-03-11',read:4,author:'archive-desk',
+ title:'A JPEG at Christie’s: Beeple Sells for $69 Million',
+ dek:'“Everydays” makes a digital artist the third-most-valuable living painter — and mints the NFT era.',
+ body:[
+ 'On March 11, 2021, Christie’s — founded 1766 — closed its first purely digital auction: “Everydays: The First 5000 Days,” an NFT collage by Mike Winkelmann, known as Beeple, sold for $69.3 million. A graphic designer from Wisconsin was suddenly among the most valuable living artists on record.',
+ 'The NFT boom that followed burned fast and cooled hard, but it settled a conceptual question at unprecedented scale: digital objects can carry verifiable provenance and command real prices. Tokenized real-world assets — the 2026 mainstream — walked in through the door a JPEG opened.'],
+ quote:{t:'Tokenized assets walked in through the door a JPEG opened.',a:'Meridian Archive Desk'},
+ tags:['NFT','Beeple','Christie’s','2021']},
+
+{id:'china-ban-2021',role:'archive',era:'e4',sec:'crypto',kicker:'Archive · 2021',tDate:'JUN 21, 2021',date:'June 2021',iso:'2021-06-21',read:4,author:'archive-desk',
+ title:'China Expels Its Miners; the Hashrate Crosses the Pacific',
+ dek:'Half the network goes dark in weeks — and comes back online in Texas and Kazakhstan.',
+ body:[
+ 'In May and June 2021, Beijing ended a decade of ambiguity and ordered bitcoin mining shut down province by province. Over half the global hashrate went offline within weeks — the largest supply-side shock in the network’s history — and machines by the container-load were auctioned toward anywhere with cheap power.',
+ 'The network’s difficulty adjustment absorbed the blow on schedule, and within a year the hashrate had fully recovered, redistributed across North America and Central Asia. The episode became the standard answer to the ban question: jurisdictions can expel the industry; they cannot switch off the network.'],
+ quote:{t:'Jurisdictions can expel the industry; they cannot switch off the network.',a:'Meridian Archive Desk'},
+ tags:['China','Mining','Hashrate','2021']},
+
+{id:'el-salvador-2021',role:'archive',era:'e4',sec:'policy',kicker:'Archive · 2021',tDate:'SEP 7, 2021',date:'September 7, 2021',iso:'2021-09-07',read:4,author:'archive-desk',
+ title:'El Salvador Makes Bitcoin Legal Tender',
+ dek:'A nation-state adopts the protocol — volcano bonds, Chivo wallets and a live experiment nobody could model.',
+ body:[
+ 'On September 7, 2021, El Salvador became the first country to adopt bitcoin as legal tender. President Nayib Bukele announced treasury purchases by tweet, the state Chivo wallet crashed on launch morning, and the IMF issued the first of many disapproving statements.',
+ 'The experiment’s economics remain argued over, but its diplomatic effect compounded: sovereign adoption stopped being unthinkable, national mining operations and bitcoin-backed bonds entered the policy menu, and by the mid-2020s reserve accumulation by states — including, eventually, the United States — had its precedent.'],
+ quote:{t:'Sovereign adoption stopped being unthinkable.',a:'Meridian Archive Desk'},
+ tags:['El Salvador','Legal Tender','2021']},
+
+{id:'btc-69k-2021',role:'archive',era:'e4',sec:'crypto',kicker:'Archive · 2021',tDate:'NOV 10, 2021',date:'November 10, 2021',iso:'2021-11-10',read:4,author:'archive-desk',
+ title:'$69,000: The Everything-Rally Tops',
+ dek:'Futures ETFs, NFT mania and negative real rates crescendo together — the cycle high, to the day.',
+ body:[
+ 'On November 10, 2021, bitcoin printed $69,000 — the top of the pandemic-liquidity cycle. The month had everything: a futures-based ETF launch, record NFT volumes, trillion-dollar crypto market caps and a CPI print that morning showing inflation at three-decade highs.',
+ 'The inflation number was read, briefly, as bullish. Within weeks the Fed retired the word “transitory,” and the fastest tightening cycle in forty years began dismantling every trade the era had built. The drawdown that followed — Terra, Celsius, FTX — started from this exact print.'],
+ quote:{t:'The drawdown that followed started from this exact print.',a:'Meridian Archive Desk'},
+ tags:['Bitcoin','Cycle Top','2021']},
+
+{id:'terra-luna-2022',role:'archive',era:'e4',sec:'crypto',kicker:'Archive · 2022',tDate:'MAY 9, 2022',date:'May 9, 2022',iso:'2022-05-09',read:5,author:'archive-desk',
+ title:'Terra’s $40 Billion Death Spiral',
+ dek:'An algorithmic stablecoin meets a bank run — and takes half the industry’s balance sheets with it.',
+ body:[
+ 'In the second week of May 2022, TerraUSD — an algorithmic stablecoin holding its dollar peg through an arbitrage loop with its sister token LUNA — lost the peg and entered the death spiral its critics had diagrammed for years. Roughly $40 billion of paper value evaporated in days; LUNA fell from $80 to fractions of a cent.',
+ 'The collapse was crypto’s Lehman chain-reaction: Three Arrows Capital, Celsius, Voyager and BlockFi failed in sequence over the following months, and the contagion’s final casualty — FTX — redrew the regulatory map. “Algorithmic stablecoin” remains, since that week, a phrase used mainly in post-mortems.'],
+ quote:{t:'The death spiral its critics had diagrammed for years.',a:'Meridian Archive Desk'},
+ tags:['Terra','LUNA','Stablecoins','2022']},
+
+{id:'the-merge-2022',role:'archive',era:'e4',sec:'crypto',kicker:'Archive · 2022',tDate:'SEP 15, 2022',date:'September 15, 2022',iso:'2022-09-15',read:4,author:'archive-desk',
+ title:'The Merge: Ethereum Cuts Its Energy Use by 99.95%',
+ dek:'The most complex live upgrade in software history swaps out a running blockchain’s engine mid-flight.',
+ body:[
+ 'On September 15, 2022, Ethereum executed the Merge, replacing proof-of-work mining with proof-of-stake validation on a network securing hundreds of billions of dollars — without halting for a second. Energy consumption fell 99.95% overnight; an entire GPU-mining industry retired at once.',
+ 'Engineers compared it to changing an aircraft’s engines in flight, and the metaphor undersold it: years of shadow-fork rehearsals produced a transition so smooth it was almost anticlimactic. The Merge answered crypto’s environmental critique in one block and made staking yield the risk-free rate of the on-chain economy.'],
+ quote:{t:'Changing an aircraft’s engines in flight — and the metaphor undersold it.',a:'Meridian Archive Desk'},
+ tags:['Ethereum','Merge','Proof of Stake','2022']},
+
+{id:'chatgpt-2022',role:'archive',era:'e4',sec:'tech',kicker:'Archive · 2022',tDate:'NOV 30, 2022',date:'November 30, 2022',iso:'2022-11-30',read:4,author:'archive-desk',
+ title:'ChatGPT Launches — and Lights the Fuse on the AI Supercycle',
+ dek:'A research demo reaches 100 million users in two months and reprices the entire technology sector.',
+ body:[
+ 'On November 30, 2022 — nineteen days after FTX filed for bankruptcy — OpenAI released a chat interface to its language model as a low-key research preview. ChatGPT reached a million users in five days and one hundred million in two months, the fastest adoption of any consumer product in history.',
+ 'The launch reordered capital markets’ obsessions overnight: “crypto winter” headlines gave way to GPU shortages, Nvidia’s ascent toward $1 trillion and beyond, and the data-center arms race that defines the 2026 economy. Every AI valuation Meridian covers — from Anthropic’s power contracts to the xAI merger inside SpaceX — begins its story here.'],
+ quote:{t:'The fastest adoption of any consumer product in history.',a:'Meridian Archive Desk'},
+ tags:['ChatGPT','OpenAI','AI','2022']},
+
+{id:'nvidia-1t-2023',role:'archive',era:'e4',sec:'stocks',kicker:'Archive · 2023',tDate:'MAY 30, 2023',date:'May 30, 2023',iso:'2023-05-30',read:4,author:'archive-desk',
+ title:'Nvidia Joins the Trillion-Dollar Club on a Guidance Shock',
+ dek:'One forecast — $11 billion against $7 billion expected — announces that the AI buildout is real money.',
+ body:[
+ 'On May 24, 2023, Nvidia guided quarterly revenue to roughly $11 billion against Wall Street’s $7 billion consensus — the largest guidance beat relative to expectations in large-cap history. Within days the stock crossed a $1 trillion market capitalization, the first semiconductor company ever to do so.',
+ 'The print converted AI from narrative to income statement: hyperscaler capex lines were reread as Nvidia revenue, and an entire complex — memory, networking, power, cooling — repriced in sympathy. The path from that guidance shock to the $4 trillion-plus Nvidia of 2026 runs straight, with one famous DeepSeek-shaped pothole.'],
+ quote:{t:'AI went from narrative to income statement in a single forecast.',a:'Meridian Archive Desk'},
+ tags:['Nvidia','AI','Trillion','2023']},
+
+{id:'ripple-2023',role:'archive',era:'e4',sec:'crypto',kicker:'Archive · 2023',tDate:'JUL 13, 2023',date:'July 13, 2023',iso:'2023-07-13',read:4,author:'archive-desk',
+ title:'Ripple’s Split Decision: XRP Is Not (Always) a Security',
+ dek:'A federal judge rules the same token can be a security in one sale and not in another — chaos, and a rally.',
+ body:[
+ 'On July 13, 2023, Judge Analisa Torres ruled that Ripple’s institutional sales of XRP violated securities law — but that programmatic sales on exchanges did not. The token doubled within hours, and U.S. exchanges that had delisted XRP in 2020 relisted it within days.',
+ 'The split decision satisfied no one and guided everyone: it punctured the SEC’s everything-is-a-security posture, emboldened the industry’s court strategies, and added pressure for the legislation that eventually arrived mid-decade. XRP’s 2026 role in the tokenization trade traces its legal oxygen to this ruling.'],
+ quote:{t:'It satisfied no one and guided everyone.',a:'Meridian Archive Desk'},
+ tags:['Ripple','XRP','SEC','2023']},
+
+{id:'cz-2023',role:'archive',era:'e4',sec:'crypto',kicker:'Archive · 2023',tDate:'NOV 21, 2023',date:'November 21, 2023',iso:'2023-11-21',read:4,author:'archive-desk',
+ title:'Binance Pays $4.3 Billion; CZ Steps Down',
+ dek:'The industry’s biggest exchange settles with the U.S. — and the market rallies on the removal of its last overhang.',
+ body:[
+ 'On November 21, 2023, Binance pleaded guilty to U.S. anti-money-laundering and sanctions violations, agreed to a $4.3 billion settlement — among the largest corporate penalties ever — and Changpeng Zhao resigned as CEO, later serving a four-month sentence. The world’s largest exchange accepted years of compliance monitorship.',
+ 'Markets read the punishment as absolution: the systemic overhang of a potential Binance collapse — the post-FTX nightmare scenario — was retired at a known price. Bitcoin rallied through the settlement toward the ETF approvals six weeks later; the institutional era required exactly this receipt.'],
+ quote:{t:'Punishment read as absolution — the overhang retired at a known price.',a:'Meridian Archive Desk'},
+ tags:['Binance','CZ','Regulation','2023']},
+
+{id:'nvidia-3t-2024',role:'archive',era:'e5',sec:'stocks',kicker:'Archive · 2024',tDate:'JUN 5, 2024',date:'June 5, 2024',iso:'2024-06-05',read:3,author:'archive-desk',
+ title:'Nvidia Passes $3 Trillion, Briefly the Most Valuable Company on Earth',
+ dek:'From $1T to $3T in a year — the chipmaker laps Apple and redefines market concentration.',
+ body:[
+ 'On June 5, 2024, Nvidia’s market value crossed $3 trillion, overtaking Apple and — within weeks, briefly — Microsoft as the most valuable company in the world. The stock had tripled in twelve months; a ten-for-one split arrived days later to make the chart legible.',
+ 'Concentration became the market’s defining anxiety: a handful of AI names drove most of the index’s return, and every allocator’s risk meeting featured the same slide. The debate — supercycle or bubble — was not resolved; it was simply postponed, print by print, until 2026’s rotation finally gave the bears a quarter.'],
+ quote:{t:'Supercycle or bubble — the debate was postponed, print by print.',a:'Meridian Archive Desk'},
+ tags:['Nvidia','$3 Trillion','2024']},
+
+{id:'election-2024',role:'archive',era:'e5',sec:'policy',kicker:'Archive · 2024',tDate:'NOV 6, 2024',date:'November 6, 2024',iso:'2024-11-06',read:4,author:'archive-desk',
+ title:'Markets Price a Crypto-Friendly Washington; Bitcoin Gaps Higher',
+ dek:'The 2024 election flips the regulatory weather overnight — and the asset class trades like it knows.',
+ body:[
+ 'On the morning of November 6, 2024, with the U.S. election decided, bitcoin gapped to record highs and crypto-linked equities opened double digits up. The incoming administration had campaigned, explicitly and unprecedentedly, on ending the enforcement-first era and making America the industry’s home jurisdiction.',
+ 'The regulatory turn that followed — new agency leadership, dropped lawsuits, stablecoin legislation and eventually a strategic reserve — compressed years of policy uncertainty into months. Whatever one’s politics, the repricing was textbook: markets discount the rulebook, and the rulebook had changed.'],
+ quote:{t:'Markets discount the rulebook, and the rulebook had changed.',a:'Meridian Archive Desk'},
+ tags:['Election','Policy','Bitcoin','2024']},
+
+{id:'btc-100k-2024',role:'archive',era:'e5',sec:'crypto',kicker:'Archive · 2024',tDate:'DEC 5, 2024',date:'December 5, 2024',iso:'2024-12-05',read:4,author:'archive-desk',
+ title:'Six Figures: Bitcoin Crosses $100,000',
+ dek:'The psychological summit of a fifteen-year climb — from two pizzas to a hundred grand a coin.',
+ body:[
+ 'On December 5, 2024, bitcoin traded above $100,000 for the first time. The milestone arrived on ETF rails, election tailwinds and a nomination announcement for a crypto-friendly SEC chair — a confluence that made six figures feel, in the moment, almost inevitable.',
+ 'The number was a monument more than a level: fourteen years earlier the asset had bought two pizzas for ten thousand coins. Veterans marked the occasion the traditional way — by arguing whether it was the beginning of a supercycle or the late innings of an ordinary one. The 2025 top and 2026 drawdown would eventually referee.'],
+ quote:{t:'From two pizzas to a hundred grand a coin.',a:'Meridian Archive Desk'},
+ tags:['Bitcoin','$100K','Milestone','2024']},
+
+{id:'deepseek-2025',role:'archive',era:'e5',sec:'tech',kicker:'Archive · 2025',tDate:'JAN 27, 2025',date:'January 27, 2025',iso:'2025-01-27',read:4,author:'archive-desk',
+ title:'The DeepSeek Shock: Nvidia Sheds a Record $589 Billion in a Day',
+ dek:'A Chinese lab’s cheap frontier model asks the trillion-dollar question — how much compute does AI really need?',
+ body:[
+ 'On January 27, 2025, Nvidia lost $589 billion in market value — the largest single-day loss for any company in history — after Chinese lab DeepSeek released a frontier-class model reportedly trained for a fraction of Western budgets. If intelligence was getting cheaper this fast, the market asked, what was all that capex for?',
+ 'The answer emerged within months: cheaper intelligence meant more consumption of it, and compute demand re-accelerated — Jevons paradox, quoted in every strategy note that spring. But the shock permanently added a risk premium to the AI trade, a crack that 2026’s chip-sector rotation would eventually widen.'],
+ quote:{t:'If intelligence is getting cheaper this fast, what was all that capex for?',a:'The DeepSeek question, January 2025'},
+ tags:['DeepSeek','Nvidia','AI','2025']},
+
+{id:'reserve-2025',role:'archive',era:'e5',sec:'policy',kicker:'Archive · 2025',tDate:'MAR 6, 2025',date:'March 6, 2025',iso:'2025-03-06',read:4,author:'archive-desk',
+ title:'A Strategic Bitcoin Reserve: The United States Makes It Official',
+ dek:'Seized coins become sovereign holdings by executive order — the genesis block’s rebellion, nationalized.',
+ body:[
+ 'On March 6, 2025, an executive order established a U.S. Strategic Bitcoin Reserve, capitalized initially with roughly 200,000 coins already held from criminal and civil forfeitures, with a stated policy of not selling. The asset created to route around the state was now on the state’s balance sheet.',
+ 'Critics called it symbolism; treasurers elsewhere called it a starting gun. Sovereign and sub-sovereign accumulation entered the standard playbook within a year, and every subsequent drawdown — including 2026’s — has traded against a new kind of bid rumor: not a fund, but a flag.'],
+ quote:{t:'Not a fund, but a flag.',a:'Meridian Archive Desk'},
+ tags:['Strategic Reserve','Policy','Bitcoin','2025']}
 ];
+const CORE_IDS=new Set(A.map(a=>a.id));
 
 const ERAS={e1:{label:'2009–2013',sub:'The Genesis Era — an experiment becomes an asset'},
 e2:{label:'2014–2017',sub:'Boom, Bust & Believers — the first institutional glances'},
@@ -1618,14 +1931,14 @@ const cardHTML=a=>`<article class="card" data-c="${a.sec}">${a.img?`<img class="
 
 /* ================= HOME RENDER ================= */
 function renderHome(){
- const hero=A.find(a=>a.role==='hero');
- const heroFig=(FIGS[hero.id]||[])[0];
- document.getElementById('hero-slot').innerHTML=
+ const hero=A.find(a=>a.role==='hero'&&!a.draft)||A.filter(a=>a.role!=='archive'&&!a.draft).sort((x,y)=>y.iso.localeCompare(x.iso))[0];
+ const heroFig=hero?(FIGS[hero.id]||[])[0]:null;
+ document.getElementById('hero-slot').innerHTML=!hero?'':
   (heroFig?figHTML(heroFig,340,'Cover Story · IPO of the Decade'):visual(hero.sec,'Cover Story · IPO of the Decade',340))+
   `<span class="kicker" style="margin-top:26px">${SECTIONS[hero.sec]}</span>
    <h1><a onclick="nav('article','${hero.id}')">${hero.title}</a></h1>
    <p class="dek">${hero.dek}</p><div class="byline">${bylineHTML(hero)} · ${hero.read} min read</div>`;
- document.getElementById('side-slot').innerHTML=A.filter(a=>a.role==='side').map(a=>
+ document.getElementById('side-slot').innerHTML=A.filter(a=>a.role==='side'&&!a.draft).map(a=>
   `<div class="side-item"><span class="kicker">${a.kicker}</span><h3><a onclick="nav('article','${a.id}')">${a.title}</a></h3><p>${a.dek}</p><div class="byline">${bylineHTML(a)}</div></div>`).join('');
  document.getElementById('grid').innerHTML=A.filter(a=>a.role==='grid'&&!a.draft).sort((x,y)=>y.iso.localeCompare(x.iso)).map(cardHTML).join('');
  document.getElementById('eras').innerHTML=Object.keys(ERAS).map((k,i)=>`<button class="${i===0?'on':''}" data-e="${k}">${ERAS[k].label}</button>`).join('');
@@ -1828,19 +2141,26 @@ livePrices();setInterval(livePrices,60000);
 
 /* ================= ADMIN (hidden — open the site with #/admin) ================= */
 const ADMIN_PASS='meridian2026'; /* ← change your passcode here */
-const CK='meridian_custom_articles', CAK='meridian_custom_authors', EDK='meridian_editor', AFK='meridian_form_autosave';
+const CK='meridian_custom_articles', CAK='meridian_custom_authors', EDK='meridian_editor', AFK='meridian_form_autosave', DELK='meridian_deleted';
 let editingId=null, adminTab='stories', editingAuthor=null, formImg=null, stQ='', stF='all';
+function applyStory(a){
+ const i=A.findIndex(x=>x.id===a.id);
+ if(a._deleted){if(i>-1)A.splice(i,1);return}
+ a.custom=true;
+ if(i>-1)A[i]=a;else A.push(a);
+}
 async function loadCustom(){
  if(SUPA()){
   try{
    const aus=await sbList('authors');aus.forEach(r=>{AUTHORS[r.id]=r.data});
-   const sts=await sbList('stories');sts.forEach(r=>{const a=r.data;a.custom=true;if(!byId(a.id))A.push(a)});
+   const sts=await sbList('stories');sts.forEach(r=>applyStory(r.data));
    return;
   }catch(e){toast('Could not reach database — showing built-in stories only')}
  }
  try{
   Object.assign(AUTHORS,JSON.parse(localStorage.getItem(CAK)||'{}'));
-  JSON.parse(localStorage.getItem(CK)||'[]').forEach(a=>{a.custom=true;A.push(a)});
+  JSON.parse(localStorage.getItem(CK)||'[]').forEach(applyStory);
+  JSON.parse(localStorage.getItem(DELK)||'[]').forEach(id=>{const i=A.findIndex(x=>x.id===id);if(i>-1)A.splice(i,1)});
  }catch(e){}
 }
 const customArts=()=>A.filter(a=>a.custom);
@@ -1878,7 +2198,7 @@ function renderAdmin(){
     <input type="file" id="imp-file" accept=".json,application/json" style="display:none" onchange="importCustom(this)">
     <button class="mini danger" onclick="adminLogout()">Log out</button></div></div>
   <div class="tabs">
-   <button class="${adminTab==='stories'?'on':''}" onclick="setTab('stories')">Stories (${customArts().length})</button>
+   <button class="${adminTab==='stories'?'on':''}" onclick="setTab('stories')">Stories (${A.length})</button>
    <button class="${adminTab==='new'?'on':''}" onclick="setTab('new')">${editingId?'✎ Edit Story':'＋ New Story'}</button>
    <button class="${adminTab==='authors'?'on':''}" onclick="setTab('authors')">Authors (${Object.keys(AUTHORS).length})</button>
   </div>${content}</div>`;
@@ -1889,13 +2209,13 @@ function renderAdmin(){
 /* ---- Stories tab ---- */
 function storyRows(){
  const q=stQ.toLowerCase();
- const arts=customArts().filter(a=>(stF==='all'||(stF==='draft'?a.draft:!a.draft))&&(!q||(a.title+' '+AUTHORS[a.author].name+' '+(a.enteredBy||'')).toLowerCase().includes(q))).sort((x,y)=>(y.createdAt||0)-(x.createdAt||0));
- if(!arts.length)return '<p style="color:var(--faint);padding:16px 0">No stories match. Publish your first from the “＋ New Story” tab.</p>';
+ const arts=A.filter(a=>(stF==='all'?true:stF==='draft'?!!a.draft:stF==='core'?!a.custom:stF==='mine'?!!a.custom:!a.draft)&&(!q||(a.title+' '+AUTHORS[a.author].name+' '+(a.enteredBy||'')).toLowerCase().includes(q))).sort((x,y)=>((y.createdAt||0)-(x.createdAt||0))||y.iso.localeCompare(x.iso));
+ if(!arts.length)return '<p style="color:var(--faint);padding:16px 0">No stories match.</p>';
  return arts.map(a=>`<div class="a-row">
   ${a.img?`<img class="thumb" src="${a.img}">`:`<div class="thumb" style="display:flex;align-items:center;justify-content:center;background:var(--panel);color:var(--gold)">◈</div>`}
-  <div style="flex:1"><div class="t">${a.title}<span class="badge-st ${a.draft?'dr':'pub'}">${a.draft?'Draft':'Live'}</span></div>
-  <div class="m">${a.role==='archive'?'Archive · '+ERAS[a.era].label:'Top Stories'} · ${SECTIONS[a.sec]} · byline: ${AUTHORS[a.author].name} · dated ${a.date}</div>
-  <div class="m">entered by <b style="color:var(--muted)">${a.enteredBy||'—'}</b> on ${fmtTS(a.createdAt)}${a.updatedAt?' · last edited '+fmtTS(a.updatedAt):''}</div></div>
+  <div style="flex:1"><div class="t">${a.title}<span class="badge-st ${a.draft?'dr':'pub'}">${a.draft?'Draft':'Live'}</span>${a.custom?'':'<span class="badge-st" style="color:var(--faint)">Core</span>'}</div>
+  <div class="m">${a.role==='archive'?'Archive · '+ERAS[a.era].label:a.role==='hero'?'Homepage Hero':a.role==='side'?'Homepage Side':'Top Stories'} · ${SECTIONS[a.sec]} · byline: ${AUTHORS[a.author].name} · dated ${a.date}</div>
+  <div class="m">${a.custom?`entered by <b style="color:var(--muted)">${a.enteredBy||'—'}</b> on ${fmtTS(a.createdAt)}${a.updatedAt?' · last edited '+fmtTS(a.updatedAt):''}`:'built-in story — your edits are saved as overrides'}</div></div>
   <div class="acts">
    <button class="mini" onclick="previewById('${a.id}')">View</button>
    <button class="mini" onclick="editArticle('${a.id}')">Edit</button>
@@ -1905,13 +2225,15 @@ function storyRows(){
 }
 function refreshList(){const el=document.getElementById('st-list');if(el)el.innerHTML=storyRows()}
 function adminStories(){
- return `<div class="admin-note">Everything you publish appears on the site instantly. Drafts stay hidden from visitors. ${SUPA()?'Connected to Supabase — stories are visible to every visitor worldwide.':'Data lives in this browser only (localStorage). Fill in SUPA_URL & SUPA_KEY at the top of the file to publish for all visitors.'} Use Export JSON for backups.</div>
+ return `<div class="admin-note">${SUPA()?'Connected to Supabase — changes below go live for every visitor instantly.':'Local mode — changes are visible only in this browser.'} You can edit or delete ALL stories including built-in ones (edits are saved as overrides), change their images, dates, authors and placement. Use Export JSON for backups.</div>
  <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start">
   <div class="search-bar" style="flex:1;min-width:240px;margin-bottom:14px"><span>⌕</span><input value="${stQ.replace(/"/g,'&quot;')}" placeholder="Search title, byline author or editor…" oninput="stQ=this.value;refreshList()"></div>
   <select style="width:auto;background:var(--panel);border:1px solid var(--line);color:var(--text);padding:0 14px;height:45px;font-family:var(--sans);font-size:12.5px" onchange="stF=this.value;refreshList()">
-   <option value="all"${stF==='all'?' selected':''}>All status</option>
+   <option value="all"${stF==='all'?' selected':''}>All stories</option>
    <option value="live"${stF==='live'?' selected':''}>Live only</option>
-   <option value="draft"${stF==='draft'?' selected':''}>Drafts only</option></select></div>
+   <option value="draft"${stF==='draft'?' selected':''}>Drafts only</option>
+   <option value="core"${stF==='core'?' selected':''}>Built-in only</option>
+   <option value="mine"${stF==='mine'?' selected':''}>Added/edited by me</option></select></div>
  <div id="st-list">${storyRows()}</div>`;
 }
 function previewById(id){const a=byId(id);if(a.draft){renderArticle(Object.assign({},a,{_preview:true}));show('article')}else nav('article',id)}
@@ -2023,7 +2345,7 @@ function collectForm(persistAuthor){
  const old=editingId?byId(editingId):null;
  return{
   id:editingId||(v('af-title').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,40)+'-'+Date.now().toString(36)),
-  custom:true,role:place==='archive'?'archive':'grid',sec,
+  custom:true,role:place==='archive'?'archive':(old&&(old.role==='hero'||old.role==='side')?old.role:'grid'),sec,
   era:place==='archive'?v('af-era'):undefined,
   kicker:v('af-kicker')||((place==='archive'?'Archive · ':'')+SECTIONS[sec]),
   tDate:d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}).toUpperCase(),
@@ -2056,15 +2378,16 @@ function editArticle(id){editingId=id;adminTab='new';renderAdmin();window.scroll
 function cancelEdit(){editingId=null;setTab('stories')}
 async function deleteArticle(id){
  if(!confirm('Delete this story permanently?'))return;
- if(SUPA()){try{await sbDelete('stories',id)}catch(e){toast('Delete failed — are you logged in?');return}}
+ if(SUPA()){try{if(CORE_IDS.has(id)){await sbUpsert('stories',id,{id:id,_deleted:true})}else{await sbDelete('stories',id)}}catch(e){toast('Delete failed — are you logged in?');return}}
+ else if(CORE_IDS.has(id)){const dl=JSON.parse(localStorage.getItem(DELK)||'[]');if(!dl.includes(id))dl.push(id);localStorage.setItem(DELK,JSON.stringify(dl));}
  const i=A.findIndex(a=>a.id===id);if(i>-1)A.splice(i,1);
  saveCustom();renderHome();renderAdmin();toast('Story deleted');
 }
-function toggleDraft(id){const a=byId(id);a.draft=!a.draft;if(SUPA())sbUpsert('stories',a.id,a).catch(()=>toast('Sync failed'));saveCustom();renderHome();renderAdmin();toast(a.draft?'Story unpublished — now a draft':'Story is live')}
+function toggleDraft(id){const a=byId(id);a.draft=!a.draft;a.custom=true;if(SUPA())sbUpsert('stories',a.id,a).catch(()=>toast('Sync failed'));saveCustom();renderHome();renderAdmin();toast(a.draft?'Story unpublished — now a draft':'Story is live')}
 function duplicateArticle(id){
  const a=byId(id),c=JSON.parse(JSON.stringify(a));
  c.id=c.id.slice(0,40)+'-'+Date.now().toString(36);
- c.title=a.title+' (Copy)';c.draft=true;c.createdAt=Date.now();delete c.updatedAt;c.enteredBy=editorName();
+ c.title=a.title+' (Copy)';c.custom=true;c.draft=true;c.createdAt=Date.now();delete c.updatedAt;c.enteredBy=editorName();
  if(SUPA())sbUpsert('stories',c.id,c).catch(()=>toast('Sync failed'));
  A.push(c);saveCustom();renderAdmin();toast('Duplicated as draft');
 }
